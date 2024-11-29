@@ -1,6 +1,8 @@
 # Rigl
-Ismail Arrouche, Yassin Ahmzaoui, Amine Barchah
 
+## Projet en cours de réalisation par :
+- Ismail Arrouche
+- Yassin Ahmzaoui
+- Amine Barchah
 
-
-test commit
+## Technologies :
