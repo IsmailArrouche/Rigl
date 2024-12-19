@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  overflow-x: hidden;
+  background-color: #272a37;
+}
+
+.dark.bg-gradient {
+  background: rgb(39, 42, 55);
+  background: linear-gradient(
+    60deg,
+    rgb(39, 42, 55, 1) 50%,
+    rgba(39, 42, 55, 0.8) 70%,
+    rgba(39, 42, 55, 0.4) 100%
+  );
+}
+
+.light.bg-gradient {
+  background: rgb(39, 42, 55);
+  background: linear-gradient(
+    60deg,
+    rgb(180, 180, 190) 55%,
+    rgb(180, 180, 190, 0.9) 60%,
+    rgba(180, 180, 190, 0.8) 70%,
+    rgba(180, 180, 190, 0.3) 100%
+  );
+}
+
+/* form inputes "general style" */
+.form__inputs {
+  @apply dark:bg-[#323644] bg-[#a3a3af] pl-5 pb-2 relative rounded-xl transition-colors;
+}
+.form__inputs span {
+  @apply dark:text-gray-400 text-gray-700 text-xs transition-colors;
+}
+.form__inputs input {
+  @apply outline-none border-b border-transparent dark:text-white font-semibold bg-transparent w-3/4 mt-1 block transition-all;
+}
+.form__inputs:hover,
+.form__inputs:hover input {
+  @apply dark:bg-[#3a3e4e] bg-[#9999a5];
+}
+.form__inputs input:focus {
+  @apply border-b-gray-500;
+}
+.input__active {
+  @apply outline outline-2 outline-fblue-100;
+}
+.logOut__btn {
+  @apply opacity-60 border-2 hover:opacity-100 dark:text-red-500 text-lg transition-opacity text-red-700 border-red-700 md:mr-10 dark:border-red-500 py-2 rounded-3xl w-56;
+}
+.editInfo__btn {
+  @apply opacity-60 hover:opacity-100 text-lg transition-opacity dark:text-fblue-100 text-blue-700 border-blue-700 border-2 md:mt-0 mt-5 dark:border-fblue-100 py-2 rounded-3xl w-56;
+}
