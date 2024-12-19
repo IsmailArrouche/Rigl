@@ -11,7 +11,7 @@ function Tabs() {
   return (
     <div className="flex-1 text-gray-500 dark:text-gray-400 font-semibold text-sm">
       <span className="cursor-pointer px-5">
-        <a href="https://mehdi-zandian.vercel.app/" target="_blank">
+        <a href="" target="_blank">
           About
         </a>
       </span>

@@ -61,7 +61,7 @@ function Form() {
           </button>
           <button
             type="submit"
-            className="bg-fblue-100 text-white opacity-70 transition-all shadow-sm shadow-transparent hover:shadow-blue-500 hover:opacity-100 py-3 rounded-2xl ml-4 mt-4"
+            className="bg-[#efe8dd] text-black opacity-70 transition-all shadow-sm shadow-transparent hover:shadow-[#efe8dd] hover:opacity-100 py-3 rounded-2xl ml-4 mt-4"
           >
             Create account
           </button>

@@ -9,12 +9,12 @@ function Header() {
         </span>
         <h1 className="text-5xl text-gray-800 dark:text-gray-200 font-bold py-3">
           <span>Create new account</span>
-          <span className="text-fblue-100 text-9xlxl">.</span>
+          <span className="text-[#efe8dd] text-9xlxl">.</span>
         </h1>
         <span className="font-bold text-sm text-gray-700 dark:text-gray-300">
           <span>
             Already a member?{" "}
-            <span className="text-fblue-100 curse cursor-pointer"> Log In</span>
+            <span className="text-[#efe8dd] curse cursor-pointer"> Log In</span>
           </span>
         </span>
       </div>
