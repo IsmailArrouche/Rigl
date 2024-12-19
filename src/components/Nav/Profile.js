@@ -13,7 +13,7 @@ function Profile() {
   />
 
       <span className="dark:text-white md:pr-16 font-semibold">
-        {user.length == 0 ? "Please Login." : `Hey ${user?.firstName} !`}
+        {user.length == 0 ? "Rigl." : `Hey ${user?.firstName} !`}
       </span>
     </div>
   );
