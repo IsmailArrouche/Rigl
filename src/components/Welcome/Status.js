@@ -17,7 +17,7 @@ function Status() {
             status == "st1" ? "opacity-100" : "opacity-30"
           } bg-black mr-2 mt-2 text-white text-sm p-3 rounded-3xl cursor-pointer`}
         >
-          😴 Away
+          😴 Bac
         </div>
         <div
           onClick={() => setStatus("st2")}
@@ -25,7 +25,7 @@ function Status() {
             status == "st2" ? "opacity-100" : "opacity-30"
           } bg-green-600 mr-2 mt-2 text-white text-sm p-3 rounded-3xl cursor-pointer`}
         >
-          💻 At Work
+          💻 s5on lktaf
         </div>
         <div
           onClick={() => setStatus("st3")}
@@ -33,7 +33,7 @@ function Status() {
             status == "st3" ? "opacity-100" : "opacity-30"
           } bg-orange-600 mr-2 mt-2 text-white text-sm p-3 rounded-3xl cursor-pointer`}
         >
-          🎮 Gaming
+          🎮 bard lktaf
         </div>
         <div
           onClick={() => setStatus("st4")}
@@ -41,7 +41,7 @@ function Status() {
             status == "st4" ? "opacity-100" : "opacity-30"
           } bg-red-600 mr-2 mt-2 text-white text-sm p-3 rounded-3xl cursor-pointer`}
         >
-          🏆 Champion
+          🏆 m3lem
         </div>
         <div
           onClick={() => setStatus("st5")}
@@ -49,7 +49,7 @@ function Status() {
             status == "st5" ? "opacity-100" : "opacity-30"
           } bg-purple-600 mr-2  mt-2 text-white text-sm p-3 rounded-3xl cursor-pointer`}
         >
-          🎉 Party
+          🎉 zhwani
         </div>
       </div>
     </div>
