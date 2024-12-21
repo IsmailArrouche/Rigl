@@ -46,7 +46,7 @@ body {
   @apply border-b-gray-500;
 }
 .input__active {
-  @apply outline outline-2 outline-fblue-100;
+  @apply outline outline-2 outline-gray-500;
 }
 .logOut__btn {
   @apply opacity-60 border-2 hover:opacity-100 dark:text-red-500 text-lg transition-opacity text-red-700 border-red-700 md:mr-10 dark:border-red-500 py-2 rounded-3xl w-56;

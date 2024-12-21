@@ -54,7 +54,7 @@ function Password({ register, errors }) {
         <input
           {...register("password", {
             required: "required",
-            minLength: { value: 9, message: "Minimum 9 characters" },
+            minLength: { value: 8, message: "Minimum 8 characters" },
           })}
           type={states[0].show ? "text" : "password"}
           id="password"
