@@ -9,22 +9,16 @@ function Tabs() {
   const mode = useSelector((state) => state.mode.mode);
 
   return (
-    <div className="flex-1 text-gray-500 dark:text-gray-400 font-semibold text-sm">
-      <span className="cursor-pointer px-5">
-        <a target="_blank">
-          About
-        </a>
-      </span>
-      <span className="cursor-pointer px-5 md:inline hidden">Join</span>
+    <div className="ml-auto text-gray-500 dark:text-gray-400 font-semibold text-sm">
       <span
         title="Change Mode"
         onClick={() => dispatch(changeMode())}
         className="cursor-pointer md:px-5"
       >
         {mode ? (
-          <SunIcon className="w-6 inline" />
+          <SunIcon className="w-8 inline" />
         ) : (
-          <MoonIcon className="w-6 inline" />
+          <MoonIcon className="w-8 inline" />
         )}
       </span>
     </div>

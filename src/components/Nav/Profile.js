@@ -9,11 +9,11 @@ function Profile() {
       <img 
   src="../../logo512.png" 
   alt="Description of the image" 
-  className="bg-[#efe8dd] rounded-full w-8 h-8 mr-2"
+  className="rounded-full w-16 h-16 mr-5"
   />
 
-      <span className="dark:text-white md:pr-16 font-semibold">
-        {user.length == 0 ? "Rigl." : `Hey ${user?.firstName} !`}
+      <span className="dark:text-white font-semibold">
+        {user.length == 0 ? "Welcome" : `Hey ${user?.firstName} !`}
       </span>
     </div>
   );
