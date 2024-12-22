@@ -17,7 +17,6 @@ function Conex({ onNavigate }) {
     register,
     handleSubmit,
     setValue,
-    reset,
     formState: { errors },
   } = useForm();
 
@@ -36,7 +35,6 @@ function Conex({ onNavigate }) {
 
   return (
     <div className="container mt-12 md:mt-24 mx-auto md:px-20 px-5">
-      {/* Pass the navigation function to Header */}
       <Header onNavigate={onNavigate} />
 
       <div className="mt-10">
@@ -48,18 +46,17 @@ function Conex({ onNavigate }) {
           <Email register={register} errors={errors} />
           <Password register={register} errors={errors} />
           <button
-            type="reset"
-            onClick={() => reset()}
-            className="bg-gray-500 text-white py-3 mr-4 mt-4 rounded-2xl opacity-40 transition-opacity hover:opacity-100"
-          >
-            Clear all
-          </button>
-          <button
             type="submit"
-            className="bg-[#efe8dd] text-black opacity-70 transition-all shadow-sm shadow-transparent hover:shadow-[#efe8dd] hover:opacity-100 py-3 rounded-2xl ml-4 mt-4"
+            className=" col-span-2 bg-[#efe8dd] text-black opacity-70 transition-all shadow-sm shadow-transparent hover:shadow-[#efe8dd] hover:opacity-100 py-3 rounded-2xl mt-4"
           >
-            Create account
+            Login
           </button>
+          <span
+              onClick={() => onNavigate("home")}
+              className="font-extralight text-sm text-gray-700 dark:text-gray-300 mt-4 cursor-pointer w-28 justify-self-end col-span-2"
+            >
+              Forgot Password ?
+            </span>
         </form>
       </div>
     </div>
