@@ -10,6 +10,9 @@ import { signUp } from "../../app/features/user/userSlice";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 
+// navigation links
+import { Link } from "react-router-dom";
+
 function Form({ onNavigate }) {
   // redux
   const dispatch = useDispatch();
@@ -58,12 +61,14 @@ function Form({ onNavigate }) {
           >
             Create account
           </button>
-          <span
-              onClick={() => onNavigate("home")}
+          <div className="col-span-2 text-right mt-2">
+            <Link
+              to="/forget-password"
               className="font-extralight text-sm text-gray-700 dark:text-gray-300 mt-4 cursor-pointer w-28 justify-self-end col-span-2"
             >
-              Forgot Password ?
-            </span>
+            Forgot Password ?
+            </Link>
+          </div>
         </form>
       </div>
     </div>

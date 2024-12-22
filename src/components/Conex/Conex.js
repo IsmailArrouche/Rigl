@@ -7,6 +7,7 @@ import { signUp } from "../../app/features/user/userSlice";
 // form api
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Conex({ onNavigate }) {
   // redux
@@ -51,12 +52,13 @@ function Conex({ onNavigate }) {
           >
             Login
           </button>
-          <span
-              onClick={() => onNavigate("home")}
-              className="font-extralight text-sm text-gray-700 dark:text-gray-300 mt-4 cursor-pointer w-28 justify-self-end col-span-2"
-            >
+            <div className="col-span-2 text-right mt-2">
+            <Link
+              to="/forget-password"
+              className="font-extralight text-sm text-gray-700 dark:text-gray-300 mt-4 cursor-pointer w-28 justify-self-end col-span-2">
               Forgot Password ?
-            </span>
+              </Link>
+            </div>
         </form>
       </div>
     </div>
