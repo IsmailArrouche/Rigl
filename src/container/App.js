@@ -3,10 +3,6 @@ import Nav from "../components/Nav/Nav";
 import Form from "../components/Form/Form";
 import Welcome from "../components/Welcome/Welcome";
 import Conex from "../components/Conex/Conex";
-import ForgetPassword from "../components/ForgetPassword/ForgetPassword";
-import ChangePassword from "../components/ForgetPassword/ChangePassword";
-
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ForgetPassword from "../components/ForgetPassword/ForgetPassword";
 import ChangePassword from "../components/ForgetPassword/ChangePassword";
