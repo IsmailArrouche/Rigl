@@ -3,6 +3,10 @@ import Nav from "../components/Nav/Nav";
 import Form from "../components/Form/Form";
 import Welcome from "../components/Welcome/Welcome";
 import Conex from "../components/Conex/Conex";
+import ForgetPassword from "../components/ForgetPassword/ForgetPassword";
+import ChangePassword from "../components/ForgetPassword/ChangePassword";
+
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ForgetPassword from "../components/ForgetPassword/ForgetPassword";
 import ChangePassword from "../components/ForgetPassword/ChangePassword";
@@ -13,7 +17,7 @@ function App() {
   const mode = useSelector((state) => state.mode.mode);
   const user = useSelector((state) => state.user.user);
 
-  // Local state to handle navigation
+  // Gestion de la navigation locale
   const [currentPage, setCurrentPage] = useState("home");
 
   return (
