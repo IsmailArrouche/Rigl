@@ -22,7 +22,7 @@ function Password({ register, errors }) {
             states.map((s) => (s.active == true ? { active: false } : s))
           )
         }
-        className={`form__inputs col-span-2 ${
+        className={`form__inputs col-span-2 mb-4 ${
           states[1].active && "input__active"
         }`}
       >
