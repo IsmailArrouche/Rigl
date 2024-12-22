@@ -15,7 +15,7 @@ function Email({ register, errors }) {
       <div
         onFocus={() => setActive(true)}
         onBlur={() => setActive(false)}
-        className={`form__inputs col-span-2 my-4 ${active && "input__active"}`}
+        className={`form__inputs col-span-2 mb-4 ${active && "input__active"}`}
       >
         <label htmlFor="email">
           <span>Email</span>
