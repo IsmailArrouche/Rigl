@@ -52,14 +52,13 @@ function Conex({ onNavigate }) {
           >
             Login
           </button>
-          <div className="col-span-2 text-right mt-2">
+            <div className="col-span-2 text-right mt-2">
             <Link
               to="/forget-password"
-              className="text-grey-800 hover:underline text-sm"
-            >
-              Mot de passe oublié ?
-            </Link>
-          </div>
+              className="font-extralight text-sm text-gray-700 dark:text-gray-300 mt-4 cursor-pointer w-28 justify-self-end col-span-2">
+              Forgot Password ?
+              </Link>
+            </div>
         </form>
       </div>
     </div>
