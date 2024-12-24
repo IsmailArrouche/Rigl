@@ -32,7 +32,7 @@ function Conex({ onNavigate }) {
     if (editUser.length === 0) return;
     setValue("email", `${editUser?.email}`, { shouldValidate: true });
     setValue("password", `${editUser?.password}`, { shouldValidate: true });
-  }, [editUser]);
+  }, );
 
   return (
     <div className="container mt-12 md:mt-24 mx-auto md:px-20 px-5">
