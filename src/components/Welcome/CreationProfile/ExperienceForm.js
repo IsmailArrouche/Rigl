@@ -48,7 +48,8 @@ const ExperienceForm = () => {
     setTagsExperience(newTags);
   };
   return (
-    <div className="max-w-lg mx-auto p-6 bg-[rgb(149,149,156)] dark:bg-[#323644] rounded-lg shadow-md">
+    <div className="w-full mt- max-w-md p-8 rgb(149 149 156) dark:bg-[#323644] rounded-lg shadow-lg"
+    style={{ minHeight: "100px", maxWidth: "37rem" }}>
       <h2 className="text-2xl font-semibold text-center mb-6 text-gray-800 dark:text-white">
         Ajouter une Expérience Professionnelle
       </h2>
@@ -69,7 +70,7 @@ const ExperienceForm = () => {
                 name="entreprise"
                 value={formData.entreprise}
                 onChange={handleChange}
-                className="mt-1 block w-full px-4 py-3 border-b-2 border-gray-600 dark:border-gray-500 bg-[rgb(149,149,156)] dark:bg-[#323644] text-black dark:text-white focus:outline-none focus:border-indigo-500"
+                className="mt-1 block w-full px-4 py-3 border-b-2 border-gray-600 dark:border-gray-500 bg-transparent text-black dark:text-white focus:outline-none focus:border-indigo-500"
                 required
               />
             </div>
@@ -86,8 +87,8 @@ const ExperienceForm = () => {
                 name="poste"
                 value={formData.poste}
                 onChange={handleChange}
-                className="mt-1 block w-full px-4 py-3 border-b-2 border-gray-600 dark:border-gray-500 bg-[rgb(149,149,156)] dark:bg-[#323644] text-black dark:text-white focus:outline-none focus:border-indigo-500"
-                required
+                className="mt-1 block w-full px-4 py-3 border-b-2 border-gray-600 dark:border-gray-500 bg-transparent text-black dark:text-white focus:outline-none focus:border-indigo-500"
+
               />
             </div>
           </div>
@@ -106,7 +107,8 @@ const ExperienceForm = () => {
                 name="typeContrat"
                 value={formData.typeContrat}
                 onChange={handleChange}
-                className="mt-1 block w-full px-4 py-3 border-b-2 border-gray-600 dark:border-gray-500 bg-[rgb(149,149,156)] dark:bg-[#323644] text-black dark:text-white focus:outline-none focus:border-indigo-500"
+                className="mt-1 block w-full px-4 py-3 border-b-2 border-gray-600 dark:border-gray-500 bg-transparent text-black dark:text-white focus:outline-none focus:border-indigo-500"
+
                 required
               >
                 <option value="">Contrat</option>
@@ -135,7 +137,8 @@ const ExperienceForm = () => {
                 name="dateDebut"
                 value={formData.dateDebut}
                 onChange={handleChange}
-                className="mt-1 block w-full px-4 py-3 border-b-2 border-gray-600 dark:border-gray-500 bg-[rgb(149,149,156)] dark:bg-[#323644] text-black dark:text-white focus:outline-none focus:border-indigo-500"
+                className="mt-1 block w-full px-4 py-3 border-b-2 border-gray-600 dark:border-gray-500 bg-transparent text-black dark:text-white focus:outline-none focus:border-indigo-500"
+
                 required
               />
             </div>
@@ -152,7 +155,8 @@ const ExperienceForm = () => {
                 name="dateFin"
                 value={formData.dateFin}
                 onChange={handleChange}
-                className="mt-1 block w-full px-4 py-3 border-b-2 border-gray-600 dark:border-gray-500 bg-[rgb(149,149,156)] dark:bg-[#323644] text-black dark:text-white focus:outline-none focus:border-indigo-500"
+                className="mt-1 block w-full px-4 py-3 border-b-2 border-gray-600 dark:border-gray-500 bg-transparent text-black dark:text-white focus:outline-none focus:border-indigo-500"
+
               />
             </div>
           </div>
@@ -171,7 +175,8 @@ const ExperienceForm = () => {
               value={formData.description}
               onChange={handleChange}
               rows="4"
-              className="mt-1 block w-full px-4 py-3 border-b-2 border-gray-600 dark:border-gray-500 bg-[rgb(149,149,156)] dark:bg-[#323644] text-black dark:text-white focus:outline-none focus:border-indigo-500"
+              className="mt-1 block w-full px-4 py-3 border-b-2 border-gray-600 dark:border-gray-500 bg-transparent text-black dark:text-white focus:outline-none focus:border-indigo-500"
+
               required
             ></textarea>
           </div>

@@ -12,7 +12,7 @@ const ProfileForm = () => {
       options: ['Baccalauréat', 'CAP', 'BEP', 'BTS', 'DUT', 'Deug', 'L1', 'L2', 'L3', 'M1', 'M2', 'Diplôme d\'ingénieur', 'Doctorat', 'Post-Doctorat'], 
       requiresTags: false 
     },
-    { id: 'university', label: 'Université ou Établissement Fréquenté', type: 'text', requiresTags: false },
+    { id: 'university', label: 'Établissement Fréquenté', type: 'text', requiresTags: false },
     { id: 'field_of_study', label: 'Domaines d\'Étude', type: 'text', requiresTags: false },
     { id: 'gender', label: 'Genre', type: 'select', options: ['Homme', 'Femme', 'Autre'], requiresTags: false },
     { id: 'experience', label: 'Expérience Professionnelle', type: 'group', requiresTags: false }
@@ -35,12 +35,6 @@ const ProfileForm = () => {
     university: '',
     field_of_study: '',
     gender: '',
-    entreprise: '',
-    poste: '',
-    typeContrat: '',
-    dateDebut: '',
-    dateFin: '',
-    description: ''
   });
   
   const [currentFieldIndex, setCurrentFieldIndex] = useState(0);
@@ -197,42 +191,35 @@ const ProfileForm = () => {
   
   return (
     <div
-      className="max-w-lg mx-auto p-6 bg-[rgb(149,149,156)] dark:bg-[#323644] text-gray-700 dark:text-gray-300 rounded shadow"
-      style={{ minHeight: "100px", minWidth: "37rem" }}
+    className="w-full mt- max-w-md p-8 rgb(149 149 156) dark:bg-[#323644] rounded-lg shadow-lg"
     >
       <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
-        <h2 className="text-2xl font-semibold mb-4 text-center text-gray-700 dark:text-gray-300">
-          Formulaire
-        </h2>
         {renderField(fields[currentFieldIndex])}
         <div className="flex justify-between items-center mt-4">
           {currentFieldIndex > 0 && (
             <button
               type="button"
               onClick={goToPreviousField}
-              className="opacity-60 text-lg transition-opacity dark:text-blue-400 text-blue-700 border-blue-700 border-2 dark:border-blue-400 py-2 rounded-3xl dark:bg-gray-700 hover:opacity-100"
-              style={{ width: "130px" }}
+              className="w-16 bg-gray-500 text-white py-3 mr-4 mt-4 rounded-2xl opacity-40 transition-opacity hover:opacity-100"
             >
-              Précédent
+              Back
             </button>
           )}
           {currentFieldIndex < fields.length - 1 && (
             <button
               type="button"
               onClick={goToNextField}
-              className="opacity-60 text-lg transition-opacity dark:text-blue-400 text-blue-700 border-blue-700 border-2 dark:border-blue-400 py-2 rounded-3xl dark:bg-gray-700 hover:opacity-100"
-              style={{ width: "100px" }}
+              className="w-16 bg-gray-500 text-white py-3 mr-4 mt-4 rounded-2xl opacity-40 transition-opacity hover:opacity-100"
             >
-              Suivant
+              Next
             </button>
           )}
           {currentFieldIndex === fields.length - 1 && (
             <button
               type="submit"
-              className="opacity-60 text-lg transition-opacity text-white bg-green-600 dark:bg-green-500 border-green-600 dark:border-green-500 py-2 rounded-3xl hover:opacity-100"
-              style={{ width: "100px" }}
+              className="w-16 bg-gray-500 text-white py-3 mr-4 mt-4 rounded-2xl opacity-40 transition-opacity hover:opacity-100"
             >
-              Soumettre
+              Submit
             </button>
           )}
         </div>

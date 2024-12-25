@@ -9,7 +9,7 @@ function Picture() {
   // State pour gérer les valeurs modifiées
   const [isEditing, setIsEditing] = useState(false);
   const [fullName, setFullName] = useState(`${user?.firstName} ${user?.lastName}`);
-  const [email] = useState(user?.email); // email n'est plus éditable
+  const [email] = useState(user?.email); // email n'est pas éditable
 
   // Fonction pour gérer la sauvegarde des modifications
   const handleSave = () => {
