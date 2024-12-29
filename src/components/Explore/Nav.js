@@ -96,9 +96,6 @@ function Navbar() {
                     </button>
                 </div>
             </nav>
-
-            {/* Appel du composant Contact */}
-            <Contact />
         </div> 
     );
 }

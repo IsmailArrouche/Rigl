@@ -23,8 +23,8 @@ const friendRequests = [
 
 function Contact() {
     return (
-        <div className="absolute top-20 right-8 dark:bg-[#232d43] bg-transparent rounded-lg shadow-md p-4 w-72 text-white sm:w-72 max-w-full">
-            <div className="flex justify-between items-center mb-4">
+        <div className="absolute top-24 right-8 dark:bg-[#272a37] bg-transparent rounded-lg shadow-md p-4 w-72 text-white sm:w-72 max-w-full">
+            <div className="flex justify-between items-center">
                 <h4 className="dark:text-white text-black font-semibold text-sm">Friend Request</h4>
                 <a href="#" className="dark:text-blue-400 text-black text-xs font-medium hover:underline">
                     See all
