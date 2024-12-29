@@ -15,17 +15,17 @@ function ForgotPassword() {
     //alert("check your email") 
     setTimeout(() => {
         navigate("/change-password");
-    }, 10000); // Redirection après 2 secondes
+    }, 2000); // Redirection après 2 secondes
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient">
-      <div className="w-full max-w-md p-8 rgb(149 149 156) dark:bg-[#323644] rounded-lg shadow-lg">
+    <div className="flex items-center justify-center bg-gradient">
+      <div className="w-full max-w-md p-8 mt-44 rgb(149 149 156) dark:bg-[#323644] rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">
           Réinitialisation du mot de passe
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="form__inputs mr-1 false">
+          <div className="form__inputs mr-1">
             <label
               htmlFor="email"
               className="block text-sm font-medium text-gray-700 dark:text-gray-400"
