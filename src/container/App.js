@@ -24,7 +24,7 @@ function AppContent() {
 
   return (
     <div className="app h-screen min-h-[770px] md:min-h-[710px] bg-center bg-cover bg-no-repeat bg-[url('./assets/mountain.jpg')]">
-      <div className={`${mode === true ? "light" : "dark"} bg-gradient h-full`}>
+      <div className={`${mode === true ? "dark" : "light"} bg-gradient h-full`}>
         {showNav && <Nav />}
         <Routes>
           <Route

@@ -3,21 +3,21 @@ import React from "react";
 const friendRequests = [
     {
         id: 1,
-        name: "yassine",
+        name: "Yassine",
         mutualFriends: 12,
-        avatar: "https://via.placeholder.com/40",
+        avatar: "../../assets/user.png",
     },
     {
         id: 2,
         name: "Amine",
         mutualFriends: 18,
-        avatar: "https://via.placeholder.com/40",
+        avatar: "../../assets/user.png",
     },
     {
         id: 3,
         name: "Smail",
         mutualFriends: 28,
-        avatar: "https://via.placeholder.com/40",
+        avatar: "../../assets/user.png",
     },
 ];
 
