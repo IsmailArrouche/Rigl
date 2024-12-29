@@ -6,9 +6,11 @@ import Conex from "../components/Conex/Conex";
 import { useSelector } from "react-redux";
 import ForgetPassword from "../components/ForgetPassword/ForgetPassword";
 import ChangePassword from "../components/ForgetPassword/ChangePassword";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HomePage from "../components/Homepage/Homepage";
+import Explore from "../components/Explore/Explore";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 
-function App() {
+function AppContent() {
   // Redux
   const mode = useSelector((state) => state.mode.mode);
   const user = useSelector((state) => state.user.user);
@@ -16,11 +18,14 @@ function App() {
   // Gestion de la navigation locale
   const [currentPage, setCurrentPage] = useState("home");
 
+  // Determine if Nav should be displayed
+  const location = useLocation();
+  const showNav = location.pathname !== "/explore";
+
   return (
-    <Router>
     <div className="app h-screen min-h-[770px] md:min-h-[710px] bg-center bg-cover bg-no-repeat bg-[url('./assets/mountain.jpg')]">
       <div className={`${mode === true ? "light" : "dark"} bg-gradient h-full`}>
-        <Nav />
+        {showNav && <Nav />}
         <Routes>
           <Route
             path="/"
@@ -40,9 +45,18 @@ function App() {
           <Route path="/login" element={<Conex onNavigate={setCurrentPage} />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/homepage" element={<HomePage />} />
+          <Route path="/explore" element={<Explore />} />
         </Routes>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }
