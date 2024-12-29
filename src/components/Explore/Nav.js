@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeMode } from "../../app/features/mode/modeSlice";
 import { SunIcon, MoonIcon } from "@heroicons/react/solid";
-import Contact from "./contact";
+import Contact from "./Contact";
 
 function Navbar() {
     const dispatch = useDispatch();
