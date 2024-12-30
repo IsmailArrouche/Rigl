@@ -33,7 +33,7 @@ const NotificationMenu = () => {
       {/* Menu des notifications */}
       {isOpen && (
         <div
-          className="absolute right-0 mt-2 w-64 bg-white dark:bg-[#2E323D] shadow-lg rounded-md overflow-hidden z-10"
+          className="absolute -right-8 mt-3 w-72 bg-white dark:bg-[#2E323D] shadow-lg rounded-3xl overflow-hidden z-10"
         >
           {/* Titre */}
           <div className="p-4 border-b dark:border-gray-700">
