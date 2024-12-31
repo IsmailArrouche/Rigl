@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Nav from './Nav';
 import Contact from './Contact';
 import JobOfferCard from './JobOfferCard';
-import Sidebar from './Sidebar'; // Import Contact2
+import Sidebar from './Sidebar';
 
 const Explore = () => {
   const [jobOffers, setJobOffers] = useState([
@@ -17,7 +17,7 @@ const Explore = () => {
       skills: ['JavaScript', 'React', 'Node.js'],
       likes: 120,
       description:
-        'We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.',
+        'We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.',
     },
     {
       id: 2,
@@ -35,6 +35,11 @@ const Explore = () => {
   ]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isSidebarVisible, setSidebarVisible] = useState(true);
+
+  const toggleSidebar = () => {
+    setSidebarVisible(!isSidebarVisible);
+  };
 
   const handleScroll = (direction) => {
     if (direction === 'up' && currentIndex > 0) {
@@ -48,15 +53,17 @@ const Explore = () => {
     <div className="h-screen w-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 flex flex-col">
       {/* Navigation Bar */}
       <div className="w-full bg-gray-200 dark:bg-gray-800 shadow-md sticky top-0 z-10">
-        <Nav />
+        <Nav toggleSidebar={toggleSidebar} />
       </div>
 
       {/* Main Content */}
       <div className="flex flex-1">
-        {/* Contact2 on the Left */}
-        <div className="w-1/4  bg-gray-100 dark:bg-inherit shadow-md mt-4">
-          <Sidebar />
-        </div>
+        {/* Sidebar */}
+        {isSidebarVisible && (
+          <div className="w-1/4 bg-gray-100 dark:bg-inherit shadow-md mt-4">
+            <Sidebar />
+          </div>
+        )}
 
         {/* JobOfferCard in Center */}
         <div className="flex-1 flex flex-col justify-center items-center relative">
@@ -91,8 +98,8 @@ const Explore = () => {
           </div>
         </div>
 
-        {/* Contact Section on the Right */}
-        <div className="w-1/4">
+        {/* Contact Section */}
+        <div className="w-1/4  lg:block">
           <Contact />
         </div>
       </div>
