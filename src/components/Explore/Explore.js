@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Nav from './Nav';
 import Contact from './Contact';
 import JobOfferCard from './JobOfferCard';
+import Sidebar from './Sidebar'; // Import Contact2
 
 const Explore = () => {
   const [jobOffers, setJobOffers] = useState([
@@ -15,7 +16,8 @@ const Explore = () => {
       experienceLevel: 'Mid-Level',
       skills: ['JavaScript', 'React', 'Node.js'],
       likes: 120,
-      description: 'We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.'
+      description:
+        'We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.',
     },
     {
       id: 2,
@@ -27,8 +29,9 @@ const Explore = () => {
       experienceLevel: 'Junior',
       skills: ['Python', 'SQL', 'Tableau'],
       likes: 85,
-      description: 'Join our analytics team to help uncover data-driven insights. You will create reports, dashboards, and work closely with cross-functional teams.'
-    }
+      description:
+        'Join our analytics team to help uncover data-driven insights. You will create reports, dashboards, and work closely with cross-functional teams.',
+    },
   ]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -50,6 +53,11 @@ const Explore = () => {
 
       {/* Main Content */}
       <div className="flex flex-1">
+        {/* Contact2 on the Left */}
+        <div className="w-1/4  bg-gray-100 dark:bg-inherit shadow-md mt-4">
+          <Sidebar />
+        </div>
+
         {/* JobOfferCard in Center */}
         <div className="flex-1 flex flex-col justify-center items-center relative">
           <div className="relative w-full max-w-md space-y-6 py-8">
@@ -84,7 +92,7 @@ const Explore = () => {
         </div>
 
         {/* Contact Section on the Right */}
-        <div className="w-1/4 bg-gray-200 dark:bg-inherit  shadow-md mt-20">
+        <div className="w-1/4">
           <Contact />
         </div>
       </div>
