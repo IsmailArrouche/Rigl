@@ -17,7 +17,7 @@ const Explore = () => {
       skills: ['JavaScript', 'React', 'Node.js'],
       likes: 120,
       description:
-        'We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.',
+        'We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.',
     },
     {
       id: 2,
@@ -54,7 +54,7 @@ const Explore = () => {
       {/* Main Content */}
       <div className="flex flex-1">
         {/* Contact2 on the Left */}
-        <div className="w-1/4  bg-gray-100 dark:bg-inherit shadow-md mt-20">
+        <div className="w-1/4  bg-gray-100 dark:bg-inherit shadow-md mt-4">
           <Sidebar />
         </div>
 
@@ -92,7 +92,7 @@ const Explore = () => {
         </div>
 
         {/* Contact Section on the Right */}
-        <div className="w-1/4 bg-gray-200 dark:bg-inherit shadow-md mt-20">
+        <div className="w-1/4">
           <Contact />
         </div>
       </div>
