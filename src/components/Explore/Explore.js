@@ -3,6 +3,7 @@ import Nav from './Nav';
 import Contact from './Contact';
 import JobOfferCard from './JobOfferCard';
 import Sidebar from './Sidebar';
+import FooterBar from './Footer';
 
 const Explore = () => {
   const [jobOffers, setJobOffers] = useState([
@@ -102,6 +103,11 @@ const Explore = () => {
         <div className="w-1/4  lg:block">
           <Contact />
         </div>
+      </div>
+
+      {/* Responsive Footer Bar */}
+      <div className="md:hidden">
+        <FooterBar />
       </div>
     </div>
   );
