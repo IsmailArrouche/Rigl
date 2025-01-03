@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Nav from './Nav';
 import Contact from './Contact';
 import JobOfferCard from './JobOfferCard';
@@ -36,11 +36,23 @@ const Explore = () => {
   ]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isSidebarVisible, setSidebarVisible] = useState(true);
+  const [isSidebarVisible, setSidebarVisible] = useState(window.innerWidth >= 768);
 
   const toggleSidebar = () => {
     setSidebarVisible(!isSidebarVisible);
   };
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setSidebarVisible(true); // Affiche la Sidebar sur des écrans larges
+      } else {
+        setSidebarVisible(false); // Cache la Sidebar sur des écrans petits
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleScroll = (direction) => {
     if (direction === 'up' && currentIndex > 0) {
@@ -61,7 +73,7 @@ const Explore = () => {
       <div className="flex flex-1">
         {/* Sidebar */}
         {isSidebarVisible && (
-          <div className="w-1/4 bg-gray-100 dark:bg-inherit shadow-md mt-4">
+          <div className="w-1/4 bg-gray-100 dark:bg-inherit">
             <Sidebar />
           </div>
         )}
