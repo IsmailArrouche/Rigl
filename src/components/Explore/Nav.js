@@ -10,7 +10,7 @@ function Navbar({ toggleSidebar }) {
   const mode = useSelector((state) => state.mode.mode);
 
   return (
-    <div className="bg-gradient dark:bg-gray-900">
+    <div className="bg-gradient dark:bg-[rgb(41,49,69)]">
       <nav className="flex flex-wrap items-center justify-between px-4 py-4">
         <div className="flex items-center space-x-4 sm:w-auto">
           {/* Logo redirigeant vers la page explore */}
@@ -66,7 +66,7 @@ function Navbar({ toggleSidebar }) {
 
           {/* Icône de messagerie */}
           <button
-            className="hover:text-blue-500 transition-colors relative"
+            className="hover:text-blue-500 transition-colors relative mb-[5px]"
             onClick={() => {
               window.location.href = "/message"; // Remplacez par votre lien
             }}
@@ -95,7 +95,7 @@ function Navbar({ toggleSidebar }) {
           <button
             title="Change Mode"
             onClick={() => dispatch(changeMode())}
-            className="hover:text-blue-500 transition-colors"
+            className="hover:text-blue-500 transition-colors mb-[7px]"
           >
             {mode ? (
               <SunIcon className="w-6 h-6 text-gray-400" />
@@ -109,7 +109,7 @@ function Navbar({ toggleSidebar }) {
             <img
               src="https://randomuser.me/api/portraits/men/1.jpg"
               alt="Mohannad avatar"
-              className="w-8 h-8 rounded-full"
+              className="w-8 h-8 rounded-full  mb-[5px]"
             />
           </div>
         </div>

@@ -1,4 +1,14 @@
 import React, { useState } from "react";
+import {
+  HomeIcon,
+  BadgeCheckIcon,
+  GlobeAltIcon,
+  UsersIcon,
+  UserCircleIcon,
+  CogIcon,
+  ChartBarIcon,
+  ChatAlt2Icon,
+} from "@heroicons/react/solid"; // Import des icônes Heroicons
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -7,37 +17,37 @@ const Sidebar = () => {
     {
       id: 1,
       label: "Newsfeed",
-      icon: "📺",
+      icon: <HomeIcon className="w-6 h-6" />,
       color: "bg-gradient-to-br from-blue-400 to-blue-600",
-      route: "/newsfeed", // Lien de redirection pour cet élément
+      route: "/newsfeed",
     },
     {
       id: 2,
       label: "Badges",
-      icon: "🏅",
+      icon: <BadgeCheckIcon className="w-6 h-6" />,
       color: "bg-gradient-to-br from-orange-400 to-orange-600",
-      route: "/badges", // Lien de redirection pour cet élément
+      route: "/badges",
     },
     {
       id: 3,
       label: "Explore Stories",
-      icon: "🌍",
+      icon: <GlobeAltIcon className="w-6 h-6" />,
       color: "bg-gradient-to-br from-yellow-400 to-yellow-600",
-      route: "/stories", // Lien de redirection pour cet élément
+      route: "/stories",
     },
     {
       id: 4,
       label: "Popular Groups",
-      icon: "⚡",
+      icon: <UsersIcon className="w-6 h-6" />,
       color: "bg-gradient-to-br from-pink-400 to-pink-600",
-      route: "/groups", // Lien de redirection pour cet élément
+      route: "/groups",
     },
     {
       id: 5,
       label: "Author Profile",
-      icon: "👤",
+      icon: <UserCircleIcon className="w-6 h-6" />,
       color: "bg-gradient-to-br from-blue-500 to-blue-700",
-      route: "/profile", // Lien de redirection pour cet élément
+      route: "/profile",
     },
   ];
 
@@ -49,13 +59,13 @@ const Sidebar = () => {
     <>
       {/* Sidebar */}
       <div
-        className={`fixed top-20 left-4 h-[calc(100vh-4rem)] w-64 p-4 bg-gray-100 dark:bg-gray-900 overflow-y-auto scrollbar-t scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-400 transition-transform duration-300 z-40 ${
+        className={`fixed top-20 left-4 h-[calc(100vh-4rem)] w-64 p-4 bg-gray-100 dark:bg-[rgb(41,49,69)] overflow-y-auto scrollbar-t scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-400 transition-transform duration-300 z-40 ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0`}
         style={{ zIndex: 1000 }}
       >
         {/* New Feeds Section */}
-        <div className="mb-8">
+        <div className="mb-8 ">
           <h2 className="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-gray-100 text-center sm:text-left">
             New Feeds
           </h2>
@@ -95,7 +105,7 @@ const Sidebar = () => {
               onClick={() => handleRedirect("/settings")}
             >
               <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-gray-400 to-gray-600 text-white">
-                ⚙️
+                <CogIcon className="w-6 h-6" />
               </div>
               <span className="text-gray-700 dark:text-gray-300 text-base font-medium">
                 Settings
@@ -108,7 +118,7 @@ const Sidebar = () => {
               onClick={() => handleRedirect("/analytics")}
             >
               <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-green-400 to-green-600 text-white">
-                📊
+                <ChartBarIcon className="w-6 h-6" />
               </div>
               <span className="text-gray-700 dark:text-gray-300 text-base font-medium">
                 Analytics
@@ -122,7 +132,7 @@ const Sidebar = () => {
             >
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-400 to-purple-600 text-white">
-                  💬
+                  <ChatAlt2Icon className="w-6 h-6" />
                 </div>
                 <span className="text-gray-700 dark:text-gray-300 text-base font-medium">
                   Chat
