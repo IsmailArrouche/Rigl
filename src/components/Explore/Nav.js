@@ -66,7 +66,6 @@ function Navbar({ toggleSidebar }) {
               />
             </svg>
           </button>
-
           {/* Icône de Profil */}
           <button className="hover:text-blue-500 transition-colors">
             <svg
