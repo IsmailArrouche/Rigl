@@ -1,13 +1,10 @@
 import React from "react";
 import profileImage from "../../../src/assets/avatar.jpeg";
 import coverImage from "../../../src/assets/mountain.jpg";
-import { useSelector } from "react-redux";
 
 const UserProfile = () => {
-    // redux
-    const user = useSelector((state) => state.user.user);
   return (
-    <div className="relative bg-[#1B2136] w-full max-w-screen-xl mx-auto rounded-lg shadow-md overflow-hidden sm:w-full lg:w-[60rem]">
+    <div className="relative bg-white dark:bg-[#1B2136] dark:text-[#FFFFFF] w-full max-w-screen-xl mx-auto rounded-lg shadow-md overflow-hidden sm:w-full lg:w-[60rem]">
      {/* Cover Photo */}
     <div className="h-48 lg:w-[100%] overflow-hidden mt-4 mx-4">
       <img
@@ -17,9 +14,9 @@ const UserProfile = () => {
       />
     </div>
       {/* Profile Info et Action Buttons */}
-<div className="flex items-center justify-between bg-[#1B2136] text-white px-6 py-4 relative">
+<div className="flex items-center justify-between bg-white dark:bg-[#1B2136] dark:text-[#FFFFFF] px-6 py-4 relative">
   {/* Photo de Profil (Position Absolue) */}
-  <div className="absolute top-[-1.5rem] left-6 w-20 h-20 rounded-full overflow-hidden border-4 border-[#1B2136]">
+  <div className="absolute top-[-1.5rem] left-6 w-20 h-20 rounded-full overflow-hidden border-4 border-[#e4e6ec]">
     <img
       src={profileImage}
       alt="Profile"
@@ -50,22 +47,20 @@ const UserProfile = () => {
 </div>
 
 
-      {/* Navigation */}
-      <div className="border-t border-gray-700 bg-[#1B2136]">
-        <div className="flex flex-wrap space-x-4 px-5 py-3 text-gray-400">
-          {["About", "Discussion", "Group", "Events", "Media"].map(
-            (item) => (
-              <a
-                key={item}
-                href="#"
-                className="hover:text-white px-2 py-1 transition"
-              >
-                {item}
-              </a>
-            )
-          )}
-        </div>
+          {/* Navigation */}
+    <div className="border-t border-gray-300 dark:border-[#555] bg-white dark:bg-[#1B2136] dark:text-[#FFFFFF]">
+      <div className="flex flex-wrap space-x-4 px-5 py-3 text-gray-400">
+        {["About", "Discussion", "Group", "Events", "Media"].map((item) => (
+          <a
+            key={item}
+            href="#"
+            className="hover:text-black dark:hover:text-white px-2 py-1 transition"
+          >
+            {item}
+          </a>
+        ))}
       </div>
+    </div>
     </div>
   );
 };

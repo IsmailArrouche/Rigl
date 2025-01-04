@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import avatar from "../../assets/avatar.jpeg";
 import { VideoCameraIcon, PhotographIcon, CameraIcon } from "@heroicons/react/solid";
+import { ThumbUpIcon, ChatIcon, ShareIcon } from "@heroicons/react/outline";
+import { FaHeart, FaCommentAlt,FaShare } from 'react-icons/fa';
 
-const CreatePost = () => {
+const CreatePost = (likes) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [postText, setPostText] = useState("");
   const [posts, setPosts] = useState([]);
@@ -14,17 +16,16 @@ const CreatePost = () => {
   const mediaRecorderRef = useRef(null);
   const canvasRef = useRef(null); // Reference to canvas element
   const [stream, setStream] = useState(null); // To store media stream
-  const [likes, setLikes] = useState({}); // Suivi des likes des commentaires
   const [videoURL, setVideoURL] = useState(null);  // Ajouter un état pour stocker l'URL de la vidéo
+  const [postDate, setPostDate] = useState(new Date());
+  const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(likes);
 
-
-  const handleLikeComment = (commentId) => {
-    setLikes((prevLikes) => ({
-      ...prevLikes,
-      [commentId]: !prevLikes[commentId], // Inverser l'état du like
-    }));
+  const handleLike = () => {
+    setLiked(!liked);
+    setLikeCount(likeCount + (liked ? -1 : 1));
   };
-  
+
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -111,7 +112,6 @@ const startCamera = (mode) => {
       });
 };
 
-
   const stopCamera = () => {
     if (mediaRecorderRef.current) {
         mediaRecorderRef.current.stop(); // Arrêter l'enregistrement
@@ -122,7 +122,6 @@ const startCamera = (mode) => {
     setShowCamera(false);
 };
   
-
   const handleCameraPublish = () => {
     if (cameraMode === "video") {
       const video = videoRef.current;
@@ -176,9 +175,14 @@ const startCamera = (mode) => {
     };
   }, []);
 
+  const formatDate = (date) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    return new Date(date).toLocaleString('fr-FR', options);
+  };
+
   return (
-<div className="max-w-full px-2 sm:px-4">
-  <div   className="card sm:w-1/2 lg:w-[630px] shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 mx-auto bg-white ">
+<div className="max-w-full ml-3 px-2">
+  <div   className="card sm:w-1/2 lg:w-[630px] shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 mx-auto bg-white dark:bg-[#1B2136] dark:text-[#FFFFFF]">
     {/* Card Header */}
     <div className="card-body p-0 relative">
       <div className="flex items-center justify-between">
@@ -189,7 +193,7 @@ const startCamera = (mode) => {
         </div>
         {/* Bouton menu déroulant */}
         <button
-          className="dots-button text-gray-500 p-2 sm:p-3 rounded-full bg-gray-200 transition"
+          className="dots-button text-gray-500 p-2 sm:p-3 rounded-full bg-gray-100 dark:bg-[#1B2136] dark:text-[#FFFFFF]"
           onClick={toggleMenu}
           aria-expanded={menuOpen}
         >
@@ -232,59 +236,60 @@ const startCamera = (mode) => {
           className="shadow-sm rounded-full w-8 h-8 sm:w-10 sm:h-10"
         />
       </div>
-      <textarea
-        id="postText"
-        value={postText}
-        name="message"
-        className="textarea w-full p-3 pl-12 border border-gray-300 rounded-md text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="What's on your mind?"
-        onChange={handleTextChange}
-      />
-    </div>
-
-    {/* Buttons */}
-    <div className="card-body flex flex-wrap justify-between p-0 mt-3 gap-2 sm:gap-4">
-      <button
-        className="flex items-center text-red-500 space-x-2 p-2 sm:p-3 rounded-md hover:bg-gray-200 transition w-full sm:w-auto"
-        onClick={() => startCamera("video")}
-      >
-        <VideoCameraIcon className="h-5 sm:h-6 w-5 sm:w-6" />
-        <span className="text-xs sm:text-sm">Live Video</span>
-      </button>
-      <label className="flex items-center text-green-500 space-x-2 p-2 sm:p-3 rounded-md hover:bg-gray-200 cursor-pointer transition w-full sm:w-auto">
-        <PhotographIcon className="h-5 sm:h-6 w-5 sm:w-6" />
-        <span className="text-xs sm:text-sm">Photo/Video</span>
-        <input
-          type="file"
-          accept="image/*,video/*"
-          className="hidden"
-          onChange={(e) => handleMediaChange(e)}
+        <textarea
+          id="postText"
+          value={postText}
+          name="message"
+          className="textarea w-full p-3 pl-14 border border-gray-300 dark:border-[#555] bg-white dark:bg-[#1B2136] dark:text-[#FFFFFF] rounded-md text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="What's on your mind?"
+          onChange={handleTextChange}
         />
-      </label>
-      <button
-        className="flex items-center text-yellow-500 space-x-2 p-2 sm:p-3 rounded-md hover:bg-gray-200 transition w-full sm:w-auto"
-        onClick={() => startCamera("photo")}
-      >
-        <CameraIcon className="h-5 sm:h-6 w-5 sm:w-6" />
-        <span className="text-xs sm:text-sm">Feeling/Activity</span>
-      </button>
     </div>
 
-    {/* Publish Button */}
-    <div className="card-body p-3 mt-4">
-      <button
-        onClick={handlePublishPost}
-        className="w-full p-3 bg-blue-500 text-white text-sm sm:text-base rounded-md hover:bg-blue-600 transition"
-      >
-        Publish
-      </button>
+    <div className="justify-between flex flex-wrap">
+      {/* Buttons */}
+      <div className="card-body flex flex-wrap p-0 mt-3 gap-2 sm:gap-4">
+        <button
+          className="flex items-center text-red-500 space-x-2 p-2 sm:p-3 rounded-md hover:bg-gray-200 transition w-full sm:w-auto"
+          onClick={() => startCamera("video")}
+        >
+          <VideoCameraIcon className="h-5 sm:h-6 w-5 sm:w-6" />
+          <span className="text-xs sm:text-sm">Live Video</span>
+        </button>
+        <label className="flex items-center text-green-500 space-x-2 p-2 sm:p-3 rounded-md hover:bg-gray-200 cursor-pointer transition w-full sm:w-auto">
+          <PhotographIcon className="h-5 sm:h-6 w-5 sm:w-6" />
+          <span className="text-xs sm:text-sm">Photo/Video</span>
+          <input
+            type="file"
+            accept="image/*,video/*"
+            className="hidden"
+            onChange={(e) => handleMediaChange(e)}
+          />
+        </label>
+        <button
+          className="flex items-center text-yellow-500 space-x-2 p-2 sm:p-3 rounded-md hover:bg-gray-200 transition w-full sm:w-auto"
+          onClick={() => startCamera("photo")}
+        >
+          <CameraIcon className="h-5 sm:h-6 w-5 sm:w-6" />
+          <span className="text-xs sm:text-sm">Feeling/Activity</span>
+        </button>
+      </div>
+      {/* Publish Button */}
+      <div className="card-body p-3 mt-4">
+        <button
+          onClick={handlePublishPost}
+          className="w-100 p-3 bg-blue-500 text-white text-sm sm:text-base rounded-md hover:bg-blue-600 transition"
+        >
+          Publish
+        </button>
+      </div>
     </div>
   </div>
 
   {/* Camera Pop-up */}
   {showCamera && (
     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
-      <div className="bg-white p-4 sm:p-6 rounded-md w-full max-w-xs sm:max-w-lg">
+      <div className="bg-white dark:bg-[#1B2136] dark:text-[#FFFFFF] p-4 sm:p-6 rounded-md w-full max-w-xs sm:max-w-lg">
         <video ref={videoRef} autoPlay playsInline className="w-full h-auto rounded-md"></video>
         <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
         <div className="flex flex-col sm:flex-row justify-between mt-4 gap-2 sm:gap-4">
@@ -306,18 +311,28 @@ const startCamera = (mode) => {
   )}
 
   {/* Posts */}
-  <div className="sm:w-1/2 lg:w-[630px] mt-6 flex flex-wrap gap-4 justify-center">
+  <div className="sm:w-1/2 lg:w-[630px] lg:max-h-[610px] mt-6 flex flex-wrap gap-4 justify-center ">
   {posts.map((post) => (
     <div
       key={post.id}
-      className="card w-full sm:w-full lg:w-full shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 mx-auto bg-white"
+      className="card w-full sm:w-full lg:w-full shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 mx-auto bg-white dark:bg-[#1B2136] dark:text-[#FFFFFF]"
     >
       {/* En-tête */}
       <div className="card-body p-0 relative">
         <div className="flex items-center justify-between">
           <div className="flex items-center text-primary bg-light">
             <i className="feather-edit-3 text-sm sm:text-base mr-2" />
-            <span className="text-sm sm:text-base">Post</span>
+            <img
+          src={avatar}
+          alt="icon"
+          className="shadow-sm rounded-full w-8 h-8 sm:w-10 sm:h-10"
+        />
+            <span className="pl-2 text-sm sm:text-base">Mohannad Zitoun</span>
+            <div className="mt-1">
+              <span className="px-2 flex-col text-xs text-gray-400">
+                {formatDate(postDate)}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -347,25 +362,37 @@ const startCamera = (mode) => {
       )}
 
       {/* Boutons */}
-      <div className="card-body flex flex-wrap justify-between p-0 mt-3 gap-2 sm:gap-4">
-        <button
-          className="flex items-center text-blue-500 space-x-2 p-2 sm:p-3 rounded-md hover:bg-gray-200 transition w-full sm:w-auto"
-          onClick={() => handleLikeComment(post.id)}
-        >
-          <span className="text-xs sm:text-sm">
-            {likes[post.id] ? "Liked" : "Like"}
-          </span>
-        </button>
-        <button className="flex items-center text-green-500 space-x-2 p-2 sm:p-3 rounded-md hover:bg-gray-200 cursor-pointer transition w-full sm:w-auto">
-          <span className="text-xs sm:text-sm">Commenter</span>
-        </button>
-        <button className="flex items-center text-yellow-500 space-x-2 p-2 sm:p-3 rounded-md hover:bg-gray-200 transition w-full sm:w-auto">
-          <span className="text-xs sm:text-sm">Partager</span>
-        </button>
-      </div>
+      <div className="card-body flex flex-wrap p-0 mt-3 gap-2 sm:gap-4">
+      {/* Bouton "Like" */}
+      <button
+        className={`flex items-center ${
+          liked ? 'text-[#E53E3E]' : 'text-[#6B7280] dark:text-[#A0AEC0]'
+        } hover:text-[#C53030] dark:hover:text-[#E53E3E] transition-colors duration-300`}
+        onClick={handleLike}
+      >
+        <FaHeart className="h-5 w-5" />
+        <span className={`mr-1 transition-transform duration-300 ${
+                    liked ? 'scale-125' : 'scale-100'
+                  }`}
+                >{' '}
+        </span>
+      </button>
+      
+      {/* Bouton "Commenter" */}
+      <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] space-x-2 p-2 sm:p-3 rounded-md  w-full sm:w-auto">
+        <FaCommentAlt className="h-5 w-5" />
+        <span className="text-xs sm:text-sm">Comment</span>
+      </button>
+      
+      {/* Bouton "Partager" */}
+      <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] space-x-2 p-2 sm:p-2 rounded-md w-full sm:w-auto">
+        <FaShare className="h-5 w-5" />
+        <span className="text-xs sm:text-sm">Share</span>
+      </button>
+    </div>
     </div>
   ))}
-</div>
+  </div>
 
 </div>
   );
