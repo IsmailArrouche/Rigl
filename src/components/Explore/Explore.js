@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Nav from './Nav';
 import Contacts from './Contacts';
+
 import  FriendRequest from './FriendRequest';
 import JobOfferCard from './JobOfferCard';
 import Sidebar from './Sidebar';

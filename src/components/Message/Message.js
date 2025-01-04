@@ -42,8 +42,6 @@ const Message = () => {
             <Sidebar />
           </div>
         )}
-
-        {/* JobOfferCard in Center */}
         <div className="flex-1 flex flex-col justify-center items-center relative">
           <ChatBox/>
         </div>

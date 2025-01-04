@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeMode } from "../../app/features/mode/modeSlice";
 import { SunIcon, MoonIcon } from "@heroicons/react/solid";
@@ -9,18 +9,14 @@ function Navbar({ toggleSidebar }) {
   const mode = useSelector((state) => state.mode.mode);
 
   return (
-    <div className="bg-gradient dark:bg-[#272a37]">
-      {/* Barre de navigation */}
-      <nav className="flex flex-wrap items-center justify-between px-4 py-2">
-        {/* Logo et Barre de recherche */}
+    <div className="bg-gradient dark:bg-gray-900">
+      <nav className="flex flex-wrap items-center justify-between px-4 py-4">
         <div className="flex items-center space-x-4 sm:w-auto">
-          {/* Logo */}
           <div className="flex items-center space-x-2">
             <div className="text-green-400 text-2xl font-bold">⚡</div>
             <span className="text-blue-500 text-lg font-bold">Rigl</span>
           </div>
 
-          {/* Barre de recherche */}
           <div className="hidden sm:flex items-center bg-[#757987] dark:bg-[#3a3e4e] hover:bg-[#3a3e4e] px-4 py-2 rounded-full transition-colors w-full sm:w-48 md:w-72">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -44,9 +40,7 @@ function Navbar({ toggleSidebar }) {
           </div>
         </div>
 
-        {/* Icônes : Profil, Notifications, Changement de mode, Bouton Sidebar */}
         <div className="flex items-center space-x-4 text-gray-400 justify-end sm:w-auto">
-          {/* Bouton pour la Sidebar (visible uniquement en mode responsive) */}
           <button
             onClick={toggleSidebar}
             className="sm:hidden nav-menu me-0 ms-2 flex items-center justify-center text-gray-400 hover:text-blue-500"
@@ -66,22 +60,29 @@ function Navbar({ toggleSidebar }) {
               />
             </svg>
           </button>
-          {/* Icône de Profil */}
-          <button className="hover:text-blue-500 transition-colors">
+
+          {/* Icône de messagerie */}
+          <button
+            className="hover:text-blue-500 transition-colors relative"
+            onClick={() => {
+              window.location.href = "/message"; // Remplacez par votre lien
+            }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-6 h-6"
+              className="size-6"
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.068.157 2.148.279 3.238.364.466.037.893.281 1.153.671L12 21l2.652-3.978c.26-.39.687-.634 1.153-.67 1.09-.086 2.17-.208 3.238-.365 1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"
               />
             </svg>
+            <span className="absolute top-0 right-0 h-2.5 w-2.5 bg-orange-500 rounded-full"></span>
           </button>
 
           {/* Icône de Notifications */}
@@ -99,6 +100,15 @@ function Navbar({ toggleSidebar }) {
               <MoonIcon className="w-6 h-6 text-gray-400" />
             )}
           </button>
+
+          {/* Icône de profil (Avatar avec style comme dans l'image) */}
+          <div className="relative">
+            <img
+              src="https://randomuser.me/api/portraits/men/1.jpg"
+              alt="Mohannad avatar"
+              className="w-8 h-8 rounded-full"
+            />
+          </div>
         </div>
       </nav>
     </div>
