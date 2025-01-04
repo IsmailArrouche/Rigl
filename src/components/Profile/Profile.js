@@ -1,50 +1,11 @@
 import React, { useState } from 'react';
 import Nav from './Nav';
 import Contact from './Contact';
-import JobOfferCard from './JobOfferCard';
-import Sidebar from './Sidebar'; // Import Contact2
-import UserProfile from '../Poste/userProfile';
-import CreatePost from '../Poste/creationPoste';
+import Sidebar from './Sidebar';
+import UserProfile from '../Profile/UserProfile';
+import CreatePost from '../Profile/CreatePoste';
 
-const Explore = () => {
-  const [jobOffers, setJobOffers] = useState([
-    {
-      id: 1,
-      user: 'Jane Doe',
-      time: '2 hours ago',
-      title: 'Software Engineer',
-      location: 'San Francisco, CA',
-      employmentType: 'Full-time',
-      experienceLevel: 'Mid-Level',
-      skills: ['JavaScript', 'React', 'Node.js'],
-      likes: 120,
-      description:
-        'We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications.',
-    },
-    {
-      id: 2,
-      user: 'John Smith',
-      time: '1 day ago',
-      title: 'Data Analyst',
-      location: 'New York, NY',
-      employmentType: 'Part-time',
-      experienceLevel: 'Junior',
-      skills: ['Python', 'SQL', 'Tableau'],
-      likes: 85,
-      description:
-        'Join our analytics team to help uncover data-driven insights. You will create reports, dashboards, and work closely with cross-functional teams.',
-    },
-  ]);
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handleScroll = (direction) => {
-    if (direction === 'up' && currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    } else if (direction === 'down' && currentIndex < jobOffers.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
+const Profile = () => {
 
   return (
     <div className="h-screen w-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 flex flex-col">
@@ -77,4 +38,4 @@ const Explore = () => {
   );
 };
 
-export default Explore;
+export default Profile;
