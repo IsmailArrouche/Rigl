@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "../components/Nav/Nav";
 import Form from "../components/Form/Form";
 import Welcome from "../components/Welcome/Welcome";
@@ -8,7 +8,7 @@ import ForgetPassword from "../components/ForgetPassword/ForgetPassword";
 import ChangePassword from "../components/ForgetPassword/ChangePassword";
 import HomePage from "../components/Homepage/Homepage";
 import Explore from "../components/Explore/Explore";
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 function AppContent() {
   // Redux
@@ -18,9 +18,19 @@ function AppContent() {
   // Gestion de la navigation locale
   const [currentPage, setCurrentPage] = useState("home");
 
+  // Navigation hook
+  const navigate = useNavigate();
+
   // Determine if Nav should be displayed
   const location = useLocation();
   const showNav = location.pathname !== "/explore";
+
+  // Redirect to /explore if user is connected
+  useEffect(() => {
+    if (user.length > 0) {
+      navigate("/explore");
+    }
+  }, [user, navigate]);
 
   return (
     <div className="app h-screen min-h-[770px] md:min-h-[710px] bg-center bg-cover bg-no-repeat bg-[url('./assets/mountain.jpg')]">

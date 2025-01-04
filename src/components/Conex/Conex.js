@@ -1,19 +1,22 @@
 import Header from "./Header";
 import Email from "./Email";
 import Password from "./Password";
-// redux
+// Redux
 import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../app/features/user/userSlice";
-// form api
+// Form API
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+// Import valid users
+import validUsers from "./validUsers";
 
 function Conex({ onNavigate }) {
-  // redux
+  // Redux
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // react-hook-form
+  // React Hook Form
   const {
     register,
     handleSubmit,
@@ -21,13 +24,26 @@ function Conex({ onNavigate }) {
     formState: { errors },
   } = useForm();
 
-  // submit form
-  const onSubmit = (data) => dispatch(signUp(data));
+  // Submit form
+  const onSubmit = (data) => {
+    const user = validUsers.find(
+      (u) => u.email === data.email && u.password === data.password
+    );
 
-  // get latest info for editing
+    if (user) {
+      // Add the user to Redux store
+      dispatch(signUp({ email: data.email, password: data.password }));
+      // Redirect to /explore
+      navigate("/explore");
+    } else {
+      alert("Invalid email or password!");
+    }
+  };
+
+  // Get latest info for editing
   const editUser = useSelector((state) => state.user.editUser);
 
-  // set values on edit info event
+  // Set values on edit info event
   useEffect(() => {
     if (editUser.length === 0) return;
     setValue("email", `${editUser?.email}`, { shouldValidate: true });
@@ -48,17 +64,18 @@ function Conex({ onNavigate }) {
           <Password register={register} errors={errors} />
           <button
             type="submit"
-            className=" col-span-2 bg-[#efe8dd] text-black opacity-70 transition-all shadow-sm shadow-transparent hover:shadow-[#efe8dd] hover:opacity-100 py-3 rounded-2xl mt-4"
+            className="col-span-2 bg-[#efe8dd] text-black opacity-70 transition-all shadow-sm shadow-transparent hover:shadow-[#efe8dd] hover:opacity-100 py-3 rounded-2xl mt-4"
           >
             Login
           </button>
-            <div className="col-span-2 text-right mt-2">
+          <div className="col-span-2 text-right mt-2">
             <Link
               to="/forget-password"
-              className="font-extralight text-sm text-gray-700 dark:text-gray-300 mt-4 cursor-pointer w-28 justify-self-end col-span-2">
-              Forgot Password ?
-              </Link>
-            </div>
+              className="font-extralight text-sm text-gray-700 dark:text-gray-300 mt-4 cursor-pointer w-28 justify-self-end col-span-2"
+            >
+              Forgot Password?
+            </Link>
+          </div>
         </form>
       </div>
     </div>
