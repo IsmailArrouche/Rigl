@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeMode } from "../../app/features/mode/modeSlice";
 import { SunIcon, MoonIcon } from "@heroicons/react/solid";
 import NotificationMenu from "./NotificationMenu";
+import { Link } from "react-router-dom"; // Importez Link depuis React Router
 
 function Navbar({ toggleSidebar }) {
   const dispatch = useDispatch();
@@ -12,11 +13,13 @@ function Navbar({ toggleSidebar }) {
     <div className="bg-gradient dark:bg-gray-900">
       <nav className="flex flex-wrap items-center justify-between px-4 py-4">
         <div className="flex items-center space-x-4 sm:w-auto">
-          <div className="flex items-center space-x-2">
+          {/* Logo redirigeant vers la page explore */}
+          <Link to="/explore" className="flex items-center space-x-2">
             <div className="text-green-400 text-2xl font-bold">⚡</div>
             <span className="text-blue-500 text-lg font-bold">Rigl</span>
-          </div>
+          </Link>
 
+          {/* Barre de recherche */}
           <div className="hidden sm:flex items-center bg-[#757987] dark:bg-[#3a3e4e] hover:bg-[#3a3e4e] px-4 py-2 rounded-full transition-colors w-full sm:w-48 md:w-72">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +104,7 @@ function Navbar({ toggleSidebar }) {
             )}
           </button>
 
-          {/* Icône de profil (Avatar avec style comme dans l'image) */}
+          {/* Icône de profil */}
           <div className="relative">
             <img
               src="https://randomuser.me/api/portraits/men/1.jpg"
