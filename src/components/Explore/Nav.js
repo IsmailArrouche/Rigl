@@ -11,7 +11,7 @@ function Navbar({ toggleSidebar }) {
   return (
     <div className="bg-gradient dark:bg-[#272a37]">
       {/* Barre de navigation */}
-      <nav className="flex flex-wrap items-center justify-between px-4 py-2">
+      <nav className="flex flex-wrap items-center justify-between px-4 py-4">
         {/* Logo et Barre de recherche */}
         <div className="flex items-center space-x-4 sm:w-auto">
           {/* Logo */}

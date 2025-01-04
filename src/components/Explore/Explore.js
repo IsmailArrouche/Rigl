@@ -75,7 +75,7 @@ const Explore = () => {
       <div className="flex flex-1">
         {/* Sidebar */}
         {isSidebarVisible && (
-          <div className="w-1/4 bg-gray-100 dark:bg-inherit">
+          <div className="w-2/12 bg-gray-100 dark:bg-inherit">
             <Sidebar />
           </div>
         )}
