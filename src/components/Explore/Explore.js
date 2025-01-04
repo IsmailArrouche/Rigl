@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Nav from './Nav';
+import Contacts from './Contacts';
 import Contact from './Contact';
 import JobOfferCard from './JobOfferCard';
 import Sidebar from './Sidebar';
@@ -110,11 +111,18 @@ const Explore = () => {
             </div>
           </div>
         </div>
-
+        
         {/* Contact Section */}
+        <div className="flex-r">
+        <div className="min-w-64  lg:block">
+          <Contacts />
+        </div>
         <div className="w-1/4  lg:block">
           <Contact />
         </div>
+        </div>
+      
+
       </div>
 
       {/* Responsive Footer Bar */}
