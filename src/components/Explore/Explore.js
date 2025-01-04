@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Nav from './Nav';
 import Contacts from './Contacts';
 
-import  Contact from './FreindRequest';
+import  Contact from './FriendRequest';
 import JobOfferCard from './JobOfferCard';
 import Sidebar from './Sidebar';
 import FooterBar from './Footer';
