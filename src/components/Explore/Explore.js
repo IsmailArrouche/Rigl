@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Nav from './Nav';
 import Contacts from './Contacts';
 
-import  Contact from './FriendRequest';
+import  FriendRequest from './FriendRequest';
 import JobOfferCard from './JobOfferCard';
 import Sidebar from './Sidebar';
 import FooterBar from './Footer';
@@ -120,7 +120,7 @@ const Explore = () => {
         </div>
 
         <div className="w-1/4  lg:block">
-          < Contact />
+          < FriendRequest/>
         </div>
         </div>
       
