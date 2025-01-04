@@ -6,9 +6,9 @@ import Conex from "../components/Conex/Conex";
 import { useSelector } from "react-redux";
 import ForgetPassword from "../components/ForgetPassword/ForgetPassword";
 import ChangePassword from "../components/ForgetPassword/ChangePassword";
-import HomePage from "../components/Homepage/Homepage";
 import Explore from "../components/Explore/Explore";
 import Profile from "../components/Profile/Profile";
+import Message from "../components/Message/Message";
 import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 function AppContent() {
@@ -24,7 +24,7 @@ function AppContent() {
 
   // Determine if Nav should be displayed
   const location = useLocation();
-  const excludedRoutes = ["/explore", "/profile"];
+  const excludedRoutes = ["/explore", "/profile", "/message"];
   const showNav = !excludedRoutes.includes(location.pathname);
 
   // Redirect to /explore if user is connected
@@ -57,9 +57,9 @@ function AppContent() {
           <Route path="/login" element={<Conex onNavigate={setCurrentPage} />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/change-password" element={<ChangePassword />} />
-          <Route path="/homepage" element={<HomePage />} />
           <Route path="/explore" element={<Explore />} />
-          <Route path="/Profile" element={<Profile />} />
+          <Route path="/Profile" element={<Profile />} />*
+          <Route path="/message" element={<Message />} />
         </Routes>
       </div>
     </div>
