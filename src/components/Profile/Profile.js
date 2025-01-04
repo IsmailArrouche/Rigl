@@ -3,6 +3,8 @@ import Nav from './Nav';
 import Contact from './Contact';
 import JobOfferCard from './JobOfferCard';
 import Sidebar from './Sidebar'; // Import Contact2
+import UserProfile from '../Poste/userProfile';
+import CreatePost from '../Poste/creationPoste';
 
 const Explore = () => {
   const [jobOffers, setJobOffers] = useState([
@@ -59,35 +61,10 @@ const Explore = () => {
         </div>
 
         {/* JobOfferCard in Center */}
-        <div className="flex-1 flex flex-col justify-center items-center relative">
+        <div className="flex-1 flex flex-col relative">
           <div className="relative w-full max-w-md space-y-6 py-8">
-            <JobOfferCard
-              key={jobOffers[currentIndex].id}
-              user={jobOffers[currentIndex].user}
-              time={jobOffers[currentIndex].time}
-              title={jobOffers[currentIndex].title}
-              location={jobOffers[currentIndex].location}
-              employmentType={jobOffers[currentIndex].employmentType}
-              experienceLevel={jobOffers[currentIndex].experienceLevel}
-              skills={jobOffers[currentIndex].skills}
-              likes={jobOffers[currentIndex].likes}
-              description={jobOffers[currentIndex].description}
-              className="bg-gray-200 dark:bg-[rgb(31_41_55)] w-full"
-            />
-            <div className="absolute top-1/2 transform -translate-y-1/2 right-[-4rem] flex flex-col space-y-4 items-center">
-              <button
-                className="p-4 bg-gray-700 rounded-full text-white shadow-lg hover:bg-gray-600"
-                onClick={() => handleScroll('up')}
-              >
-                ▲
-              </button>
-              <button
-                className="p-4 bg-gray-700 rounded-full text-white shadow-lg hover:bg-gray-600"
-                onClick={() => handleScroll('down')}
-              >
-                ▼
-              </button>
-            </div>
+            <UserProfile />
+            <CreatePost />
           </div>
         </div>
 
