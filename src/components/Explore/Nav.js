@@ -90,7 +90,12 @@ function Navbar({ toggleSidebar }) {
           {/* Icône de profil (Avatar avec style comme dans l'image) */}
           <div className="relative">
             <div className="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-white font-bold">
-              <span className="text-sm">👩‍🦱</span> {/* Emoji pour un avatar similaire */}
+            <img
+                                src="https://randomuser.me/api/portraits/men/1.jpg"
+                                alt={`'Mohannad avatar`}
+                                className="w-8 h-8 rounded-full"
+                                
+                            />
             </div>
           </div>
         </div>

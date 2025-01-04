@@ -2,7 +2,7 @@ import React from 'react';
 
 const FooterBar = () => {
     return (
-        <div className="fixed bottom-0 left-0 right-0 bg-blue-500 text-white flex justify-around items-center py-2 md:hidden">
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white flex justify-around items-center py-2 md:hidden">
         <button className="flex flex-col items-center">
             <svg
             xmlns="http://www.w3.org/2000/svg"
