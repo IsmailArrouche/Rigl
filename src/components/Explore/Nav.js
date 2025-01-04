@@ -9,9 +9,9 @@ function Navbar({ toggleSidebar }) {
   const mode = useSelector((state) => state.mode.mode);
 
   return (
-    <div className="bg-gradient dark:bg-[#272a37]">
+    <div className="bg-gradient dark:bg-gray-900">
       {/* Barre de navigation */}
-      <nav className="flex flex-wrap items-center justify-between px-4 py-2">
+      <nav className="flex flex-wrap items-center justify-between px-4 py-4">
         {/* Logo et Barre de recherche */}
         <div className="flex items-center space-x-4 sm:w-auto">
           {/* Logo */}

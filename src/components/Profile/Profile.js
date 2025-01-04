@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Nav from './Nav';
 import Contact from './Contact';
 import Sidebar from './Sidebar';
 import UserProfile from '../Profile/UserProfile';
 import CreatePost from '../Profile/CreatePoste';
+import AboutSection from '../Profile/About';
+import EventSection from '../Profile/Event';
 
 const Profile = () => {
 
   return (
-    <div className="h-screen w-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 flex flex-col">
+    <div className="h-screen w-screen bg-gray-100 text-gray-800 dark:bg-gray-900  dark:text-gray-100 flex flex-col">
       {/* Navigation Bar */}
       <div className="w-full bg-gray-200 dark:bg-gray-800 shadow-md sticky top-0 z-10">
         <Nav />
@@ -25,7 +27,14 @@ const Profile = () => {
         <div className="flex-1 flex flex-col relative">
           <div className="relative w-full max-w-md space-y-6 py-8">
             <UserProfile />
-            <CreatePost />
+            <div className="flex-1 flex w-full md:w-[960px] flex-col pb-4 ml-1 md:flex-row">
+              <div>
+                <AboutSection />
+                <EventSection />
+              </div>
+              <CreatePost />
+            </div>
+            
           </div>
         </div>
 

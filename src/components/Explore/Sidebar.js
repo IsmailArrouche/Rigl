@@ -15,7 +15,7 @@ const Sidebar = () => {
     <>
       {/* Sidebar */}
       <div
-        className={`fixed top-16 left-0 h-[calc(100vh-4rem)] w-64 p-4 bg-gray-100 dark:bg-gray-900 overflow-y-auto scrollbar-t scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-400 transition-transform duration-300 z-40 ${
+        className={`fixed top-20 left-4 h-[calc(100vh-4rem)] w-64 p-4 bg-gray-100 dark:bg-gray-900 overflow-y-auto scrollbar-t scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-400 transition-transform duration-300 z-40 ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
         } md:translate-x-0`}
         style={{ zIndex: 1000 }}
