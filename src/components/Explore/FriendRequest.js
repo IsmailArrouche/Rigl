@@ -22,9 +22,9 @@ const friendRequests = [
     // Ajouter plus d'exemples pour tester le défilement
 ];
 
-function Contact() {
+function FriendRequest() {
     return (
-        <div className="absolute top-16 right-0 w-64 max-h-[300px] dark:bg-[#232d43] bg-white rounded-lg shadow-lg p-4 overflow-y-auto">
+        <div className="absolute top-16 right-0 lg:w-64 max-h-[375px] dark:bg-[rgb(41,49,69)]  bg-white rounded-lg shadow-lg p-4 overflow-y-auto">
             {/* En-tête */}
             <div className="flex justify-between items-center mb-4">
                 <h4 className="dark:text-white text-black font-semibold text-sm">
@@ -75,4 +75,4 @@ function Contact() {
     );
 }
 
-export default Contact;
+export default FriendRequest;

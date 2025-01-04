@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Nav from './Nav';
 import Contacts from './Contacts';
 
-import  Contact from './FriendRequest';
+import  FriendRequest from './FriendRequest';
 import JobOfferCard from './JobOfferCard';
 import Sidebar from './Sidebar';
 import FooterBar from './Footer';
@@ -75,7 +75,7 @@ const Explore = () => {
       <div className="flex flex-1">
         {/* Sidebar */}
         {isSidebarVisible && (
-          <div className="w-1/4 bg-gray-100 dark:bg-inherit">
+          <div className="w-2/12 bg-gray-100 dark:bg-inherit">
             <Sidebar />
           </div>
         )}
@@ -120,7 +120,7 @@ const Explore = () => {
         </div>
 
         <div className="w-1/4  lg:block">
-          < Contact />
+          < FriendRequest/>
         </div>
         </div>
       
