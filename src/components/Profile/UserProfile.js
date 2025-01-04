@@ -28,8 +28,8 @@ const UserProfile = () => {
   </div>
   {/* Informations du Profil */}
   <div className="pl-24"> {/* Ajout de padding-left pour espacer */}
-    <h1 className="text-2xl font-bold">{user?.firstName} {user?.lastName}</h1>
-    <p className="text-sm text-gray-400">{user?.email}</p>
+    <h1 className="text-2xl font-bold">Mohannad Zitoun</h1>
+    <p className="text-sm text-gray-400">support@gmail.com</p>
   </div>
   {/* Boutons d'Action */}
   <div className="flex space-x-2">
