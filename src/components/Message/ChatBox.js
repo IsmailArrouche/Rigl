@@ -2,6 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FiMic, FiSend } from 'react-icons/fi';
 
 const ChatBox = () => {
+  // Possible random answers for the bot
+  const randomAnswers = [
+    'Great to hear that! Let’s discuss more.',
+    'Interesting! Tell me more about it.',
+    'That’s awesome! How can I help you?',
+    'I love this idea — keep going!',
+    'Sure thing, let’s plan this out together.',
+  ];
+
   const [messages, setMessages] = useState([
     {
       sender: 'Byrom Guittet',
@@ -38,84 +47,114 @@ const ChatBox = () => {
 
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const chatEndRef = useRef(null);
 
+  // References for auto-scrolling and input focusing
+  const chatEndRef = useRef(null);
+  const inputRef = useRef(null);
+
+  // Sends the user's message + triggers the bot's response every time
   const handleSend = () => {
     if (inputValue.trim()) {
+      // 1. Add the user’s message
       const newMessage = {
         sender: 'You',
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        time: new Date().toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
         text: inputValue,
         senderType: 'self',
       };
-      setMessages((prevMessages) => {
-        const updatedMessages = [...prevMessages, newMessage];
-        setIsTyping(true);
-        setTimeout(() => {
-          setIsTyping(false);
-          const responseMessage = {
-            sender: 'Byrom Guittet',
-            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            text: 'Great to hear that! Let’s discuss more.',
-            senderType: 'other',
-          };
-          setMessages((prevMessages) => [...prevMessages, responseMessage]);
-        }, 3000); // 3-second delay for response
-        return updatedMessages;
-      });
+      setMessages((prev) => [...prev, newMessage]);
       setInputValue('');
+
+      // Re-focus the input field for convenience
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+
+      // 2. Show "typing" indicator for 3 seconds, then respond
+      setIsTyping(true);
+      setTimeout(() => {
+        setIsTyping(false);
+
+        // Pick a random reply from our array
+        const botReply = {
+          sender: 'Byrom Guittet',
+          time: new Date().toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+          }),
+          text: randomAnswers[Math.floor(Math.random() * randomAnswers.length)],
+          senderType: 'other',
+        };
+
+        setMessages((prevMsgs) => [...prevMsgs, botReply]);
+      }, 3000);
     }
   };
 
+  // Press Enter to send
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       handleSend();
     }
   };
 
-  const scrollToBottom = () => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
+  // Always scroll down when messages or typing state change
   useEffect(() => {
-    scrollToBottom();
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
 
   return (
-    <div className="flex flex-col h-[91vh] w-[95%] dark:bg-gray-900 bg-white p-6 max-w-6xl mx-auto">
+    <div className="flex flex-col h-[91vh] w-[100%] dark:bg-gray-900 bg-white p-6 max-w-6xl mx-auto">
       {/* Chat Messages */}
-      <div className="flex-1 overflow-y-auto space-y-6 scrollbar-thin scrollbar-thumb-gray-700 dark:scrollbar-thumb-gray-700 scrollbar-thumb-gray-300 scrollbar-track-gray-100 pr-4">
+      <div className="flex-1 overflow-y-auto space-y-6 pr-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-700">
         {messages.map((message, index) => (
           <div
             key={index}
             className={`flex ${message.senderType === 'self' ? 'justify-end' : 'items-start'}`}
           >
+            {/* Avatar for 'other' messages */}
             {message.senderType === 'other' && (
               <img
-                src={message.image || `https://randomuser.me/api/portraits/${message.sender === 'Another User' ? 'women/44' : 'men/45'}.jpg`}
+                src={
+                  message.image
+                    ? message.image
+                    : `https://randomuser.me/api/portraits/${
+                        message.sender === 'Another User' ? 'women/44' : 'men/45'
+                      }.jpg`
+                }
                 alt={message.sender}
                 className="w-10 h-10 rounded-full mr-4"
               />
             )}
+
             <div className="flex flex-col">
               <div
-                className={`${
-                  message.senderType === 'self' ? 'dark:text-white text-black text-right' : 'dark:text-white text-black'
-                } font-bold`}
+                className={`font-bold ${
+                  message.senderType === 'self'
+                    ? 'text-right dark:text-white text-black'
+                    : 'dark:text-white text-black'
+                }`}
               >
                 {message.sender}
               </div>
               <div
-                className={`${
-                  message.senderType === 'self' ? 'dark:text-gray-400 text-gray-600 text-right' : 'dark:text-gray-400 text-gray-600'
-                } text-sm`}
+                className={`text-sm ${
+                  message.senderType === 'self'
+                    ? 'text-right dark:text-gray-400 text-gray-600'
+                    : 'dark:text-gray-400 text-gray-600'
+                }`}
               >
                 {message.time}
               </div>
               <div
-                className={`${
-                  message.senderType === 'self' ? 'dark:bg-blue-600 bg-blue-500 text-white' : 'dark:bg-gray-800 bg-gray-200 dark:text-white text-black'
-                } p-4 rounded-lg max-w-3xl mt-2 text-justify`}
+                className={`p-4 rounded-lg max-w-3xl mt-2 text-justify ${
+                  message.senderType === 'self'
+                    ? 'dark:bg-blue-600 bg-blue-500 text-white'
+                    : 'dark:bg-gray-800 bg-gray-200 dark:text-white text-black'
+                }`}
               >
                 <p>{message.text}</p>
                 {message.image && (
@@ -129,6 +168,8 @@ const ChatBox = () => {
             </div>
           </div>
         ))}
+
+        {/* "Is Typing" indicator */}
         {isTyping && (
           <div className="flex items-start">
             <img
@@ -148,6 +189,8 @@ const ChatBox = () => {
             </div>
           </div>
         )}
+
+        {/* Dummy element to always scroll into view */}
         <div ref={chatEndRef} />
       </div>
 
@@ -157,6 +200,7 @@ const ChatBox = () => {
           <FiMic size={20} />
         </button>
         <input
+          ref={inputRef}
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
@@ -166,7 +210,7 @@ const ChatBox = () => {
         />
         <button
           onClick={handleSend}
-          className="text-white p-3 rounded-full dark:bg-blue-500 bg-blue-400 flex items-center justify-center hover:dark:bg-blue-600 hover:bg-blue-500"
+          className="dark:bg-blue-500 bg-blue-400 text-white p-3 rounded-full flex items-center justify-center hover:dark:bg-blue-600 hover:bg-blue-500"
         >
           <FiSend size={20} />
         </button>

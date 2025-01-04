@@ -38,7 +38,7 @@ const Message = () => {
       <div className="flex flex-1">
         {/* Sidebar */}
         {isSidebarVisible && (
-          <div className="w-2/12 bg-gray-100 dark:bg-inherit">
+          <div className="w-2/12 bg-gray-100 dark:bg-[rgb(41,49,69)]">
             <Sidebar />
           </div>
         )}

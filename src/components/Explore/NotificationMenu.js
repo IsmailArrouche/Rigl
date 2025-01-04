@@ -45,6 +45,7 @@ const NotificationMenu = () => {
         onClick={toggleMenu}
         className="hover:text-blue-500 transition-colors"
       >
+        <span className="absolute top-0 right-0 h-2.5 w-2.5 bg-orange-500 rounded-full"></span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
