@@ -24,7 +24,7 @@ function AppContent() {
 
   // Determine if Nav should be displayed
   const location = useLocation();
-  const excludedRoutes = ["/explore", "/profile"];
+  const excludedRoutes = ["/explore","/profile","/PROFILE"];
   const showNav = !excludedRoutes.includes(location.pathname);
 
   // Redirect to /explore if user is connected
@@ -59,7 +59,7 @@ function AppContent() {
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/homepage" element={<HomePage />} />
           <Route path="/explore" element={<Explore />} />
-          <Route path="/Profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
     </div>

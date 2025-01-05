@@ -1,10 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import avatar from "../../assets/avatar.jpeg";
 import { VideoCameraIcon, PhotographIcon, CameraIcon } from "@heroicons/react/solid";
-import { ThumbUpIcon, ChatIcon, ShareIcon } from "@heroicons/react/outline";
 import { FaHeart, FaCommentAlt,FaShare } from 'react-icons/fa';
 
-const CreatePost = (likes) => {
+const CreatePost = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [postText, setPostText] = useState("");
   const [posts, setPosts] = useState([]);
@@ -19,7 +18,7 @@ const CreatePost = (likes) => {
   const [videoURL, setVideoURL] = useState(null);  // Ajouter un état pour stocker l'URL de la vidéo
   const [postDate, setPostDate] = useState(new Date());
   const [liked, setLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(likes);
+  const [likeCount, setLikeCount] = useState();
 
   const handleLike = () => {
     setLiked(!liked);
@@ -370,25 +369,27 @@ const startCamera = (mode) => {
         } hover:text-[#C53030] dark:hover:text-[#E53E3E] transition-colors duration-300`}
         onClick={handleLike}
       >
-        <FaHeart className="h-5 w-5" />
-        <span className={`mr-1 transition-transform duration-300 ${
+        <FaHeart className="mr-1 h-5 w-5" />
+        <span className={`mr-2 transition-transform duration-300 ${
                     liked ? 'scale-125' : 'scale-100'
                   }`}
-                >{' '}
+                >{'like'}
         </span>
       </button>
-      
-      {/* Bouton "Commenter" */}
-      <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] space-x-2 p-2 sm:p-3 rounded-md  w-full sm:w-auto">
-        <FaCommentAlt className="h-5 w-5" />
-        <span className="text-xs sm:text-sm">Comment</span>
-      </button>
+      <div className="flex flex-wrap justify-between w-[500px]">
+        {/* Bouton "Commenter" */}
+        <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] space-x-2 p-2 sm:p-3 rounded-md  w-full sm:w-auto">
+          <FaCommentAlt className="h-5 w-5" />
+          <span className="text-xs sm:text-sm">Comment</span>
+        </button>
       
       {/* Bouton "Partager" */}
-      <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] space-x-2 p-2 sm:p-2 rounded-md w-full sm:w-auto">
-        <FaShare className="h-5 w-5" />
-        <span className="text-xs sm:text-sm">Share</span>
-      </button>
+        <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] space-x-2 p-2 sm:p-2 rounded-md w-full sm:w-auto">
+          <FaShare className="h-5 w-5" />
+          <span className="text-xs sm:text-sm">Share</span>
+        </button>
+      </div>
+      
     </div>
     </div>
   ))}

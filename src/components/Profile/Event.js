@@ -33,11 +33,11 @@ const EventSection = () => {
             </div>
             <div className="space-y-4">
                 {events.map((event, index) => (
-                    <div key={index} className="flex items-center p-1 rounded-lg">
+                    <div key={index} className="flex items-center p-1 rounded-xxl">
                         {/* Bloc de couleur avec le mois en haut et le jour plus grand au centre */}
                         <div className={`w-[120px] h-[71px] flex flex-col items-center justify-center rounded-lg text-white font-bold ${event.color}`}>
                             {/* Mois en haut avec taille de police augmentée */}
-                            <span className="text-lg uppercase">{event.date}</span>
+                            <span className=" text-lg uppercase">{event.date}</span>
                             {/* Jour centré et plus grand, sans marge */}
                             <span className="font-semibold text-3xl ls-3 lh-1 text-white">{event.day}</span>
                         </div>
