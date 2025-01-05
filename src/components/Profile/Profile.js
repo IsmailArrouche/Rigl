@@ -1,11 +1,13 @@
 import React from 'react';
 import Nav from './Nav';
-import Contact from './Contact';
 import Sidebar from './Sidebar';
-import UserProfile from '../Profile/UserProfile';
-import CreatePost from '../Profile/CreatePoste';
-import AboutSection from '../Profile/About';
-import EventSection from '../Profile/Event';
+import UserProfile from './UserProfile';
+import CreatePost from './CreatePoste';
+import AboutSection from './About';
+import EventSection from './Event';
+import Contacts from "./Contacts";
+import FriendRequest from "./FriendRequest";
+
 
 const Profile = () => {
 
@@ -18,8 +20,8 @@ const Profile = () => {
 
       {/* Main Content */}
       <div className="flex flex-1">
-        {/* Contact2 on the Left */}
-        <div className="w-1/4  bg-gray-100 dark:bg-inherit shadow-md mt-4">
+        {/* Sidebar on the Left */}
+        <div className="w-2/12 bg-gray-100 dark:bg-[#293145]">
           <Sidebar />
         </div>
 
@@ -39,11 +41,16 @@ const Profile = () => {
         </div>
 
         {/* Contact Section on the Right */}
-        <div className="w-1/4">
-          <Contact />
+        <div className="flex-r">
+          <div className="min-w-64 bg-gray-300 dark:bg-[#2B3545] lg:block">
+            <Contacts />
+          </div>
+          <div className="w-1/4 bg-gray-300 dark:bg-[#2B3545] lg:block">
+            <FriendRequest />
+          </div>
         </div>
       </div>
-    </div>
+      </div>
   );
 };
 
