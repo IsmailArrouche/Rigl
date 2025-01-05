@@ -1,11 +1,10 @@
 // JobOfferCard.jsx
 
 import React, { useState } from "react";
-import { FaInfoCircle } from "react-icons/fa";
-import { AiOutlineWifi } from "react-icons/ai";
+import { FaStar, FaBan, FaInfoCircle, FaBriefcase } from "react-icons/fa";
 
 export default function JobOfferCard({
-  badgeLetter,
+  company,
   user,
   time,
   title,
@@ -13,18 +12,50 @@ export default function JobOfferCard({
   employmentType,
   experienceLevel,
   skills = [],
-  likes,
+  likes = 0,
+  dislikes = 0,
   description = "",
-  isRemote,
+  isRemote = false,
   onInfoClick,
   className = "",
 }) {
-  // We'll skip like/dislike here for brevity
-  const [likeCount] = useState(likes || 0);
+  const [likeCount, setLikeCount] = useState(likes);
+  const [dislikeCount, setDislikeCount] = useState(dislikes);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isDisliked, setIsDisliked] = useState(false);
 
-  // Truncate the description
+  // Like/Dislike Handlers
+  const handleLike = () => {
+    if (isLiked) {
+      setIsLiked(false);
+      setLikeCount((prev) => prev - 1);
+    } else {
+      setIsLiked(true);
+      setLikeCount((prev) => prev + 1);
+      if (isDisliked) {
+        setIsDisliked(false);
+        setDislikeCount((prev) => prev - 1);
+      }
+    }
+  };
+
+  const handleDislike = () => {
+    if (isDisliked) {
+      setIsDisliked(false);
+      setDislikeCount((prev) => prev - 1);
+    } else {
+      setIsDisliked(true);
+      setDislikeCount((prev) => prev + 1);
+      if (isLiked) {
+        setIsLiked(false);
+        setLikeCount((prev) => prev - 1);
+      }
+    }
+  };
+
+  const badgeLetter = company ? company[0].toUpperCase() : "N";
   const shortDesc =
-    description.length > 110 ? description.slice(0, 110) + "..." : description;
+    description.length > 120 ? description.slice(0, 120) + "..." : description;
 
   return (
     <div
@@ -32,110 +63,43 @@ export default function JobOfferCard({
         relative 
         rounded-lg 
         w-full 
+        max-w-3xl 
         flex 
         flex-col 
-        p-6
+        p-5
         transition-all
         duration-300
-        hover:scale-[1.01]
-        hover:shadow-lg
+        hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)]
         bg-white text-gray-800
         dark:bg-[#293145] dark:text-white
         ${className}
       `}
-      style={{
-        fontSize: "1rem",
-        height: "500px", // a bit shorter
-      }}
+      style={{ fontSize: "1rem", height: "480px" }} // Less height
     >
-      {/* Top row: Badge + Title + Remote? */}
-      <div className="flex items-center justify-between mb-4">
+      {/* Top Section */}
+      <div className="flex items-center justify-between mb-3">
+        {/* Left side: letter + job info */}
         <div className="flex items-center space-x-4">
-          {/* Badge Letter */}
-          <div className="bg-[#FDE9D6] w-10 h-10 flex items-center justify-center rounded text-[#3D3D3D] font-bold text-lg">
+          {/* Square badge (70x70) */}
+          <div
+            className="bg-[#FDE9D6] flex items-center justify-center text-[#3D3D3D] font-bold rounded-md"
+            style={{ width: "70px", height: "70px", fontSize: "1.4rem" }}
+          >
             {badgeLetter}
           </div>
+          {/* Job Details */}
           <div className="flex flex-col">
-            <h2 className="font-bold text-lg">{title}</h2>
-            {/* Remote or Not */}
-            <p className="text-sm text-gray-500 dark:text-gray-300">
-              {isRemote ? (
-                <>
-                  <AiOutlineWifi className="inline-block w-4 h-4 mr-1 text-[#5C80BC]" />
-                  Remote
-                </>
-              ) : (
-                "On-Site"
-              )}
+            <h1 className="font-bold text-md mb-1 leading-tight">{title}</h1>
+            <p className="text-xs text-gray-600 dark:text-gray-300">
+              {company}
+            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              {location} • {time} {isRemote && <span> • Remote</span>}
             </p>
           </div>
         </div>
 
-        {/* Right side: user/time */}
-        <div className="text-right">
-          <p className="font-semibold text-sm">{user}</p>
-          <p className="text-xs text-gray-500 dark:text-gray-300">{time}</p>
-        </div>
-      </div>
-
-      {/* Location & job type */}
-      <p className="text-sm text-gray-600 dark:text-gray-200 mb-2">
-        <strong>Location:</strong> {location}
-      </p>
-      <p className="text-sm text-gray-600 dark:text-gray-200 mb-2">
-        <strong>Type:</strong> {employmentType} • {experienceLevel}
-      </p>
-
-      {/* Skills */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        {skills.map((skill) => (
-          <span
-            key={skill}
-            className="
-              bg-[#5C80BC]/30
-              text-white
-              px-3
-              py-1
-              rounded-md
-              text-xs
-              font-medium
-              transition-colors
-              hover:bg-[#5C80BC]/50
-              dark:bg-[#5C80BC]/30
-              dark:hover:bg-[#5C80BC]/50
-            "
-          >
-            {skill}
-          </span>
-        ))}
-      </div>
-
-      {/* Description preview */}
-      <p className="text-sm text-gray-700 dark:text-gray-100 flex-grow mb-4 leading-relaxed">
-        {shortDesc}
-      </p>
-
-      {/* Bottom row: "Rigl" button + Info button */}
-      <div className="flex items-center space-x-4 justify-center mt-auto">
-        <button
-          className="
-            font-bold 
-            text-sm
-            bg-[#5C80BC] 
-            text-white 
-            py-3
-            px-6 
-            shadow 
-            transition-colors 
-            duration-300 
-            hover:bg-[#4868A3] 
-            rounded-md
-          "
-          style={{ width: "70%" }}
-        >
-          Rigl
-        </button>
-
+        {/* Square Info Button (50x50) */}
         <button
           onClick={onInfoClick}
           className="
@@ -143,18 +107,132 @@ export default function JobOfferCard({
             text-sm
             bg-[#5C80BC]
             text-white
-            px-4
-            py-3
-            rounded-md
-            hover:bg-[#4868A3]
             transition-colors
             duration-300
+            hover:bg-[#4868A3]
+            rounded-md
             flex
             items-center
             justify-center
+            shadow-sm
           "
+          style={{ width: "50px", height: "50px" }}
+          title="Details"
         >
           <FaInfoCircle className="w-4 h-4" />
+        </button>
+      </div>
+
+      {/* Like/Dislike row (bigger buttons, box shadow on hover) */}
+      <div className="flex items-center mb-3 space-x-6">
+        <button
+          onClick={handleLike}
+          className="
+            flex items-center space-x-2 text-md
+            px-2 py-1
+            rounded-md
+            transition-transform
+            hover:shadow-md
+          "
+        >
+          <span
+            className={`
+              transition-transform duration-300
+              ${
+                isLiked
+                  ? "scale-110 text-yellow-500"
+                  : "text-gray-400 hover:scale-105 hover:text-gray-500 dark:hover:text-gray-300"
+              }
+            `}
+          >
+            <FaStar className="w-5 h-5" />
+          </span>
+          <span>{likeCount}</span>
+        </button>
+
+        <button
+          onClick={handleDislike}
+          className="
+            flex items-center space-x-2 text-md
+            px-2 py-1
+            rounded-md
+            transition-transform
+            hover:shadow-md
+          "
+        >
+          <span
+            className={`
+              transition-transform duration-300
+              ${
+                isDisliked
+                  ? "scale-110 text-red-500"
+                  : "text-gray-400 hover:scale-105 hover:text-gray-500 dark:hover:text-gray-300"
+              }
+            `}
+          >
+            <FaBan className="w-5 h-5" />
+          </span>
+          <span>{dislikeCount}</span>
+        </button>
+      </div>
+
+      {/* Job Type Info */}
+      <p className="text-sm text-gray-500 dark:text-gray-300 mb-2">
+        <strong>Type:</strong> {employmentType} • {experienceLevel}
+      </p>
+
+      {/* Skills */}
+      <div className="flex flex-wrap gap-2 mb-3">
+        {skills.map((skill) => (
+          <span
+            key={skill}
+            className="
+              bg-[#5C80BC]/30
+              text-gray-900
+              px-2
+              py-1
+              rounded-md
+              text-xs
+              font-medium
+              hover:bg-[#5C80BC]/50
+              dark:text-white
+            "
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+
+      {/* Description */}
+      <p className="text-sm text-gray-700 dark:text-gray-100 flex-grow leading-relaxed mb-4">
+        {shortDesc}
+      </p>
+
+      {/* Bottom Row: "Rigl" Button */}
+      <div className="flex items-center justify-center mt-auto">
+        <button
+          className="
+            flex
+            items-center
+            justify-center
+            font-bold
+            text-sm
+            bg-[#5C80BC]
+            text-white
+            py-3
+            px-4
+            shadow
+            transition-colors
+            duration-300
+            hover:bg-[#4868A3]
+            rounded-md
+            w-full
+            active:scale-95
+          "
+          title="Rigl"
+        >
+          <FaBriefcase className="w-4 h-4 mr-2" />
+          Rigl
         </button>
       </div>
     </div>

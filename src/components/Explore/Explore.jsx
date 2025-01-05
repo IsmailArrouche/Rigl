@@ -1,62 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import Nav from './Nav';
-import Contacts from './Contacts';
-import FriendRequest from './FriendRequest';
-import JobOfferCard from './JobOfferCard';
-import DetailedJobDescription from './DetailedJobDescription';
-import Sidebar from './Sidebar';
-import FooterBar from './Footer';
+// Explore.jsx
 
-import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import Nav from "./Nav";
+import Contacts from "./Contacts";
+import FriendRequest from "./FriendRequest";
+import JobOfferCard from "./JobOfferCard";
+import DetailedJobDescription from "./DetailedJobDescription";
+import Sidebar from "./Sidebar";
+import FooterBar from "./Footer";
 
-const Explore = () => {
-  const [jobOffers, setJobOffers] = useState([
-    {
-      id: 1,
-      user: 'Jane Doe',
-      time: '2 hours ago',
-      title: 'Software Engineer',
-      location: 'San Francisco, CA',
-      employmentType: 'Full-time',
-      experienceLevel: 'Mid-Level',
-      skills: ['JavaScript', 'React', 'Node.js'],
-      likes: 120,
-      description:
-        'We are looking for a Software Engineer to join our dynamic team. You will be responsible for building and maintaining scalable web applications. Collaborate with cross-functional teams, review code, and shape the future of our technology stack...',
-      isRemote: false,
-      badgeLetter: 'S',
-    },
-    {
-      id: 2,
-      user: 'John Smith',
-      time: '1 day ago',
-      title: 'Data Analyst',
-      location: 'New York, NY',
-      employmentType: 'Part-time',
-      experienceLevel: 'Junior',
-      skills: ['Python', 'SQL', 'Tableau'],
-      likes: 85,
-      description:
-        'Join our analytics team to help uncover data-driven insights. You will create reports, dashboards, and work closely with cross-functional teams. Enhance data pipelines, automate tasks, and deliver actionable recommendations...',
-      isRemote: true,
-      badgeLetter: 'D',
-    },
-  ]);
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import jobOffers from "./jobOffers";
 
-  // Current index for the job offer being shown
+export default function Explore() {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Whether to show the detailed description
   const [showDetails, setShowDetails] = useState(false);
 
-  // State for sidebar
+  // Sidebar
   const [isSidebarVisible, setSidebarVisible] = useState(window.innerWidth >= 768);
+  const toggleSidebar = () => setSidebarVisible(!isSidebarVisible);
 
-  const toggleSidebar = () => {
-    setSidebarVisible(!isSidebarVisible);
-  };
-
-  // Handle responsive sidebar
+  // Responsive
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -65,56 +29,56 @@ const Explore = () => {
         setSidebarVisible(false);
       }
     };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Scroll through job offers (for the small card)
+  // Up/Down logic
   const handleScroll = (direction) => {
-    if (direction === 'up' && currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    } else if (direction === 'down' && currentIndex < jobOffers.length - 1) {
-      setCurrentIndex(currentIndex + 1);
+    if (direction === "up" && currentIndex > 0) {
+      setCurrentIndex((prev) => prev - 1);
+    } else if (direction === "down" && currentIndex < jobOffers.length - 1) {
+      setCurrentIndex((prev) => prev + 1);
     }
   };
-
-  // Determine disabled states
   const canScrollUp = currentIndex > 0;
   const canScrollDown = currentIndex < jobOffers.length - 1;
 
-  // Current job object
   const currentJob = jobOffers[currentIndex];
 
   return (
-    <div className="h-screen w-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 flex flex-col transition-colors duration-300">
+    <div className="h-screen w-screen bg-gray-200 dark:bg-[#1E2738] text-gray-800 dark:text-gray-100 flex flex-col transition-colors duration-300">
       {/* Navigation Bar */}
-      <div className="w-full bg-gray-200 dark:bg-gray-800 shadow-md sticky top-0 z-10">
+      <div className="w-full bg-gray-300 dark:bg-[#2B3545] shadow-md sticky top-0 z-10">
         <Nav toggleSidebar={toggleSidebar} />
       </div>
 
-      {/* Main Content Area */}
+      {/* Main Content */}
       <div className="flex flex-1">
         {/* Sidebar */}
         {isSidebarVisible && (
-          <div className="w-2/12 bg-gray-100 dark:bg-[rgb(41,49,69)] transition-colors duration-300">
+          <div className="w-2/12 bg-gray-100 dark:bg-[#293145] transition-colors duration-300">
             <Sidebar />
           </div>
         )}
 
-        {/* Center Area */}
+        {/* Center content */}
         <div className="flex-1 flex flex-col justify-center items-center relative overflow-hidden">
-          {/* We wrap both views in absolute containers to animate transitions */}
-          
-          {/* Card View */}
+          {/* If showDetails is false => job card */}
           <div
             className={`
               absolute w-full max-w-[60%] py-8 transition-all duration-500
-              ${showDetails ? 'opacity-0 translate-x-16 pointer-events-none' : 'opacity-100 translate-x-0'}
+              ${
+                showDetails
+                  ? "opacity-0 translate-x-16 pointer-events-none"
+                  : "opacity-100 translate-x-0"
+              }
             `}
-            style={{ margin: '0 auto' }}
+            style={{ margin: "0 auto" }}
           >
             <JobOfferCard
               key={currentJob.id}
+              company={currentJob.company}
               user={currentJob.user}
               time={currentJob.time}
               title={currentJob.title}
@@ -123,8 +87,10 @@ const Explore = () => {
               experienceLevel={currentJob.experienceLevel}
               skills={currentJob.skills}
               likes={currentJob.likes}
+              dislikes={currentJob.dislikes}
               description={currentJob.description}
-              className="bg-gray-200 dark:bg-gray-700 w-full transition-all duration-300"
+              isRemote={currentJob.isRemote}
+              className="bg-gray-300 dark:bg-[#2B3545] w-full transition-all duration-300"
               onInfoClick={() => setShowDetails(true)}
             />
 
@@ -133,15 +99,17 @@ const Explore = () => {
               <button
                 className={`
                   p-4 rounded-full text-white shadow-lg
-                  transition-colors duration-300
+                  transition-transform
+                  duration-300
+                  active:scale-95
                   flex items-center justify-center
                   ${
                     canScrollUp
-                      ? 'bg-indigo-600 hover:bg-indigo-500'
-                      : 'bg-gray-400 cursor-not-allowed'
+                      ? "bg-[#5C80BC] hover:bg-[#4868A3]"
+                      : "bg-gray-400 cursor-not-allowed"
                   }
                 `}
-                onClick={() => handleScroll('up')}
+                onClick={() => handleScroll("up")}
                 disabled={!canScrollUp}
                 title="Previous Job"
               >
@@ -150,15 +118,17 @@ const Explore = () => {
               <button
                 className={`
                   p-4 rounded-full text-white shadow-lg
-                  transition-colors duration-300
+                  transition-transform
+                  duration-300
+                  active:scale-95
                   flex items-center justify-center
                   ${
                     canScrollDown
-                      ? 'bg-indigo-600 hover:bg-indigo-500'
-                      : 'bg-gray-400 cursor-not-allowed'
+                      ? "bg-[#5C80BC] hover:bg-[#4868A3]"
+                      : "bg-gray-400 cursor-not-allowed"
                   }
                 `}
-                onClick={() => handleScroll('down')}
+                onClick={() => handleScroll("down")}
                 disabled={!canScrollDown}
                 title="Next Job"
               >
@@ -167,13 +137,17 @@ const Explore = () => {
             </div>
           </div>
 
-          {/* Detailed View */}
+          {/* Detailed view => DetailedJobDescription */}
           <div
             className={`
               absolute w-full max-w-[80%] transition-all duration-500
-              ${showDetails ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none'}
+              ${
+                showDetails
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 translate-x-full pointer-events-none"
+              }
             `}
-            style={{ margin: '0 auto' }}
+            style={{ margin: "0 auto" }}
           >
             <DetailedJobDescription
               job={currentJob}
@@ -181,24 +155,22 @@ const Explore = () => {
             />
           </div>
         </div>
-        
-        {/* Contacts & Friend Request on the right */}
+
+        {/* Right side: Contacts & FriendRequest */}
         <div className="flex-r">
-          <div className="min-w-64 lg:block">
+          <div className="min-w-64 bg-gray-300 dark:bg-[#2B3545] lg:block">
             <Contacts />
           </div>
-          <div className="w-1/4 lg:block">
+          <div className="w-1/4 bg-gray-300 dark:bg-[#2B3545] lg:block">
             <FriendRequest />
           </div>
         </div>
       </div>
 
-      {/* Footer Bar for smaller screens */}
-      <div className="md:hidden">
+      {/* Footer for small screens */}
+      <div className="md:hidden bg-gray-300 dark:bg-[#2B3545]">
         <FooterBar />
       </div>
     </div>
   );
-};
-
-export default Explore;
+}
