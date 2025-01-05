@@ -43,13 +43,13 @@ function AppContent() {
             path="/"
             element={
               currentPage === "home" ? (
-                <Conex onNavigate={setCurrentPage} />
-              ) : (
                 user.length === 0 ? (
                   <Form onNavigate={setCurrentPage} />
                 ) : (
                   <Welcome />
                 )
+              ) : (
+                <Conex onNavigate={setCurrentPage} />
               )
             }
           />
