@@ -1,5 +1,3 @@
-// Explore.jsx
-
 import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
 import Contacts from "./Contacts";
@@ -8,19 +6,27 @@ import JobOfferCard from "./JobOfferCard";
 import DetailedJobDescription from "./DetailedJobDescription";
 import Sidebar from "./Sidebar";
 import FooterBar from "./Footer";
-
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import jobOffers from "./jobOffers";
 
+// 1) Import our custom loader
+import FancyLoader from "./FancyLoader";
+
 export default function Explore() {
+  // ---------------------------
+  //  Side state for offers
+  // ---------------------------
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showDetails, setShowDetails] = useState(false);
 
-  // Sidebar
-  const [isSidebarVisible, setSidebarVisible] = useState(window.innerWidth >= 768);
+  // ---------------------------
+  //  Sidebar logic
+  // ---------------------------
+  const [isSidebarVisible, setSidebarVisible] = useState(
+    window.innerWidth >= 768
+  );
   const toggleSidebar = () => setSidebarVisible(!isSidebarVisible);
 
-  // Responsive
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -33,7 +39,9 @@ export default function Explore() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Up/Down logic
+  // ---------------------------
+  //  Up/Down button logic
+  // ---------------------------
   const handleScroll = (direction) => {
     if (direction === "up" && currentIndex > 0) {
       setCurrentIndex((prev) => prev - 1);
@@ -43,17 +51,51 @@ export default function Explore() {
   };
   const canScrollUp = currentIndex > 0;
   const canScrollDown = currentIndex < jobOffers.length - 1;
-
   const currentJob = jobOffers[currentIndex];
 
+  // ---------------------------
+  //  Loader management
+  // ---------------------------
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Hide loader after 3 seconds (adjust if needed)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // If loading, show custom FancyLoader
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen w-screen bg-gray-200 dark:bg-[#1E2738]">
+        <FancyLoader
+          boxColors={["#EF4444", "#F59E0B", "#6366F1"]}
+          size="3rem"
+        />
+      </div>
+    );
+  }
+
+  // ---------------------------
+  //  Main Explore page content
+  // ---------------------------
   return (
-    <div className="h-screen w-screen bg-gray-200 dark:bg-[#1E2738] text-gray-800 dark:text-gray-100 flex flex-col transition-colors duration-300">
-      {/* Navigation Bar */}
+    <div
+      className={`
+        h-screen w-screen bg-gray-200 dark:bg-[#1E2738] text-gray-800 dark:text-gray-100 
+        flex flex-col transition-colors duration-300
+        overflow-hidden 
+        animate-[fadeInUp_0.6s_ease-out_forwards]
+      `}
+    >
+      {/*  Navigation Bar  */}
       <div className="w-full bg-gray-200 dark:bg-gray-800 shadow-md sticky top-0 z-10">
         <Nav toggleSidebar={toggleSidebar} />
       </div>
 
-      {/* Main Content */}
+      {/*  Main Content  */}
       <div className="flex flex-1">
         {/* Sidebar */}
         {isSidebarVisible && (
@@ -62,9 +104,9 @@ export default function Explore() {
           </div>
         )}
 
-        {/* Center content */}
+        {/* Center content area */}
         <div className="flex-1 flex flex-col justify-center items-center relative overflow-hidden">
-          {/* If showDetails is false => job card */}
+          {/* Job Card (visible when showDetails = false) */}
           <div
             className={`
               absolute w-full max-w-[60%] py-8 transition-all duration-500
@@ -137,7 +179,7 @@ export default function Explore() {
             </div>
           </div>
 
-          {/* Detailed view => DetailedJobDescription */}
+          {/* Detailed view (visible when showDetails = true) */}
           <div
             className={`
               absolute w-full max-w-[80%] transition-all duration-500
