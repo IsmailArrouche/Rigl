@@ -1,5 +1,36 @@
 import React, { useState } from "react";
 
+const notifications = [
+  {
+    id: 1,
+    name: "Hendrix Stamp",
+    message: "There are many variations of pass..",
+    time: "3 min",
+    avatar: "https://i.pravatar.cc/40?img=11", // Exemple d'image
+  },
+  {
+    id: 2,
+    name: "Goria Coast",
+    message: "Mobile Apps UI Designer is required..",
+    time: "2 min",
+    avatar: "https://i.pravatar.cc/40?img=12",
+  },
+  {
+    id: 3,
+    name: "Surfiya Zakir",
+    message: "Mobile Apps UI Designer is required..",
+    time: "1 min",
+    avatar: "https://i.pravatar.cc/40?img=13",
+  },
+  {
+    id: 4,
+    name: "Victor Erixon",
+    message: "Mobile Apps UI Designer is required..",
+    time: "30 sec",
+    avatar: "https://i.pravatar.cc/40?img=14",
+  },
+];
+
 const NotificationMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -14,6 +45,7 @@ const NotificationMenu = () => {
         onClick={toggleMenu}
         className="hover:text-blue-500 transition-colors"
       >
+        <span className="absolute top-0 right-0 h-2.5 w-2.5 bg-orange-500 rounded-full"></span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -32,63 +64,37 @@ const NotificationMenu = () => {
 
       {/* Menu des notifications */}
       {isOpen && (
-        <div
-          className="absolute -right-8 mt-3 w-72 bg-white dark:bg-[#2E323D] shadow-lg rounded-3xl overflow-hidden z-10"
-        >
+        <div className="absolute -right-8 mt-3 w-80 bg-white dark:bg-gray-900 shadow-lg rounded-3xl overflow-hidden z-10">
           {/* Titre */}
           <div className="p-4 border-b dark:border-gray-700">
             <h4 className="font-bold text-lg text-gray-800 dark:text-white">
-              Notifications
+              Notification
             </h4>
           </div>
 
           {/* Liste des notifications */}
           <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-            <li className="flex items-center p-4 hover:bg-gray-100 dark:hover:bg-[#3a3f4d] cursor-pointer">
-              <img
-                src="https://via.placeholder.com/40"
-                alt="User"
-                className="w-10 h-10 rounded-full"
-              />
-              <div className="ml-3">
-                <p className="text-sm font-semibold text-gray-800 dark:text-white">
-                  Hendrix Stamp
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  There are many variations of pass...
-                </p>
-              </div>
-            </li>
-            <li className="flex items-center p-4 hover:bg-gray-100 dark:hover:bg-[#3a3f4d] cursor-pointer">
-              <img
-                src="https://via.placeholder.com/40"
-                alt="User"
-                className="w-10 h-10 rounded-full"
-              />
-              <div className="ml-3">
-                <p className="text-sm font-semibold text-gray-800 dark:text-white">
-                  Goria Coast
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Mobile Apps UI Designer is required...
-                </p>
-              </div>
-            </li>
-            <li className="flex items-center p-4 hover:bg-gray-100 dark:hover:bg-[#3a3f4d] cursor-pointer">
-              <img
-                src="https://via.placeholder.com/40"
-                alt="User"
-                className="w-10 h-10 rounded-full"
-              />
-              <div className="ml-3">
-                <p className="text-sm font-semibold text-gray-800 dark:text-white">
-                  Surfiya Zakir
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Mobile Apps UI Designer is required...
-                </p>
-              </div>
-            </li>
+            {notifications.map((notification) => (
+              <li
+                key={notification.id}
+                className="flex items-center p-4 hover:bg-gray-100 dark:hover:bg-[#3a3f4d] cursor-pointer"
+              >
+                <img
+                  src={notification.avatar}
+                  alt={`${notification.name}'s avatar`}
+                  className="w-10 h-10 rounded-full"
+                />
+                <div className="ml-3 flex-1">
+                  <p className="text-sm font-semibold text-gray-800 dark:text-white">
+                    {notification.name}
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                    {notification.message}
+                  </p>
+                </div>
+                <span className="text-xs text-gray-400">{notification.time}</span>
+              </li>
+            ))}
           </ul>
 
           {/* Bouton "Voir tout" */}

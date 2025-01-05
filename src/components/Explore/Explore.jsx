@@ -49,7 +49,7 @@ export default function Explore() {
   return (
     <div className="h-screen w-screen bg-gray-200 dark:bg-[#1E2738] text-gray-800 dark:text-gray-100 flex flex-col transition-colors duration-300">
       {/* Navigation Bar */}
-      <div className="w-full bg-gray-300 dark:bg-[#2B3545] shadow-md sticky top-0 z-10">
+      <div className="w-full bg-gray-200 dark:bg-gray-800 shadow-md sticky top-0 z-10">
         <Nav toggleSidebar={toggleSidebar} />
       </div>
 
@@ -57,7 +57,7 @@ export default function Explore() {
       <div className="flex flex-1">
         {/* Sidebar */}
         {isSidebarVisible && (
-          <div className="w-2/12 bg-gray-100 dark:bg-[#293145] transition-colors duration-300">
+          <div className="w-2/12 bg-gray-100 dark:bg-[#293145]">
             <Sidebar />
           </div>
         )}
