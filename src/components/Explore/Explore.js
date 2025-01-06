@@ -8,7 +8,7 @@ import Sidebar from './Sidebar';
 import FooterBar from './Footer';
 
 const Explore = () => {
-  const [jobOffers, setJobOffers] = useState([
+  const [jobOffers] = useState([
     {
       id: 1,
       user: 'Jane Doe',
@@ -72,7 +72,7 @@ const Explore = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-1">
+      <div className="flex flex-1 ">
         {/* Sidebar */}
         {isSidebarVisible && (
           <div className="w-2/12 bg-gray-100 dark:bg-inherit">

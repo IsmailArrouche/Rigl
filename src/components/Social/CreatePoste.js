@@ -159,7 +159,7 @@ const startCamera = (mode) => {
   };
 
   return (
-<div className="max-w-full ml-2 px-2">
+<div className="max-w-full ml-3 px-2">
   <div   className="card sm:w-1/2 lg:w-[630px] shadow-sm rounded-xl border-0 p-3 sm:p-4 mx-auto bg-white dark:bg-[#293145] dark:text-[#FFFFFF]">
     {/* Card Header */}
     <div className="card-body p-0 relative">
@@ -171,7 +171,7 @@ const startCamera = (mode) => {
         </div>
         {/* Bouton menu déroulant */}
         <button
-          className=" dots-button w-9 h-9 text-gray-900 p-2 sm:p-3 rounded-full  bg-gray-300 dark:bg-[#ffffff] dark:text-[#363232]"
+          className="pt-[6px] dots-button w-9 h-9 text-gray-900 p-2 sm:p-3 rounded-full  bg-gray-300 dark:bg-[#ffffff] dark:text-[#363232]"
           style={{ paddingTop: "6px"}}
           onClick={toggleMenu}
           aria-expanded={menuOpen}

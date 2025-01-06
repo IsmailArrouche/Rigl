@@ -1,17 +1,14 @@
 import React from 'react';
 import Nav from './Nav';
 import Sidebar from './Sidebar';
-import UserProfile from './UserProfile';
 import CreatePost from './CreatePoste';
-import AboutSection from './About';
-import EventSection from './Event';
 import Contacts from "./Contacts";
 import FriendRequest from "./FriendRequest";
 import SocialPost from "./Poste";
 import StoryList from './Stories';
 
 
-const Profile = () => {
+const Social = () => {
 
   return (
     <div className="h-[200rem] w-screen bg-gray-100 text-gray-800 dark:bg-gray-900  dark:text-gray-100 flex flex-col">
@@ -28,23 +25,12 @@ const Profile = () => {
         </div>
 
         {/* JobOfferCard in Center */}
-        <div className="ml-40 mb-1 flex-1 flex flex-col relative">
-          <div className="relative w-full max-w-md space-y-6 py-8">
-            <UserProfile />
-            <div className="flex-1 flex w-full md:w-[960px] flex-col pb-4 ml-1 md:flex-row">
-              <div>
-                <AboutSection />
-                <EventSection />
-              </div>
-              <div className="flex-1 flex flex-col">
-                <StoryList />
-                <CreatePost />
-                <SocialPost />
-              </div>
-            </div>
-            
-          </div>
+        <div className="mb-1 flex-1 flex flex-col relative mx-auto">
+          <StoryList />
+          <CreatePost />
+          <SocialPost />
         </div>
+
 
         {/* Contact Section on the Right */}
         <div className="flex-r">
@@ -60,4 +46,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Social;
