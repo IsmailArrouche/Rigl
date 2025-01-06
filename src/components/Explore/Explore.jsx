@@ -1,3 +1,4 @@
+// Explore.jsx
 import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
 import Contacts from "./Contacts";
@@ -9,7 +10,7 @@ import FooterBar from "./Footer";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import jobOffers from "./jobOffers";
 
-// 1) Import our custom loader
+// 1) Import our enhanced custom loader
 import FancyLoader from "./FancyLoader";
 
 export default function Explore() {
@@ -23,7 +24,7 @@ export default function Explore() {
   //  Sidebar logic
   // ---------------------------
   const [isSidebarVisible, setSidebarVisible] = useState(
-    window.innerWidth >= 768
+    typeof window !== "undefined" ? window.innerWidth >= 768 : true
   );
   const toggleSidebar = () => setSidebarVisible(!isSidebarVisible);
 
@@ -66,13 +67,21 @@ export default function Explore() {
     return () => clearTimeout(timer);
   }, []);
 
-  // If loading, show custom FancyLoader
+  // If loading, show enhanced FancyLoader
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen w-screen bg-gray-200 dark:bg-[#1E2738]">
         <FancyLoader
-          boxColors={["#EF4444", "#F59E0B", "#6366F1"]}
+          boxColors={[
+            "#EF4444",
+            "#F59E0B",
+            "#6366F1",
+            "#10B981",
+            "#3B82F6",
+            "#8B5CF6",
+          ]}
           size="3rem"
+          animationSpeed={1.5} // Optional: Adjust animation speed as needed
         />
       </div>
     );
@@ -82,137 +91,160 @@ export default function Explore() {
   //  Main Explore page content
   // ---------------------------
   return (
-    <div
-      className={`
-        h-screen w-screen bg-gray-200 dark:bg-[#1E2738] text-gray-800 dark:text-gray-100 
-        flex flex-col transition-colors duration-300
-        overflow-hidden 
-        animate-[fadeInUp_0.6s_ease-out_forwards]
-      `}
-    >
-      {/*  Navigation Bar  */}
-      <div className="w-full bg-gray-200 dark:bg-gray-800 shadow-md sticky top-0 z-10">
-        <Nav toggleSidebar={toggleSidebar} />
-      </div>
+    <>
+      {/* Inject our fade-in CSS animation */}
+      <style>
+        {`
+          @keyframes fadeInUp {
+            0% {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            100% {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
 
-      {/*  Main Content  */}
-      <div className="flex flex-1">
-        {/* Sidebar */}
-        {isSidebarVisible && (
-          <div className="w-2/12 bg-gray-100 dark:bg-[#293145]">
-            <Sidebar />
-          </div>
-        )}
+          .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+          }
+        `}
+      </style>
 
-        {/* Center content area */}
-        <div className="flex-1 flex flex-col justify-center items-center relative overflow-hidden">
-          {/* Job Card (visible when showDetails = false) */}
-          <div
-            className={`
-              absolute w-full max-w-[60%] py-8 transition-all duration-500
-              ${
-                showDetails
-                  ? "opacity-0 translate-x-16 pointer-events-none"
-                  : "opacity-100 translate-x-0"
-              }
-            `}
-            style={{ margin: "0 auto" }}
-          >
-            <JobOfferCard
-              key={currentJob.id}
-              company={currentJob.company}
-              user={currentJob.user}
-              time={currentJob.time}
-              title={currentJob.title}
-              location={currentJob.location}
-              employmentType={currentJob.employmentType}
-              experienceLevel={currentJob.experienceLevel}
-              skills={currentJob.skills}
-              likes={currentJob.likes}
-              dislikes={currentJob.dislikes}
-              description={currentJob.description}
-              isRemote={currentJob.isRemote}
-              className="bg-gray-300 dark:bg-[#2B3545] w-full transition-all duration-300"
-              onInfoClick={() => setShowDetails(true)}
-            />
+      {/* Wrap everything in a div that gets our fade-in-up animation */}
+      <div
+        className={`
+          fade-in-up
+          h-screen w-screen bg-gray-200 dark:bg-[#1E2738] text-gray-800 dark:text-gray-100 
+          flex flex-col transition-colors duration-300
+          overflow-hidden
+        `}
+      >
+        {/*  Navigation Bar  */}
+        <div className="w-full bg-gray-200 dark:bg-gray-800 shadow-md sticky top-0 z-10">
+          <Nav toggleSidebar={toggleSidebar} />
+        </div>
 
-            {/* Up/Down Buttons */}
-            <div className="absolute top-1/2 transform -translate-y-1/2 right-[-4rem] flex flex-col space-y-4 items-center">
-              <button
-                className={`
-                  p-4 rounded-full text-white shadow-lg
-                  transition-transform
-                  duration-300
-                  active:scale-95
-                  flex items-center justify-center
-                  ${
-                    canScrollUp
-                      ? "bg-[#5C80BC] hover:bg-[#4868A3]"
-                      : "bg-gray-400 cursor-not-allowed"
-                  }
-                `}
-                onClick={() => handleScroll("up")}
-                disabled={!canScrollUp}
-                title="Previous Job"
-              >
-                <FaArrowUp className="w-5 h-5" />
-              </button>
-              <button
-                className={`
-                  p-4 rounded-full text-white shadow-lg
-                  transition-transform
-                  duration-300
-                  active:scale-95
-                  flex items-center justify-center
-                  ${
-                    canScrollDown
-                      ? "bg-[#5C80BC] hover:bg-[#4868A3]"
-                      : "bg-gray-400 cursor-not-allowed"
-                  }
-                `}
-                onClick={() => handleScroll("down")}
-                disabled={!canScrollDown}
-                title="Next Job"
-              >
-                <FaArrowDown className="w-5 h-5" />
-              </button>
+        {/*  Main Content  */}
+        <div className="flex flex-1">
+          {/* Sidebar */}
+          {isSidebarVisible && (
+            <div className="w-2/12 bg-gray-100 dark:bg-[#293145]">
+              <Sidebar />
+            </div>
+          )}
+
+          {/* Center content area */}
+          <div className="flex-1 flex flex-col justify-center items-center relative overflow-hidden">
+            {/* Job Card (visible when showDetails = false) */}
+            <div
+              className={`
+                absolute w-full max-w-[60%] py-8 transition-all duration-500
+                ${
+                  showDetails
+                    ? "opacity-0 translate-x-16 pointer-events-none"
+                    : "opacity-100 translate-x-0"
+                }
+              `}
+              style={{ margin: "0 auto" }}
+            >
+              <JobOfferCard
+                key={currentJob.id}
+                company={currentJob.company}
+                user={currentJob.user}
+                time={currentJob.time}
+                title={currentJob.title}
+                location={currentJob.location}
+                employmentType={currentJob.employmentType}
+                experienceLevel={currentJob.experienceLevel}
+                skills={currentJob.skills}
+                likes={currentJob.likes}
+                dislikes={currentJob.dislikes}
+                description={currentJob.description}
+                isRemote={currentJob.isRemote}
+                className="bg-gray-300 dark:bg-[#2B3545] w-full transition-all duration-300"
+                onInfoClick={() => setShowDetails(true)}
+              />
+
+              {/* Up/Down Buttons */}
+              <div className="absolute top-1/2 transform -translate-y-1/2 right-[-4rem] flex flex-col space-y-4 items-center">
+                <button
+                  className={`
+                    p-4 rounded-full text-white shadow-lg
+                    transition-transform
+                    duration-300
+                    active:scale-95
+                    flex items-center justify-center
+                    ${
+                      canScrollUp
+                        ? "bg-[#5C80BC] hover:bg-[#4868A3]"
+                        : "bg-gray-400 cursor-not-allowed"
+                    }
+                  `}
+                  onClick={() => handleScroll("up")}
+                  disabled={!canScrollUp}
+                  title="Previous Job"
+                >
+                  <FaArrowUp className="w-5 h-5" />
+                </button>
+                <button
+                  className={`
+                    p-4 rounded-full text-white shadow-lg
+                    transition-transform
+                    duration-300
+                    active:scale-95
+                    flex items-center justify-center
+                    ${
+                      canScrollDown
+                        ? "bg-[#5C80BC] hover:bg-[#4868A3]"
+                        : "bg-gray-400 cursor-not-allowed"
+                    }
+                  `}
+                  onClick={() => handleScroll("down")}
+                  disabled={!canScrollDown}
+                  title="Next Job"
+                >
+                  <FaArrowDown className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Detailed view (visible when showDetails = true) */}
+            <div
+              className={`
+                absolute w-full max-w-[80%] transition-all duration-500
+                ${
+                  showDetails
+                    ? "opacity-100 translate-x-0"
+                    : "opacity-0 translate-x-full pointer-events-none"
+                }
+              `}
+              style={{ margin: "0 auto" }}
+            >
+              <DetailedJobDescription
+                job={currentJob}
+                onBack={() => setShowDetails(false)}
+              />
             </div>
           </div>
 
-          {/* Detailed view (visible when showDetails = true) */}
-          <div
-            className={`
-              absolute w-full max-w-[80%] transition-all duration-500
-              ${
-                showDetails
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-full pointer-events-none"
-              }
-            `}
-            style={{ margin: "0 auto" }}
-          >
-            <DetailedJobDescription
-              job={currentJob}
-              onBack={() => setShowDetails(false)}
-            />
+          {/* Right side: Contacts & FriendRequest */}
+          <div className="flex-r">
+            <div className="min-w-64 bg-gray-300 dark:bg-[#2B3545] lg:block">
+              <Contacts />
+            </div>
+            <div className="w-1/4 bg-gray-300 dark:bg-[#2B3545] lg:block">
+              <FriendRequest />
+            </div>
           </div>
         </div>
 
-        {/* Right side: Contacts & FriendRequest */}
-        <div className="flex-r">
-          <div className="min-w-64 bg-gray-300 dark:bg-[#2B3545] lg:block">
-            <Contacts />
-          </div>
-          <div className="w-1/4 bg-gray-300 dark:bg-[#2B3545] lg:block">
-            <FriendRequest />
-          </div>
+        {/* Footer for small screens */}
+        <div className="md:hidden bg-gray-300 dark:bg-[#2B3545]">
+          <FooterBar />
         </div>
       </div>
-
-      {/* Footer for small screens */}
-      <div className="md:hidden bg-gray-300 dark:bg-[#2B3545]">
-        <FooterBar />
-      </div>
-    </div>
+    </>
   );
 }
