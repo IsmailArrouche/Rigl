@@ -64,14 +64,14 @@ function Conex({ onNavigate }) {
           <Password register={register} errors={errors} />
           <button
             type="submit"
-            className="col-span-2 bg-[#efe8dd] text-black opacity-70 transition-all shadow-sm shadow-transparent hover:shadow-[#efe8dd] hover:opacity-100 py-3 rounded-2xl mt-4"
+            className="col-span-2 bg-[#4a7fa9] text-white opacity-90 transition-all shadow-sm shadow-transparent hover:shadow-[#4a7fa9] hover:opacity-100 py-3 rounded-2xl mt-4 dark:bg-[#3a5f87] dark:text-[#e5e7eb] dark:hover:shadow-[#3a5f87]"
           >
             Login
           </button>
           <div className="col-span-2 text-right mt-2">
             <Link
               to="/forget-password"
-              className="font-extralight text-sm text-gray-700 dark:text-gray-300 mt-4 cursor-pointer w-28 justify-self-end col-span-2"
+              className="font-extralight text-sm text-gray-700 dark:text-gray-400 mt-4 cursor-pointer w-28 justify-self-end col-span-2"
             >
               Forgot Password?
             </Link>
