@@ -1,9 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeMode } from "../../app/features/mode/modeSlice";
-import { SunIcon, MoonIcon } from "@heroicons/react/solid";
+import { SunIcon, MoonIcon } from "@heroicons/react/solid"; // For existing icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Font Awesome
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons"; // Thumbs-Up Icon
 import NotificationMenu from "./NotificationMenu";
-import { Link } from "react-router-dom"; // Importez Link depuis React Router
+import { Link } from "react-router-dom";
 
 function Navbar({ toggleSidebar }) {
   const dispatch = useDispatch();
@@ -11,16 +13,42 @@ function Navbar({ toggleSidebar }) {
 
   return (
     <div className="bg-gradient dark:bg-[rgb(41,49,69)]">
+      <style>
+        {`@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Stalinist+One&display=swap');`}
+      </style>
       <nav className="flex flex-wrap items-center justify-between px-4 py-4">
-        <div className="flex items-center space-x-4 sm:w-auto">
-          {/* Logo redirigeant vers la page explore */}
+        {/* Left Section */}
+        <div className="flex items-center space-x-2 sm:w-auto">
+          {/* Logo */}
           <Link to="/explore" className="flex items-center space-x-2">
-            <div className="text-green-400 text-2xl font-bold">⚡</div>
-            <span className="text-blue-500 text-lg font-bold">Rigl</span>
+            <span
+              className="text-blue-500 text-3xl font-bold"
+              style={{
+                fontFamily: "'Bungee', 'Stalinist One', sans-serif",
+                fontSize: "32px",
+              }}
+            >
+              Rigl
+            </span>
           </Link>
 
-          {/* Barre de recherche */}
-          <div className="hidden sm:flex items-center bg-[#757987] dark:bg-[#3a3e4e] hover:bg-[#3a3e4e] px-4 py-2 rounded-full transition-colors w-full sm:w-48 md:w-72">
+          {/* Thumbs-Up Button */}
+          <button
+            className="ml-4 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full transition-colors"
+            title="Thumbs Up"
+          >
+            <FontAwesomeIcon
+              icon={faThumbsUp}
+              style={{
+                fontSize: "1.2rem", // Slightly smaller size
+              }}
+            />
+          </button>
+        </div>
+
+        {/* Center Section (Search Bar) */}
+        <div className="flex-1 flex justify-center">
+          <div className="flex items-center bg-[#757987] dark:bg-[#3a3e4e] hover:bg-[#3a3e4e] px-4 py-2 rounded-full transition-colors w-full sm:w-96 md:w-[400px] lg:w-[500px]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -43,7 +71,8 @@ function Navbar({ toggleSidebar }) {
           </div>
         </div>
 
-        <div className="flex items-center space-x-4 text-gray-400 justify-end sm:w-auto">
+        {/* Right Section */}
+        <div className="flex items-center space-x-4 text-gray-400 sm:w-auto">
           <button
             onClick={toggleSidebar}
             className="sm:hidden nav-menu me-0 ms-2 flex items-center justify-center text-gray-400 hover:text-blue-500"
@@ -64,11 +93,11 @@ function Navbar({ toggleSidebar }) {
             </svg>
           </button>
 
-          {/* Icône de messagerie */}
+          {/* Messaging Icon */}
           <button
             className="hover:text-blue-500 transition-colors relative mb-[5px]"
             onClick={() => {
-              window.location.href = "/message"; // Remplacez par votre lien
+              window.location.href = "/message";
             }}
           >
             <svg
@@ -88,10 +117,10 @@ function Navbar({ toggleSidebar }) {
             <span className="absolute top-0 right-0 h-2.5 w-2.5 bg-orange-500 rounded-full"></span>
           </button>
 
-          {/* Icône de Notifications */}
+          {/* Notifications */}
           <NotificationMenu />
 
-          {/* Icône de changement de mode */}
+          {/* Mode Toggle */}
           <button
             title="Change Mode"
             onClick={() => dispatch(changeMode())}
@@ -104,12 +133,12 @@ function Navbar({ toggleSidebar }) {
             )}
           </button>
 
-          {/* Icône de profil */}
+          {/* Profile Icon */}
           <div className="relative">
             <img
               src="https://randomuser.me/api/portraits/men/1.jpg"
-              alt="Mohannad avatar"
-              className="w-8 h-8 rounded-full  mb-[5px]"
+              alt="Profile avatar"
+              className="w-8 h-8 rounded-full mb-[5px]"
             />
           </div>
         </div>
