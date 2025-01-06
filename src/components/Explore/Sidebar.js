@@ -26,14 +26,14 @@ const Sidebar = () => {
       label: "Badges",
       icon: <BadgeCheckIcon className="w-6 h-6" />,
       color: "bg-gradient-to-br from-orange-400 to-orange-600",
-      route: "/badges",
+      route: "./Events/Event",
     },
     {
       id: 3,
       label: "Explore Stories",
       icon: <GlobeAltIcon className="w-6 h-6" />,
       color: "bg-gradient-to-br from-yellow-400 to-yellow-600",
-      route: "/stories",
+      route: "/Event",
     },
     {
       id: 4,
