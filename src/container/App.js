@@ -58,7 +58,7 @@ function AppContent() {
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/explore" element={<Explore />} />
-          <Route path="/Profile" element={<Profile />} />*
+          <Route path="/Profile" element={<Profile />} />
           <Route path="/message" element={<Message />} />
         </Routes>
       </div>
