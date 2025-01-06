@@ -49,7 +49,7 @@ export default function FancyLoader({
         background-position: 70% 50%;
       }
       75% {
-        background-position: 75% 50%; /* Sync with bar */
+        background-position: 75% 50%;
       }
       100% {
         background-position: 100% 50%;
@@ -63,6 +63,27 @@ export default function FancyLoader({
         {`
           @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Stalinist+One&display=swap');
           ${keyframes}
+
+          /* Responsive styles for text and layout */
+          #rigl-text {
+            font-size: 12vw; /* Slightly larger for small screens */
+          }
+
+          @media (min-width: 640px) {
+            #rigl-text {
+              font-size: 8vw; /* Bigger for tablets and small laptops */
+            }
+          }
+
+          @media (min-width: 1024px) {
+            #rigl-text {
+              font-size: 225px; /* Full size for desktops */
+            }
+          }
+
+          .progress-bar-container {
+            max-width: 90%; /* Ensure the bar doesn’t overflow on small screens */
+          }
         `}
       </style>
       <div className="flex flex-col items-center space-y-6">
@@ -70,7 +91,6 @@ export default function FancyLoader({
         <div
           id="rigl-text"
           style={{
-            fontSize: "225px",
             fontFamily: "'Bungee', 'Stalinist One', sans-serif", // Using imported fonts
             fontWeight: 900,
             fontStyle: "italic",
@@ -89,6 +109,7 @@ export default function FancyLoader({
 
         {/* Loading Bar */}
         <div
+          className="progress-bar-container"
           style={{
             width: "100%", // Matches the width of "RIGL"
             height: barHeight,
