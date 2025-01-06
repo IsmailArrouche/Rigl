@@ -1,7 +1,8 @@
 import React from "react";
+import RiglImage from "../../assets/Rigl.png"; // Import the Rigl image
 
 /**
- * A loader where "RIGL" and the progress bar fill gradually together.
+ * A loader where the "Rigl.png" image and the progress bar fill gradually together.
  * Starts dark and is colored with the bar's progress, including random pauses.
  *
  * Props:
@@ -34,84 +35,65 @@ export default function FancyLoader({
         width: 100%;
       }
     }
-
-    @keyframes text-fill {
-      0% {
-        background-position: 0% 50%;
-      }
-      25% {
-        background-position: 30% 50%;
-      }
-      40% {
-        background-position: 35% 50%; /* Sync with bar */
-      }
-      60% {
-        background-position: 70% 50%;
-      }
-      75% {
-        background-position: 75% 50%;
-      }
-      100% {
-        background-position: 100% 50%;
-      }
-    }
   `;
 
   return (
     <>
       <style>
         {`
-          @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Stalinist+One&display=swap');
           ${keyframes}
 
-          /* Responsive styles for text and layout */
-          #rigl-text {
-            font-size: 12vw; /* Slightly larger for small screens */
+          /* Styles for centering container */
+          .loader-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height for perfect centering */
+            position: relative; /* To allow precise positioning of bar */
+          }
+
+          /* Responsive styles for image */
+          .rigl-image {
+            width: 80vw; /* Scales based on screen size */
+            max-width: 1000px; /* Max width to match the original image size */
+            height: auto; /* Maintain aspect ratio */
+            position: relative; /* To stack bar over image */
           }
 
           @media (min-width: 640px) {
-            #rigl-text {
-              font-size: 8vw; /* Bigger for tablets and small laptops */
+            .rigl-image {
+              width: 60vw; /* Adjusted for tablets and small laptops */
             }
           }
 
           @media (min-width: 1024px) {
-            #rigl-text {
-              font-size: 225px; /* Full size for desktops */
+            .rigl-image {
+              width: 500px; /* Full size for desktops */
             }
           }
 
           .progress-bar-container {
-            max-width: 90%; /* Ensure the bar doesn’t overflow on small screens */
+            position: absolute; /* Absolute position relative to the container */
+            bottom: calc(50% - 7rem); /* Moves the bar slightly below the center */
+            width: 60%; /* Matches a proportionate width to the image */
+            max-width: 800px; /* Ensures the bar doesn't overflow */
+            z-index: 2; /* Ensure it's on top of the image */
           }
         `}
       </style>
-      <div className="flex flex-col items-center space-y-6">
-        {/* Text with gradient fill synced to the bar */}
-        <div
-          id="rigl-text"
-          style={{
-            fontFamily: "'Bungee', 'Stalinist One', sans-serif", // Using imported fonts
-            fontWeight: 900,
-            fontStyle: "italic",
-            lineHeight: "1.05",
-            textAlign: "center",
-            color: "transparent",
-            background: "linear-gradient(to right, #3B82F6, #6D28D9, #4F46E5, #8B5CF6)",
-            backgroundClip: "text",
-            WebkitBackgroundClip: "text",
-            backgroundSize: "200% 200%", // Smooth gradient movement
-            animation: `text-fill ${animationSpeed}s ease-in-out forwards`,
-          }}
-        >
-          RIGL
-        </div>
+      <div className="loader-container">
+        {/* Image in place of text */}
+        <img
+          src={RiglImage}
+          alt="Rigl"
+          className="rigl-image"
+        />
 
         {/* Loading Bar */}
         <div
           className="progress-bar-container"
           style={{
-            width: "100%", // Matches the width of "RIGL"
             height: barHeight,
             backgroundColor: "#1E293B", // Initial dark background
             borderRadius: "5px",
@@ -121,7 +103,7 @@ export default function FancyLoader({
           <div
             style={{
               height: "100%",
-              background: "linear-gradient(90deg, #3B82F6, #6D28D9, #4F46E5, #8B5CF6)",
+              background: "linear-gradient(90deg, rgb(29, 140, 160), rgb(29, 140, 160))",
               animation: `progress-fill ${animationSpeed}s ease-in-out forwards`,
             }}
           ></div>

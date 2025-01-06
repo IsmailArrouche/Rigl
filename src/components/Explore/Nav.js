@@ -2,8 +2,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeMode } from "../../app/features/mode/modeSlice";
 import { SunIcon, MoonIcon } from "@heroicons/react/solid"; // For existing icons
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Font Awesome
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons"; // Thumbs-Up Icon
 import NotificationMenu from "./NotificationMenu";
 import { Link } from "react-router-dom";
 
@@ -14,36 +12,24 @@ function Navbar({ toggleSidebar }) {
   return (
     <div className="bg-gradient dark:bg-[rgb(41,49,69)]">
       <style>
-        {`@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Stalinist+One&display=swap');`}
+        {`@import url('https://fonts.googleapis.com/css2?family=Sarina&display=swap');`}
       </style>
       <nav className="flex flex-wrap items-center justify-between px-4 py-4">
         {/* Left Section */}
         <div className="flex items-center space-x-2 sm:w-auto">
           {/* Logo */}
-          <Link to="/explore" className="flex items-center space-x-2">
+          <Link to="/explore" className="flex items-center space-x-2 ml-3">
             <span
-              className="text-blue-500 text-3xl font-bold"
+              className="font-bold"
               style={{
-                fontFamily: "'Bungee', 'Stalinist One', sans-serif",
-                fontSize: "32px",
+                fontFamily: "'Sarina', sans-serif",
+                fontSize: "32px", // Reverted to original size
+                color: "rgb(29, 140, 160)", // Updated color
               }}
             >
               Rigl
             </span>
           </Link>
-
-          {/* Thumbs-Up Button */}
-          <button
-            className="ml-4 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full transition-colors"
-            title="Thumbs Up"
-          >
-            <FontAwesomeIcon
-              icon={faThumbsUp}
-              style={{
-                fontSize: "1.2rem", // Slightly smaller size
-              }}
-            />
-          </button>
         </div>
 
         {/* Center Section (Search Bar) */}
