@@ -1,65 +1,187 @@
 const jobOffers = [
-    {
-      id: 1,
-      user: 'Alice Johnson',
-      time: '2 hours ago',
-      title: 'Full-Stack Developer',
-      location: 'Seattle, WA',
-      employmentType: 'Full-time',
-      experienceLevel: 'Mid-Level',
-      skills: ['JavaScript', 'React', 'Node.js', 'MongoDB'],
-      likes: 150,
-      description: 'We are looking for a highly motivated full-stack developer to join our team. You will be responsible for designing, developing, and maintaining web applications. The role requires strong problem-solving skills and a solid understanding of modern development tools and technologies. Ideal candidates have experience with front-end frameworks such as React and back-end tools like Node.js and MongoDB. You will work collaboratively with cross-functional teams to deliver robust solutions that meet our clients’ needs. Additionally, you will have opportunities to mentor junior developers and contribute to architectural decisions. The position offers a competitive salary, flexible working hours, and opportunities for professional growth. If you are passionate about coding and enjoy working in a dynamic and fast-paced environment, we encourage you to apply.'
-    },
-    {
-      id: 2,
-      user: 'Bob Smith',
-      time: '4 hours ago',
-      title: 'Data Scientist',
-      location: 'New York, NY',
-      employmentType: 'Contract',
-      experienceLevel: 'Senior',
-      skills: ['Python', 'Machine Learning', 'Data Visualization', 'SQL'],
-      likes: 200,
-      description: 'Join our team as a data scientist and be at the forefront of cutting-edge analytics and machine learning. This role involves analyzing large datasets to extract actionable insights, building predictive models, and developing data-driven solutions to business challenges. The ideal candidate has a deep understanding of statistical methods and experience with machine learning libraries such as TensorFlow or PyTorch. You will collaborate with data engineers and business analysts to ensure the data pipelines are optimized and models are integrated seamlessly into our production systems. This is a high-impact role that requires strong communication skills and the ability to present complex findings to non-technical stakeholders. Our organization offers a flexible work environment, competitive pay, and opportunities to work on high-profile projects.'
-    },
-    {
-      id: 3,
-      user: 'Carol Williams',
-      time: '6 hours ago',
-      title: 'UX/UI Designer',
-      location: 'Austin, TX',
-      employmentType: 'Part-time',
-      experienceLevel: 'Junior',
-      skills: ['Figma', 'Sketch', 'Adobe XD', 'Wireframing'],
-      likes: 85,
-      description: 'We are seeking a creative UX/UI designer to enhance the user experience of our digital products. This role involves creating wireframes, mockups, and prototypes that effectively communicate design ideas. You will work closely with product managers and developers to ensure designs align with business goals and technical constraints. Ideal candidates have a strong portfolio showcasing their design process and ability to create user-friendly interfaces. Familiarity with tools like Figma, Sketch, or Adobe XD is essential. This part-time role offers flexible hours and an opportunity to work with a supportive and collaborative team. Whether you are early in your career or looking to expand your skills, this position provides a platform for professional growth.'
-    },
-    {
-      id: 4,
-      user: 'Daniel Garcia',
-      time: '1 day ago',
-      title: 'DevOps Engineer',
-      location: 'Remote',
-      employmentType: 'Full-time',
-      experienceLevel: 'Experienced',
-      skills: ['Docker', 'Kubernetes', 'CI/CD', 'AWS'],
-      likes: 320,
-      description: 'As a DevOps Engineer, you will be responsible for the deployment, automation, and optimization of our cloud infrastructure. This role requires expertise in containerization technologies such as Docker and Kubernetes, as well as experience with CI/CD pipelines. You will work closely with development and operations teams to identify inefficiencies and implement solutions that improve system reliability and scalability. Candidates should have hands-on experience with cloud providers like AWS, Google Cloud, or Azure, and familiarity with monitoring tools such as Prometheus or Grafana. This is a fully remote position offering a competitive salary and benefits, including opportunities for professional development. If you thrive in a challenging and rewarding environment, this is the role for you.'
-    },
-    {
-      id: 5,
-      user: 'Emily Chen',
-      time: '2 days ago',
-      title: 'Product Manager',
-      location: 'San Francisco, CA',
-      employmentType: 'Full-time',
-      experienceLevel: 'Senior',
-      skills: ['Agile', 'Scrum', 'Stakeholder Management', 'Roadmap Planning'],
-      likes: 400,
-      description: 'We are searching for a strategic Product Manager to guide our team in delivering innovative software solutions. The role involves defining product roadmaps, gathering and prioritizing requirements, and collaborating with engineering, design, and marketing teams. You will serve as the primary point of contact for stakeholders, ensuring that the product vision aligns with business objectives. Ideal candidates have experience with Agile methodologies and tools like Jira or Trello, along with excellent communication and organizational skills. This position offers a high level of autonomy and the chance to work on products that impact thousands of users. Competitive salary, stock options, and a dynamic work environment are just a few of the benefits of joining our team.'
-    }
-  ];
-  
-  export default jobOffers;
-  
+  {
+    id: 1,
+    company: "Vestine HR Solutions",
+    user: "Jane Doe",
+    time: "Today",
+    title: "Remote Sales Role, Inside Sales - Bound Tree Medical - Fully Remote / Work from Home",
+    location: "Aurora, IL",
+    employmentType: "Full-Time",
+    experienceLevel: "Mid-Level",
+    skills: ["Customer Service", "Sales", "Communication", "Lead Generation", "Negotiation", "CRM Tools"],
+    likes: 42,
+    dislikes: 3,
+    description:
+      "We’re seeking a Remote Sales Representative to join our rapidly growing sales team. In this role, you will manage inbound leads, proactively reach out to potential customers, and collaborate with cross-functional teams to drive revenue growth. You will focus on building strong customer relationships by offering personalized solutions and ensuring client satisfaction. As part of the role, you will also identify new sales opportunities, develop effective strategies to increase conversions, and analyze performance metrics to continuously optimize our sales processes. Our ideal candidate is passionate about sales, has excellent interpersonal skills, and thrives in a fast-paced environment. This is a unique opportunity to join a company that values innovation, teamwork, and professional development.",
+    isRemote: true,
+    responsibilities: [
+      "Handle inbound and outbound calls to potential clients.",
+      "Build and maintain strong relationships with customers, ensuring high satisfaction.",
+      "Collaborate with marketing to refine lead qualification processes.",
+      "Track and analyze sales metrics to optimize strategy.",
+      "Meet and exceed monthly sales quotas while maintaining strong customer rapport.",
+    ],
+    qualifications: [
+      "2+ years in sales, customer service, or related field.",
+      "Excellent communication skills, both written and verbal.",
+      "Comfort with CRM tools and remote collaboration software.",
+      "Self-motivated, goal-oriented mindset.",
+      "Proven track record of achieving or exceeding sales targets.",
+    ],
+    benefits: [
+      "Competitive base salary plus commission.",
+      "Flexible schedule with fully remote options.",
+      "Comprehensive training and mentorship programs.",
+      "Health, dental, and vision insurance coverage.",
+      "Generous PTO and ongoing professional development.",
+    ],
+    about:
+      "Vestine HR Solutions is a premier HR consulting and recruiting firm helping companies find top talent globally. Our mission is to connect motivated professionals with businesses that value remote flexibility and growth opportunities.",
+  },
+  {
+    id: 2,
+    company: "Newport Associates",
+    user: "John Smith",
+    time: "1 day ago",
+    title: "Remote Flight Reservationist",
+    location: "New York, NY",
+    employmentType: "Part-Time",
+    experienceLevel: "Junior",
+    skills: ["Booking", "Scheduling", "Events", "Customer Service", "Attention to Detail", "Problem Solving"],
+    likes: 10,
+    dislikes: 0,
+    description:
+      "Plan and book flight reservations for our expanding client base. As a Remote Flight Reservationist, you will be the primary point of contact for travelers looking for seamless and hassle-free booking experiences. You will coordinate flight schedules, manage lodging, and provide assistance with travel insurance options. Your role will also include helping clients navigate complex itineraries, resolving booking-related issues, and ensuring all details are accurately recorded. This position requires a customer-focused mindset, strong organizational skills, and the ability to multitask efficiently. Join us to make travel a stress-free experience for our clients while enjoying a flexible, remote work environment.",
+    isRemote: true,
+    responsibilities: [
+      "Coordinate with airlines and lodging providers.",
+      "Manage travel insurance and ensure top-tier experiences.",
+      "Provide excellent customer service to travelers.",
+      "Maintain accurate booking records and payment details.",
+    ],
+    qualifications: [
+      "Strong organizational skills and attention to detail.",
+      "Comfortable working with booking platforms.",
+      "Excellent communication and problem-solving abilities.",
+      "Ability to multitask in a fast-paced environment.",
+    ],
+    benefits: [
+      "Flexible part-time schedule.",
+      "Remote work environment with daily check-ins.",
+      "Opportunities to grow within the travel industry.",
+      "Employee discounts on flights and hotels.",
+    ],
+    about:
+      "Newport Associates partners with travel providers to offer robust flight and lodging solutions. Our core focus is delivering seamless travel experiences to customers worldwide.",
+  },
+  {
+    id: 3,
+    company: "DataCorp",
+    user: "Emily Carter",
+    time: "2 days ago",
+    title: "Data Scientist - Healthcare Analytics (Remote)",
+    location: "Boston, MA",
+    employmentType: "Full-Time",
+    experienceLevel: "Senior",
+    skills: ["Python", "Machine Learning", "SQL", "Statistics", "Data Visualization", "Big Data"],
+    likes: 87,
+    dislikes: 5,
+    description:
+      "Join our healthcare analytics team to develop machine learning models for patient data, uncover insights, and drive data-driven outcomes that improve patient care. As a Data Scientist, you will work closely with clinicians, researchers, and stakeholders to design and implement innovative data solutions. Your responsibilities include cleaning and preprocessing large datasets, developing predictive models, and presenting actionable insights that directly impact patient outcomes. This role requires a deep understanding of machine learning algorithms, statistical methods, and healthcare data. If you’re passionate about leveraging data to make a meaningful difference in healthcare, this is the opportunity for you.",
+    isRemote: true,
+    responsibilities: [
+      "Develop and deploy machine learning models for large healthcare datasets.",
+      "Collaborate with clinicians to identify key data insights.",
+      "Implement best practices for data cleaning and feature engineering.",
+      "Present findings to stakeholders and leadership teams.",
+    ],
+    qualifications: [
+      "5+ years in data science or related field.",
+      "Expertise in Python, SQL, and statistical methods.",
+      "Strong background in machine learning (TensorFlow, PyTorch, or scikit-learn).",
+      "Knowledge of healthcare data standards (HIPAA) preferred.",
+    ],
+    benefits: [
+      "Remote-friendly with flexible hours.",
+      "Comprehensive health benefits and 401(k) matching.",
+      "Budget for professional certifications and conferences.",
+      "Collaborative culture with cross-functional opportunities.",
+    ],
+    about:
+      "DataCorp is a leader in advanced analytics and AI solutions. Our healthcare division focuses on leveraging data science to improve patient outcomes and operational efficiency.",
+  },
+  {
+    id: 4,
+    company: "Everbrite Agency",
+    user: "Sarah Lawson",
+    time: "3 days ago",
+    title: "Social Media Strategist (On-Site)",
+    location: "Los Angeles, CA",
+    employmentType: "Full-Time",
+    experienceLevel: "Entry",
+    skills: ["Social Media", "Branding", "Content Creation", "Analytics", "SEO", "Influencer Marketing"],
+    likes: 25,
+    dislikes: 2,
+    description:
+      "Everbrite Agency is seeking a Social Media Strategist to develop and execute marketing campaigns across Facebook, Instagram, TikTok, and YouTube. In this role, you will collaborate with creative teams to produce engaging content, analyze campaign performance metrics, and work closely with influencers to maximize campaign reach. You will also manage social media calendars, engage with followers, and ensure all campaigns align with the brand’s voice and strategy. This is an excellent opportunity for a creative, detail-oriented individual looking to grow in the field of digital marketing and branding.",
+    isRemote: false,
+    responsibilities: [
+      "Create and schedule social media content calendars.",
+      "Engage with the audience to foster brand loyalty.",
+      "Collaborate with influencers to boost campaign performance.",
+      "Analyze performance metrics and optimize strategies.",
+    ],
+    qualifications: [
+      "0-2 years experience in marketing or communications.",
+      "Knowledge of major social media platforms.",
+      "Strong writing and visual storytelling skills.",
+      "Team player with a creative mindset.",
+    ],
+    benefits: [
+      "On-site work with a fun, dynamic team in L.A.",
+      "Health and dental insurance.",
+      "Opportunities to attend marketing conferences.",
+      "Weekly team lunches and social events.",
+    ],
+    about:
+      "Everbrite Agency is a fast-growing marketing agency that helps brands shine online with creative campaigns and influencer collaborations.",
+  },
+  {
+    id: 5,
+    company: "GlobalGraphics",
+    user: "Gloria Santos",
+    time: "4 days ago",
+    title: "Senior UX/UI Designer (Contract, Remote)",
+    location: "Remote",
+    employmentType: "Contract",
+    experienceLevel: "Senior",
+    skills: ["UX", "UI", "Figma", "Prototyping", "User Research", "Accessibility"],
+    likes: 210,
+    dislikes: 10,
+    description:
+      "Design intuitive interfaces and user flows for a variety of digital products. Collaborate with cross-functional teams, conduct user research, and deliver high-fidelity prototypes. As a Senior UX/UI Designer, you will play a critical role in shaping the user experience of our digital platforms. This includes conducting user testing, creating design systems, and ensuring accessibility compliance. Our ideal candidate is a creative problem solver with a strong portfolio of design work that demonstrates expertise in user-centered design principles. This contract position offers flexible hours and the opportunity to work with a team of talented professionals across the globe.",
+    isRemote: true,
+    responsibilities: [
+      "Conduct user research and usability testing sessions.",
+      "Design wireframes, mockups, and interactive prototypes.",
+      "Collaborate with stakeholders to gather design requirements.",
+      "Maintain design consistency and brand guidelines.",
+    ],
+    qualifications: [
+      "5+ years in UX/UI design or related field.",
+      "Proficiency in Figma, Sketch, or similar tools.",
+      "Strong portfolio demonstrating user-centered design.",
+      "Excellent communication and time management skills.",
+    ],
+    benefits: [
+      "Fully remote contract with flexible scheduling.",
+      "Competitive project-based pay and potential renewals.",
+      "Access to premium design tools and resources.",
+      "Opportunities to collaborate with global clients.",
+    ],
+    about:
+      "GlobalGraphics is a creative agency known for delivering innovative designs and user experiences to global brands. We value creativity, user empathy, and collaborative work styles.",
+  },
+];
+
+export default jobOffers;

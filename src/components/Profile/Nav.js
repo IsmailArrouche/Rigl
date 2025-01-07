@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeMode } from "../../app/features/mode/modeSlice";
-import { SunIcon, MoonIcon } from "@heroicons/react/solid"; // For existing icons
+import { SunIcon, MoonIcon } from "@heroicons/react/solid";
 import NotificationMenu from "./NotificationMenu";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; // Importez Link depuis React Router
 
 function Navbar({ toggleSidebar }) {
   const dispatch = useDispatch();
@@ -11,30 +11,16 @@ function Navbar({ toggleSidebar }) {
 
   return (
     <div className="bg-gradient dark:bg-[rgb(41,49,69)]">
-      <style>
-        {`@import url('https://fonts.googleapis.com/css2?family=Sarina&display=swap');`}
-      </style>
       <nav className="flex flex-wrap items-center justify-between px-4 py-4">
-        {/* Left Section */}
-        <div className="flex items-center space-x-2 sm:w-auto">
-          {/* Logo */}
-          <Link to="/explore" className="flex items-center space-x-2 ml-3">
-            <span
-              className="font-bold"
-              style={{
-                fontFamily: "'Sarina', sans-serif",
-                fontSize: "32px", // Reverted to original size
-                color: "rgb(29, 140, 160)", // Updated color
-              }}
-            >
-              Rigl
-            </span>
+        <div className="flex items-center space-x-4 sm:w-auto">
+          {/* Logo redirigeant vers la page explore */}
+          <Link to="/explore" className="flex items-center space-x-2">
+            <div className="text-green-400 text-2xl font-bold">⚡</div>
+            <span className="text-blue-500 text-lg font-bold">Rigl</span>
           </Link>
-        </div>
 
-        {/* Center Section (Search Bar) */}
-        <div className="flex-1 flex justify-center">
-          <div className="flex items-center bg-[#757987] dark:bg-[#3a3e4e] hover:bg-[#3a3e4e] px-4 py-2 rounded-full transition-colors w-full sm:w-96 md:w-[400px] lg:w-[500px]">
+          {/* Barre de recherche */}
+          <div className="hidden sm:flex items-center bg-[#757987] dark:bg-[#3a3e4e] hover:bg-[#3a3e4e] px-4 py-2 rounded-full transition-colors w-full sm:w-48 md:w-72">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -57,8 +43,7 @@ function Navbar({ toggleSidebar }) {
           </div>
         </div>
 
-        {/* Right Section */}
-        <div className="flex items-center space-x-4 text-gray-400 sm:w-auto">
+        <div className="flex items-center space-x-4 text-gray-400 justify-end sm:w-auto">
           <button
             onClick={toggleSidebar}
             className="sm:hidden nav-menu me-0 ms-2 flex items-center justify-center text-gray-400 hover:text-blue-500"
@@ -79,11 +64,11 @@ function Navbar({ toggleSidebar }) {
             </svg>
           </button>
 
-          {/* Messaging Icon */}
+          {/* Icône de messagerie */}
           <button
             className="hover:text-blue-500 transition-colors relative mb-[5px]"
             onClick={() => {
-              window.location.href = "/message";
+              window.location.href = "/message"; // Remplacez par votre lien
             }}
           >
             <svg
@@ -103,10 +88,10 @@ function Navbar({ toggleSidebar }) {
             <span className="absolute top-0 right-0 h-2.5 w-2.5 bg-orange-500 rounded-full"></span>
           </button>
 
-          {/* Notifications */}
+          {/* Icône de Notifications */}
           <NotificationMenu />
 
-          {/* Mode Toggle */}
+          {/* Icône de changement de mode */}
           <button
             title="Change Mode"
             onClick={() => dispatch(changeMode())}
@@ -119,12 +104,12 @@ function Navbar({ toggleSidebar }) {
             )}
           </button>
 
-          {/* Profile Icon */}
+          {/* Icône de profil */}
           <div className="relative">
             <img
               src="https://randomuser.me/api/portraits/men/1.jpg"
-              alt="Profile avatar"
-              className="w-8 h-8 rounded-full mb-[5px]"
+              alt="Mohannad avatar"
+              className="w-8 h-8 rounded-full  mb-[5px]"
             />
           </div>
         </div>
