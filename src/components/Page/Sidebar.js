@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import {
   HomeIcon,
-  BadgeCheckIcon,
-  GlobeAltIcon,
+  UserGroupIcon,
+  CalendarIcon,
   UsersIcon,
   UserCircleIcon,
   CogIcon,
   ChartBarIcon,
-  ChatAlt2Icon,
+  InboxIcon, // New Icon for Chat
 } from "@heroicons/react/solid"; // Import Heroicons
 
 const Sidebar = () => {
@@ -16,31 +16,31 @@ const Sidebar = () => {
   const menuItems = [
     {
       id: 1,
-      label: "Newsfeed",
+      label: "Explore",
       icon: <HomeIcon className="w-6 h-6" />,
       color: "bg-[#00A8B5]",
-      route: "/newsfeed",
+      route: "/explore",
     },
     {
       id: 2,
-      label: "Badges",
-      icon: <BadgeCheckIcon className="w-6 h-6" />,
+      label: "Social",
+      icon: <UserGroupIcon className="w-6 h-6" />,
       color: "bg-[#007F89]",
-      route: "/badges",
+      route: "/social",
     },
     {
       id: 3,
-      label: "Explore Stories",
-      icon: <GlobeAltIcon className="w-6 h-6" />,
+      label: "Explore Events",
+      icon: <CalendarIcon className="w-6 h-6" />,
       color: "bg-[#0096A6]",
-      route: "/stories",
+      route: "/event",
     },
     {
       id: 4,
-      label: "Popular Groups",
+      label: "Messages",
       icon: <UsersIcon className="w-6 h-6" />,
       color: "bg-[#5C80BC]",
-      route: "/groups",
+      route: "/message",
     },
     {
       id: 5,
@@ -67,7 +67,7 @@ const Sidebar = () => {
         {/* New Feeds Section */}
         <div className="mb-8">
           <h2 className="text-lg sm:text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 text-center sm:text-left">
-            New Feeds
+            Navigation
           </h2>
           <div className="grid grid-cols-1 gap-x-4 gap-y-0">
             {menuItems.map((item) => (
@@ -132,7 +132,7 @@ const Sidebar = () => {
             >
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 flex items-center justify-center rounded-full bg-[#5C80BC] text-white shadow-md">
-                  <ChatAlt2Icon className="w-6 h-6" />
+                  <InboxIcon className="w-6 h-6" /> {/* Changed Icon */}
                 </div>
                 <span className="text-gray-700 dark:text-gray-300 text-base font-medium">
                   Chat

@@ -34,10 +34,10 @@ const Social = () => {
 
         {/* Contact Section on the Right */}
         <div className="flex-r">
-          <div className="min-w-64 bg-gray-300 dark:bg-[#2B3545] lg:block">
+          <div className="min-w-64 bg-inherit lg:block">
             <Contacts />
           </div>
-          <div className="w-1/4 bg-gray-300 dark:bg-[#2B3545] lg:block">
+          <div className="min-w-64 bg-inherit lg:block">
             <FriendRequest />
           </div>
         </div>
