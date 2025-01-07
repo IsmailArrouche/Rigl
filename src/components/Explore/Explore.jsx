@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Nav from "./Nav";
-import Contacts from "./Contacts";
-import FriendRequest from "./FriendRequest";
+import Nav from "../Page/Nav";
+import Contacts from "../Page/Contacts";
+import FriendRequest from "../Page/FriendRequest";
 import JobOfferCard from "./JobOfferCard";
 import DetailedJobDescription from "./DetailedJobDescription";
-import Sidebar from "./Sidebar";
-import FooterBar from "./Footer";
+import Sidebar from "../Page/Sidebar";
 import jobOffers from "./jobOffers";
 import FancyLoader from "./FancyLoader";
 import ScrollButtons from "./ScrollButtons"; // Import the new ScrollButtons file
@@ -121,7 +120,7 @@ export default function Explore() {
               <JobOfferCard
                 key={currentJob.id}
                 {...currentJob}
-                className="bg-gray-300 dark:bg-[#2B3545] w-full transition-all duration-300"
+                className="bg-gray-300 dark:bg-[#293145] w-full transition-all duration-300"
                 onInfoClick={() => setShowDetails(true)}
               />
 
@@ -160,10 +159,6 @@ export default function Explore() {
               </div>
             </div>
           )}
-        </div>
-
-        <div className="md:hidden bg-gray-300 dark:bg-[#2B3545]">
-          <FooterBar />
         </div>
       </div>
     </>

@@ -33,7 +33,7 @@ export default function JobOfferCard({
         duration-300
         hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)]
         bg-white text-gray-800
-        dark:bg-[#1E2738] dark:text-white
+        dark:bg-[#293145] dark:text-white
         h-[30rem]
         ${className}
       `}
