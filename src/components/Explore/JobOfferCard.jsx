@@ -1,5 +1,3 @@
-// JobOfferCard.jsx
-
 import React, { useState } from "react";
 import { FaStar, FaBan, FaInfoCircle, FaBriefcase } from "react-icons/fa";
 
@@ -63,7 +61,7 @@ export default function JobOfferCard({
         relative 
         rounded-lg 
         w-full 
-        max-w-3xl 
+        lg:max-w-3xl 
         flex 
         flex-col 
         p-5
@@ -74,66 +72,35 @@ export default function JobOfferCard({
         dark:bg-[#293145] dark:text-white
         ${className}
       `}
-      style={{ fontSize: "1rem", height: "480px" }} // Less height
+      style={{ fontSize: "1rem", height: "auto" }}
     >
       {/* Top Section */}
-      <div className="flex items-center justify-between mb-3">
-        {/* Left side: letter + job info */}
-        <div className="flex items-center space-x-4">
-          {/* Square badge (70x70) */}
-          <div
-            className="bg-[#FDE9D6] flex items-center justify-center text-[#3D3D3D] font-bold rounded-md"
-            style={{ width: "70px", height: "70px", fontSize: "1.4rem" }}
-          >
-            {badgeLetter}
-          </div>
-          {/* Job Details */}
-          <div className="flex flex-col">
-            <h1 className="font-bold text-md mb-1 leading-tight">{title}</h1>
-            <p className="text-xs text-gray-600 dark:text-gray-300">
-              {company}
-            </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              {location} • {time} {isRemote && <span> • Remote</span>}
-            </p>
-          </div>
+      <div
+        className="flex flex-col lg:flex-row items-center lg:items-start justify-between mb-3 space-y-4 lg:space-y-0"
+      >
+        {/* Square badge */}
+        <div
+          className="bg-[#FDE9D6] flex items-center justify-center text-[#3D3D3D] font-bold rounded-md lg:mr-4"
+          style={{ width: "70px", height: "70px", fontSize: "1.4rem" }}
+        >
+          {badgeLetter}
         </div>
 
-        {/* Square Info Button (50x50) */}
-        <button
-          onClick={onInfoClick}
-          className="
-            font-bold
-            text-sm
-            bg-[#5C80BC]
-            text-white
-            transition-colors
-            duration-300
-            hover:bg-[#4868A3]
-            rounded-md
-            flex
-            items-center
-            justify-center
-            shadow-sm
-          "
-          style={{ width: "50px", height: "50px" }}
-          title="Details"
-        >
-          <FaInfoCircle className="w-4 h-4" />
-        </button>
+        {/* Job Details */}
+        <div className="flex flex-col flex-grow text-center lg:text-left">
+          <h1 className="font-bold text-md mb-1 leading-tight">{title}</h1>
+          <p className="text-xs text-gray-600 dark:text-gray-300">{company}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            {location} • {time} {isRemote && <span> • Remote</span>}
+          </p>
+        </div>
       </div>
 
-      {/* Like/Dislike row (bigger buttons, box shadow on hover) */}
-      <div className="flex items-center mb-3 space-x-6">
+      {/* Like/Dislike Row */}
+      <div className="flex items-center mb-3 space-x-6 justify-center lg:justify-start">
         <button
           onClick={handleLike}
-          className="
-            flex items-center space-x-2 text-md
-            px-2 py-1
-            rounded-md
-            transition-transform
-            hover:shadow-md
-          "
+          className="flex items-center space-x-2 text-md px-2 py-1 rounded-md transition-transform hover:shadow-md"
         >
           <span
             className={`
@@ -152,13 +119,7 @@ export default function JobOfferCard({
 
         <button
           onClick={handleDislike}
-          className="
-            flex items-center space-x-2 text-md
-            px-2 py-1
-            rounded-md
-            transition-transform
-            hover:shadow-md
-          "
+          className="flex items-center space-x-2 text-md px-2 py-1 rounded-md transition-transform hover:shadow-md"
         >
           <span
             className={`
@@ -186,17 +147,7 @@ export default function JobOfferCard({
         {skills.map((skill) => (
           <span
             key={skill}
-            className="
-              bg-[#5C80BC]/30
-              text-gray-900
-              px-2
-              py-1
-              rounded-md
-              text-xs
-              font-medium
-              hover:bg-[#5C80BC]/50
-              dark:text-white
-            "
+            className="bg-[#5C80BC]/30 text-gray-900 px-2 py-1 rounded-md text-xs font-medium hover:bg-[#5C80BC]/50 dark:text-white"
           >
             {skill}
           </span>
@@ -208,8 +159,8 @@ export default function JobOfferCard({
         {shortDesc}
       </p>
 
-      {/* Bottom Row: "Rigl" Button */}
-      <div className="flex items-center justify-center mt-auto">
+      {/* Bottom Row: Rigl and Details Buttons */}
+      <div className="flex items-center justify-between mt-auto">
         <button
           className="
             flex
@@ -226,7 +177,7 @@ export default function JobOfferCard({
             duration-300
             hover:bg-[#4868A3]
             rounded-md
-            w-full
+            flex-grow
             active:scale-95
           "
           title="Rigl"
@@ -234,6 +185,29 @@ export default function JobOfferCard({
           <FaBriefcase className="w-4 h-4 mr-2" />
           Rigl
         </button>
+        <button
+  onClick={onInfoClick}
+  className="
+    font-bold
+    text-sm
+    bg-[#5C80BC]
+    text-white
+    transition-colors
+    duration-300
+    hover:bg-[#4868A3]
+    rounded-md
+    shadow-sm
+    ml-2
+    flex
+    items-center
+    justify-center
+  "
+  style={{ width: "40px", height: "45px" }}
+  title="Details"
+>
+  <FaInfoCircle className="w-4 h-4" />
+</button>
+
       </div>
     </div>
   );

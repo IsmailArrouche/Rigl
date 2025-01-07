@@ -1,4 +1,3 @@
-// Explore.jsx
 import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
 import Contacts from "./Contacts";
@@ -9,40 +8,39 @@ import Sidebar from "./Sidebar";
 import FooterBar from "./Footer";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import jobOffers from "./jobOffers";
-
-// 1) Import our enhanced custom loader
 import FancyLoader from "./FancyLoader";
 
 export default function Explore() {
-  // ---------------------------
-  //  Side state for offers
-  // ---------------------------
+  // State management
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showDetails, setShowDetails] = useState(false);
-
-  // ---------------------------
-  //  Sidebar logic
-  // ---------------------------
   const [isSidebarVisible, setSidebarVisible] = useState(
     typeof window !== "undefined" ? window.innerWidth >= 768 : true
   );
-  const toggleSidebar = () => setSidebarVisible(!isSidebarVisible);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isWideScreen, setIsWideScreen] = useState(
+    typeof window !== "undefined" ? window.innerWidth >= 1024 : false
+  );
 
+  // Update screen width dynamically
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setSidebarVisible(true);
-      } else {
-        setSidebarVisible(false);
-      }
+      setIsWideScreen(window.innerWidth >= 1024);
+      setSidebarVisible(window.innerWidth >= 768);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // ---------------------------
-  //  Up/Down button logic
-  // ---------------------------
+  // Loader management
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Scroll functionality
   const handleScroll = (direction) => {
     if (direction === "up" && currentIndex > 0) {
       setCurrentIndex((prev) => prev - 1);
@@ -54,20 +52,7 @@ export default function Explore() {
   const canScrollDown = currentIndex < jobOffers.length - 1;
   const currentJob = jobOffers[currentIndex];
 
-  // ---------------------------
-  //  Loader management
-  // ---------------------------
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Hide loader after 3 seconds (adjust if needed)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // If loading, show enhanced FancyLoader
+  // Show loader until content is ready
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen w-screen bg-gray-200 dark:bg-[#1E2738]">
@@ -81,18 +66,14 @@ export default function Explore() {
             "#8B5CF6",
           ]}
           size="3rem"
-          animationSpeed={1.5} // Optional: Adjust animation speed as needed
+          animationSpeed={1.5}
         />
       </div>
     );
   }
 
-  // ---------------------------
-  //  Main Explore page content
-  // ---------------------------
   return (
     <>
-      {/* Inject our fade-in CSS animation */}
       <style>
         {`
           @keyframes fadeInUp {
@@ -112,7 +93,6 @@ export default function Explore() {
         `}
       </style>
 
-      {/* Wrap everything in a div that gets our fade-in-up animation */}
       <div
         className={`
           fade-in-up
@@ -121,23 +101,18 @@ export default function Explore() {
           overflow-hidden
         `}
       >
-        {/*  Navigation Bar  */}
         <div className="w-full bg-gray-200 dark:bg-gray-800 shadow-md sticky top-0 z-10">
-          <Nav toggleSidebar={toggleSidebar} />
+          <Nav toggleSidebar={() => setSidebarVisible(!isSidebarVisible)} />
         </div>
 
-        {/*  Main Content  */}
         <div className="flex flex-1">
-          {/* Sidebar */}
           {isSidebarVisible && (
             <div className="w-2/12 bg-gray-100 dark:bg-[#293145]">
               <Sidebar />
             </div>
           )}
 
-          {/* Center content area */}
           <div className="flex-1 flex flex-col justify-center items-center relative overflow-hidden">
-            {/* Job Card (visible when showDetails = false) */}
             <div
               className={`
                 absolute w-full max-w-[60%] py-8 transition-all duration-500
@@ -151,23 +126,11 @@ export default function Explore() {
             >
               <JobOfferCard
                 key={currentJob.id}
-                company={currentJob.company}
-                user={currentJob.user}
-                time={currentJob.time}
-                title={currentJob.title}
-                location={currentJob.location}
-                employmentType={currentJob.employmentType}
-                experienceLevel={currentJob.experienceLevel}
-                skills={currentJob.skills}
-                likes={currentJob.likes}
-                dislikes={currentJob.dislikes}
-                description={currentJob.description}
-                isRemote={currentJob.isRemote}
+                {...currentJob}
                 className="bg-gray-300 dark:bg-[#2B3545] w-full transition-all duration-300"
                 onInfoClick={() => setShowDetails(true)}
               />
 
-              {/* Up/Down Buttons */}
               <div className="absolute top-1/2 transform -translate-y-1/2 right-[-4rem] flex flex-col space-y-4 items-center">
                 <button
                   className={`
@@ -210,7 +173,6 @@ export default function Explore() {
               </div>
             </div>
 
-            {/* Detailed view (visible when showDetails = true) */}
             <div
               className={`
                 absolute w-full max-w-[80%] transition-all duration-500
@@ -229,18 +191,18 @@ export default function Explore() {
             </div>
           </div>
 
-          {/* Right side: Contacts & FriendRequest */}
-          <div className="flex-r">
-            <div className="min-w-64 bg-gray-300 dark:bg-[#2B3545] lg:block">
-              <Contacts />
+          {isWideScreen && (
+            <div className="flex-r">
+              <div className="min-w-64 bg-gray-300 dark:bg-inherit">
+                <Contacts />
+              </div>
+              <div className="min-w-64 bg-gray-300 dark:inherit">
+                <FriendRequest />
+              </div>
             </div>
-            <div className="w-1/4 bg-gray-300 dark:bg-[#2B3545] lg:block">
-              <FriendRequest />
-            </div>
-          </div>
+          )}
         </div>
 
-        {/* Footer for small screens */}
         <div className="md:hidden bg-gray-300 dark:bg-[#2B3545]">
           <FooterBar />
         </div>
