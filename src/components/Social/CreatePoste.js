@@ -159,8 +159,8 @@ const startCamera = (mode) => {
   };
 
   return (
-<div className="max-w-full ml-3 px-2">
-  <div   className="card sm:w-1/2 lg:w-[630px] shadow-sm rounded-xl border-0 p-3 sm:p-4 mx-auto bg-white dark:bg-[#293145] dark:text-[#FFFFFF]">
+<div className="max-w-full px-2">
+  <div   className="card sm:w-1/2 lg:w-[630px] lg:ml-[5.5rem] shadow-sm rounded-xl border-0 p-3 sm:p-4 mx-auto bg-white dark:bg-[#293145] dark:text-[#FFFFFF]">
     {/* Card Header */}
     <div className="card-body p-0 relative">
       <div className="flex items-center justify-between">

@@ -24,7 +24,7 @@ const friendRequests = [
 
 function FriendRequest() {
     return (
-        <div className="absolute top-[4.8rem] right-0 lg:w-64 max-h-[375px] dark:bg-[rgb(41,49,69)]  bg-white rounded-lg shadow-lg p-4 overflow-y-auto">
+        <div className="absolute top-[15rem] right-[23rem] lg:w-64 max-h-[375px] dark:bg-[rgb(41,49,69)]  bg-white rounded-lg shadow-lg p-4 overflow-y-hidden ">
             {/* En-tête */}
             <div className="flex justify-between items-center mb-4">
                 <h4 className="dark:text-white text-black font-semibold text-sm">

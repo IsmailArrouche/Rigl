@@ -1,9 +1,8 @@
 import { LockClosedIcon, EyeIcon, LocationMarkerIcon, UserGroupIcon } from "@heroicons/react/outline";
 
-
 const AboutSection = () => {
   return (
-    <div className="bg-white dark:bg-[#293145] dark:text-[#FFFFFF] rounded-lg p-5 shadow-md w-auto h-[400px] mb-5">
+    <div className="bg-white dark:bg-[#293145] dark:text-[#FFFFFF] rounded-lg p-5 shadow-md w-full max-w-[400px] mx-auto h-[400px] mb-5 ml-2">
       {/* About Section */}
       <div className="mb-5">
         <h2 className="text-lg font-semibold">About</h2>
@@ -33,7 +32,7 @@ const AboutSection = () => {
         <div className="flex items-center py-3">
           <LocationMarkerIcon className="h-5 w-5 text-gray-400 mr-3" />
           <div>
-            <p className="text-sm font-medium">Flodia, Austia</p>
+            <p className="text-sm font-medium">Flodia, Austria</p>
           </div>
         </div>
         <div className="flex items-center py-3">

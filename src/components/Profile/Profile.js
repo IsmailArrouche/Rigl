@@ -8,7 +8,6 @@ import EventSection from './Event';
 import Contacts from "./Contacts";
 import FriendRequest from "./FriendRequest";
 import SocialPost from "./Poste";
-import StoryList from './Stories';
 
 
 const Profile = () => {
@@ -28,23 +27,22 @@ const Profile = () => {
         </div>
 
         {/* JobOfferCard in Center */}
-        <div className="ml-40 mb-1 flex-1 flex flex-col relative">
-          <div className="relative w-full max-w-md space-y-6 py-8">
+        <div className="ml-0 md:ml-40 mb-1 flex-1 flex flex-col relative">
+          <div className="relative w-full max-w-full md:max-w-md space-y-6 py-8">
             <UserProfile />
-            <div className="flex-1 flex w-full md:w-[960px] flex-col pb-4 ml-1 md:flex-row">
-              <div>
+            <div className="flex-1 flex flex-col md:flex-row w-full md:w-[960px] pb-4 ml-1">
+              <div className="w-full md:w-1/2 mb-4 md:mb-0">
                 <AboutSection />
                 <EventSection />
               </div>
               <div className="flex-1 flex flex-col">
-                <StoryList />
                 <CreatePost />
                 <SocialPost />
               </div>
             </div>
-            
           </div>
         </div>
+
 
         {/* Contact Section on the Right */}
         <div className="flex-r">
