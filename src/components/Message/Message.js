@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Nav from './Nav';
-import Contacts from './Contacts';
-import  FriendRequest from './FriendRequest';
-import Sidebar from './Sidebar';
-import FooterBar from './Footer';
+import Nav from '../Page/Nav';
+import Contacts from '../Page/Contacts';
+import  FriendRequest from '../Page/FriendRequest';
+import Sidebar from '../Page/Sidebar';
 import ChatBox from './ChatBox';
 
 const Message = () => {
@@ -60,10 +59,6 @@ const Message = () => {
 
       </div>
 
-      {/* Responsive Footer Bar */}
-      <div className="md:hidden">
-        <FooterBar />
-      </div>
     </div>
   );
 };

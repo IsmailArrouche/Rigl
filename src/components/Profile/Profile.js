@@ -1,12 +1,12 @@
 import React from 'react';
-import Nav from './Nav';
-import Sidebar from './Sidebar';
+import Nav from '../Page/Nav';
+import Sidebar from '../Page/Sidebar';
 import UserProfile from './UserProfile';
 import CreatePost from './CreatePoste';
 import AboutSection from './About';
 import EventSection from './Event';
-import Contacts from "./Contacts";
-import FriendRequest from "./FriendRequest";
+import Contacts from "../Page/Contacts";
+import FriendRequest from "../Page/FriendRequest";
 
 
 const Profile = () => {
