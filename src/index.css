@@ -54,3 +54,166 @@ body {
 .editInfo__btn {
   @apply opacity-60 hover:opacity-100 text-lg transition-opacity dark:text-[#f0f8ff] text-blue-700 border-blue-700 border-2 md:mt-0 mt-5 dark:border-[#f0f8ff] py-2 rounded-3xl w-56;
 }
+
+/* Badge Styles */
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 0.375rem; /* Rounded-md */
+  width: 5rem;
+  height: 5rem;
+  font-size: 1.6rem;
+  background-color: #00a8b5; /* Custom color */
+  color: #ffffff;
+}
+
+/* Skills Badge Styles */
+.skill-badge {
+  padding: 0.5rem 1rem; /* px-4 py-2 */
+  border-radius: 9999px; /* Fully rounded */
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 500; /* font-medium */
+  transition: all 0.3s ease;
+  background-color: rgba(0, 168, 181, 0.2); /* CustomColor 20% opacity */
+  color: #00a8b5; /* CustomColor */
+  border: 1px solid #00a8b5;
+}
+
+.skill-badge:hover {
+  background-color: rgba(0, 168, 181, 0.5); /* CustomColor 50% opacity */
+}
+
+/* Rigl Button Styles */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem; /* text-md */
+  color: #ffffff; /* White text */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* shadow */
+  transition: all 0.3s ease;
+  background-color: #00a8b5; /* Custom color */
+  border-radius: 9999px; /* Fully rounded */
+  padding: 0.75rem 1.5rem;
+  height: 3rem;
+  width: 100%; /* Full width */
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-primary:active {
+  transform: scale(0.95);
+}
+
+/* Details Button Styles */
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem; /* text-md */
+  color: #ffffff; /* White text */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* shadow-sm */
+  transition: all 0.3s ease;
+  background-color: #007f89; /* Dark custom color */
+  border-radius: 9999px; /* Fully rounded */
+  height: 3rem;
+  width: 3rem; /* Circular button */
+}
+
+.btn-secondary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary:active {
+  transform: scale(0.95);
+}
+
+/* Scroll Button Styles */
+.scroll-btn {
+  @apply w-16 h-16 rounded-full flex items-center justify-center transition-colors duration-300;
+  border-width: 4px;
+}
+
+.scroll-btn-dislike {
+  @apply border-[#00A8B5] text-[#00A8B5] hover:bg-[#00A8B5] hover:text-white; /* Lighter blue */
+}
+
+.scroll-btn-back {
+  @apply border-[#007F89] text-[#007F89] hover:bg-[#007F89] hover:text-white; /* Darker blue */
+}
+
+.scroll-btn-star {
+  @apply border-[#0096A6] text-[#0096A6] hover:bg-[#0096A6] hover:text-white; /* Medium blue */
+}
+
+
+/* Detailed Job Description Container */
+.detailed-container {
+  @apply relative p-6 text-gray-800 dark:text-white rounded-lg shadow-lg max-w-5xl w-full;
+  background-color: #ffffff; /* Light mode background */
+  @apply dark:bg-[#1E2738]; /* Dark mode background */
+  transition: all 0.3s ease;
+}
+
+.detailed-container:hover {
+  @apply shadow-[0_8px_30px_rgba(0,0,0,0.15)];
+}
+
+/* Badge Styles */
+.badge-small {
+  @apply flex items-center justify-center font-bold text-white rounded;
+  width: 2.5rem; /* w-10 */
+  height: 2.5rem; /* h-10 */
+  font-size: 1.25rem; /* text-lg */
+  background-color: #00A8B5; /* Primary blue */
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply font-bold text-base text-white shadow transition-transform duration-300 active:scale-95;
+  background-color: #00A8B5; /* Primary blue */
+  padding: 0.75rem 1.5rem; /* py-3 px-6 */
+  border-radius: 0.375rem; /* rounded-md */
+}
+
+.btn-primary:hover {
+  background-color: #007F89; /* Darker blue on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Box shadow on hover */
+}
+
+.btn-secondary {
+  @apply font-bold text-base text-white flex items-center justify-center transition-transform duration-300 active:scale-95;
+  background-color: #00A8B5; /* Primary blue */
+  padding: 0.75rem; /* py-3 px-3 */
+  border-radius: 9999px; /* Fully rounded */
+}
+
+.btn-secondary:hover {
+  background-color: #007F89; /* Darker blue on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Box shadow on hover */
+}
+
+/* Section Header */
+.section-header {
+  @apply text-lg font-semibold mb-2 flex items-center space-x-2;
+}
+
+/* Icon Styles */
+.icon-green {
+  @apply text-[#10B981]; /* Green color */
+}
+
+.icon-blue {
+  @apply text-[#00A8B5]; /* Primary blue color */
+}
+
+/* Horizontal Rule */
+.hr {
+  @apply my-2 border-gray-300 dark:border-gray-600;
+}
