@@ -9,6 +9,7 @@ import ChangePassword from "../components/ForgetPassword/ChangePassword";
 import Explore from "../components/Explore/Explore";
 import Profile from "../components/Profile/Profile";
 import Message from "../components/Message/Message";
+import Social from "../components/Social/Social";
 import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 function AppContent() {
@@ -24,7 +25,7 @@ function AppContent() {
 
   // Determine if Nav should be displayed
   const location = useLocation();
-  const excludedRoutes = ["/explore", "/profile", "/message"];
+  const excludedRoutes = ["/explore", "/profile", "/message","/social"];
   const showNav = !excludedRoutes.includes(location.pathname);
 
   // Redirect to /explore if user is connected
@@ -58,8 +59,9 @@ function AppContent() {
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/explore" element={<Explore />} />
-          <Route path="/Profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/message" element={<Message />} />
+          <Route path="/social" element={<Social />} />
         </Routes>
       </div>
     </div>
