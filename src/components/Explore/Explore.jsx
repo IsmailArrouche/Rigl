@@ -143,6 +143,7 @@ export default function Explore() {
                 transition-all 
                 duration-500
                 absolute
+                mt-11
                 ${
                   showDetails
                     ? "opacity-100 translate-x-0"
