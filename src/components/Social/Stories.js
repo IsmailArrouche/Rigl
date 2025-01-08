@@ -18,7 +18,7 @@ const stories = [
 
 const StoryCard = ({ image, profile, name, onClick }) => (
   <div
-    className="w-24 h-40 flex-shrink-0 mx-2 rounded-lg overflow-hidden shadow-lg flex flex-col justify-end items-center text-white text-sm cursor-pointer relative"
+    className=" w-24 h-40 flex-shrink-0 mx-2 rounded-lg overflow-hidden shadow-lg flex flex-col justify-end items-center text-white text-sm cursor-pointer relative"
     style={{
       backgroundImage: `url(${image})`,
       backgroundSize: "cover",
@@ -62,7 +62,7 @@ const StoryList = () => {
   }, []);
 
   return (
-    <div className="my-3 relative flex justify-center items-center">
+    <div className=" lg:ml-[-9rem] my-4 relative flex justify-center items-center">
       {/* Liste des stories */}
       <div
         ref={containerRef}

@@ -26,8 +26,8 @@ const EventSection = () => {
     ];
 
     return (
-        <div className="absolute top-[30.5rem] right-[19rem] bg-white dark:bg-[#293145] dark:text-[#FFFFFF] rounded-lg p-5 shadow-md w-[16rem] h-[320px] mb-5">
-            <div className="flex justify-between items-center mb-3">
+        <div className="bg-white dark:bg-[#293145] dark:text-[#FFFFFF] rounded-lg p-5 shadow-md w-[300px] h-[320px] mb-5">
+            <div className="flex justify-between items-center mb-1">
                 <h2 className="text-xl font-semibold">Events</h2>
                 <a href="#" className="text-blue-400 text-sm hover:underline">See all</a>
             </div>
@@ -35,8 +35,8 @@ const EventSection = () => {
   {events.map((event, index) => (
     <div
       key={index}
-      className="flex items-center p-1 rounded-lg "
-      style={{ width: "15rem", height: "71px" }}
+      className="flex items-center p-2 rounded-lg "
+      style={{ width: "370px", height: "71px" }}
     >
       {/* Bloc de couleur pour la date */}
       <div
@@ -82,7 +82,7 @@ const EventSection = () => {
           {event.title}
         </h3>
         <p
-          className="text-xs text-gray-400 w-[90%]"
+          className="text-xs text-gray-400"
           style={{
             fontSize: "12px",
             lineHeight: "16px",

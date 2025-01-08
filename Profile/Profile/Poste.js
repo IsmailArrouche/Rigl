@@ -48,7 +48,7 @@ const SocialPost = () => {
   };
 
   return (
-    <div className="lg:ml-2 lg:w-[44rem] max-w-screen-lg px-4 sm:px-6 lg:px-8 flex flex-col gap-4 justify-center">
+    <div className="mx-auto w-full max-w-screen-lg px-4 sm:px-6 lg:px-8 flex flex-col gap-4 justify-center">
       {posts.map((post) => (
         <div
           key={post.id}
