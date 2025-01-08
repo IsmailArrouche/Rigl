@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Nav from '../Page/Nav';
 import Sidebar from '../Page/Sidebar';
 import UserProfile from './UserProfile';
@@ -8,30 +8,59 @@ import EventSection from './Event';
 import Contacts from "../Page/Contacts";
 import FriendRequest from "../Page/FriendRequest";
 import SocialPost from "./Poste";
+import FancyLoader from "../Page/FancyLoader"; // Ensure the path is correct
 
 const Profile = () => {
   // State to control sidebar toggle on mobile
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // New: isLoading state to show FancyLoader
+  const [isLoading, setIsLoading] = useState(true);
 
   // Toggles sidebar open/close in mobile view
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
 
+  // Use effect for 3-second loading
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // If still loading, show the loader
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen w-screen bg-gray-200 dark:bg-[#1E2738]">
+        <FancyLoader
+          boxColors={[
+            "#EF4444",
+            "#F59E0B",
+            "#6366F1",
+            "#10B981",
+            "#3B82F6",
+            "#8B5CF6",
+          ]}
+          size="3rem"
+          animationSpeed={1.5}
+        />
+      </div>
+    );
+  }
+
+  // Otherwise, render the normal layout
   return (
-    <div className="h-[200rem] w-screen bg-gray-100 text-gray-800 dark:bg-[#2B3545] dark:text-gray-100 flex flex-col">
+    <div className="min-h-screen w-screen bg-gray-100 text-gray-800 dark:bg-[#1E2738] dark:text-gray-100 flex flex-col">
       {/* Navigation Bar */}
-      {/*
-        Pass toggleSidebar and isSidebarOpen to Nav 
-        (which should accept these props if you've wired it similarly to your Navbar component).
-      */}
       <div className="w-full bg-gray-200 dark:bg-gray-800 shadow-md sticky top-0 z-10">
         <Nav toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
       </div>
 
       {/* Main Content */}
       <div className="flex flex-1 h-full">
-        {/* Sidebar (hidden in mobile unless toggled open; always visible from md breakpoint) */}
+        {/* Sidebar (hidden in mobile unless toggled; always visible on md+) */}
         <div
           className={`
             ${isSidebarOpen ? 'block' : 'hidden'} 
@@ -55,15 +84,6 @@ const Profile = () => {
                 <EventSection />
               </div>
 
-              {/* If you want About to be visible at all breakpoints, and only hide EventSection, you can do this:
-                <div className="w-full md:w-1/2 mb-4 md:mb-0">
-                  <AboutSection />
-                  <div className="hidden lg:block">
-                    <EventSection />
-                  </div>
-                </div>
-              */}
-
               {/* Posts on the right side */}
               <div className="flex-1 flex flex-col">
                 <CreatePost />
@@ -73,12 +93,12 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* Right Section: hidden on smaller screens (only show on lg) */}
+        {/* Right Section (only on lg) */}
         <div className="hidden lg:flex flex-r">
-          <div className="min-w-64  dark:bg-[#2B3545]">
+          <div className="min-w-64 dark:bg-[#2B3545]">
             <Contacts />
           </div>
-          <div className="w-1/4  dark:bg-[#2B3545]">
+          <div className="w-1/4 dark:bg-[#2B3545]">
             <FriendRequest />
           </div>
         </div>

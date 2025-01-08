@@ -6,7 +6,7 @@ import JobOfferCard from "./JobOfferCard";
 import DetailedJobDescription from "./DetailedJobDescription";
 import Sidebar from "../Page/Sidebar";
 import jobOffers from "./jobOffers";
-import FancyLoader from "./FancyLoader";
+import FancyLoader from "../Page/FancyLoader";
 import ScrollButtons from "./ScrollButtons";
 
 export default function Explore() {
