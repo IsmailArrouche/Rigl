@@ -105,7 +105,7 @@ export default function Explore() {
           {isSidebarVisible && <Sidebar />}
 
           {/* Center content: Job Card & Details */}
-          <div className="flex-1 flex items-center justify-center -top-5 relative">
+          <div className="flex-1 flex items-center justify-center -top-10 relative">
             {/* The card + buttons container */}
             <div
               className={`

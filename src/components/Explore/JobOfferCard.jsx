@@ -25,8 +25,7 @@ export default function JobOfferCard({
         relative 
         rounded-lg 
         w-full 
-        // Adjusted height for better spacing
-        h-[78vh]
+        h-[73vh]
         md:h-[27rem]
         flex 
         flex-col 

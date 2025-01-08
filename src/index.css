@@ -137,7 +137,7 @@ body {
 
 /* Scroll Button Styles */
 .scroll-btn {
-  @apply w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300;
+  @apply w-16 h-16 rounded-full flex items-center justify-center transition-colors duration-300;
   border-width: 4px;
 }
 
