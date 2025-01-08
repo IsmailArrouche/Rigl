@@ -208,7 +208,7 @@ const startCamera = (mode) => {
 
     {/* Post Input */}
     <div className="card-body p-0 mt-3 relative">
-      <div className="avatar absolute left-2 top-1">
+      <div className="avatar absolute left-10 top-1 ">
         <img
           src={avatar}
           alt="icon"
@@ -284,7 +284,7 @@ const startCamera = (mode) => {
   )}
 
   {/* Posts */}
-  <div className="sm:w-1/2 lg:w-[630px] lg:max-h-[610px] mt-6 flex flex-wrap gap-4 justify-center ">
+  <div className="sm:w-1/2 lg:w-[630px] lg:max-h-[610px] lg:ml-[5.5rem] mt-6 flex flex-wrap gap-4 justify-center ">
   {posts.map((post) => (
     <div
       key={post.id}
