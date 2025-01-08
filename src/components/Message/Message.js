@@ -51,7 +51,7 @@ const Message = () => {
           <Contacts />
         </div>
 
-        <div className="w-1/4  lg:block">
+        <div className="min-w-64  lg:block">
           < FriendRequest/>
         </div>
         </div>
