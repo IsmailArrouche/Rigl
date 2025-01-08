@@ -25,9 +25,9 @@ export default function JobOfferCard({
         relative 
         rounded-lg 
         w-full 
-        // Added or Modified: Ensure height is responsive
-        h-[70vh] 
-        md:h-[30rem]
+        // Adjusted height for better spacing
+        h-[78vh]
+        md:h-[27rem]
         flex 
         flex-col 
         p-6
@@ -42,7 +42,7 @@ export default function JobOfferCard({
       `}
       style={{ fontSize: "1rem" }}
     >
-      {/* Info button at the top-right - Added or Modified */}
+      {/* Info button at the top-right */}
       <button
         onClick={onInfoClick}
         className="btn-secondary absolute top-4 right-4"
@@ -58,7 +58,9 @@ export default function JobOfferCard({
 
         {/* Job Details */}
         <div className="flex flex-col flex-grow text-center lg:text-left lg:ml-6 mt-4 lg:mt-0">
-          <h1 className="font-bold text-lg mb-2 leading-tight w-[90%]">{title}</h1>
+          <h1 className="font-bold text-lg mb-2 leading-tight lg:w-[90%]">
+            {title}
+          </h1>
           <p className="text-sm text-gray-600 dark:text-gray-300">{company}</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">
             {location} • {time} {isRemote && <span> • Remote</span>}
@@ -85,9 +87,9 @@ export default function JobOfferCard({
         {shortDesc}
       </p>
 
-      {/* Bottom Row: Only the Rigl button remains here - Modified */}
+      {/* Bottom Row */}
       <div className="mt-auto">
-        <button className="btn-primary w-full " title="Rigl">
+        <button className="btn-primary w-full" title="Rigl">
           <FaBriefcase className="w-5 h-5 mr-2 inline-block" />
           Rigl
         </button>
