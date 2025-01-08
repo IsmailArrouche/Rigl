@@ -105,11 +105,12 @@ export default function Explore() {
           {isSidebarVisible && <Sidebar />}
 
           {/* Center content: Job Card & Details */}
-          <div className="flex-1 flex items-center justify-center relative">
-            {/* The card container */}
+          <div className="flex-1 flex items-center justify-center -top-5 relative">
+            {/* The card + buttons container */}
             <div
               className={`
                 w-[90%] sm:w-[70%] lg:w-[50%]
+                flex flex-col items-center
                 transition-all 
                 duration-500
                 ${
@@ -126,13 +127,11 @@ export default function Explore() {
                 onInfoClick={() => setShowDetails(true)}
               />
 
-              {/* Scroll Buttons */}
-              <div className="flex justify-center items-center mt-6">
+              {/* Scroll Buttons (now placed below the card) */}
+              <div className="mt-1">
                 <ScrollButtons
                   onBack={() => handleScroll("back")}
                   onForward={() => handleScroll("forward")}
-                  backIconSize={24}
-                  forwardIconSize={24}
                 />
               </div>
             </div>

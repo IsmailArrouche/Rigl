@@ -3,7 +3,7 @@ import { RefreshIcon, XIcon, StarIcon } from "@heroicons/react/solid"; // Import
 
 export default function ScrollButtons({ onBack, onForward }) {
   return (
-    <div className="absolute left-1/2 mt-6 transform -translate-x-1/2 flex space-x-12 items-center">
+    <div className="absolute left-1/2 mt-2 transform -translate-x-1/2 flex space-x-12 items-center">
       {/* Dislike Button */}
       <button
         className="scroll-btn scroll-btn-dislike"
