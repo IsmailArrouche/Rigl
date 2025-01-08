@@ -7,7 +7,7 @@ import DetailedJobDescription from "./DetailedJobDescription";
 import Sidebar from "../Page/Sidebar";
 import jobOffers from "./jobOffers";
 import FancyLoader from "./FancyLoader";
-import ScrollButtons from "./ScrollButtons"; // Import the new ScrollButtons file
+import ScrollButtons from "./ScrollButtons";
 
 export default function Explore() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -94,28 +94,30 @@ export default function Explore() {
           overflow-hidden
         `}
       >
+        {/* Nav Bar */}
         <div className="w-full bg-gray-200 dark:bg-gray-800 shadow-md sticky top-0 z-10">
           <Nav toggleSidebar={() => setSidebarVisible(!isSidebarVisible)} />
         </div>
 
+        {/* Main Content */}
         <div className="flex flex-1">
-          {isSidebarVisible && (
-            <div className="w-2/12 bg-gray-100 dark:bg-[#293145]">
-              <Sidebar />
-            </div>
-          )}
+          {/* Optional Sidebar */}
+          {isSidebarVisible && <Sidebar />}
 
-          <div className="flex-1 flex flex-col justify-center items-center relative overflow-hidden">
+          {/* Center content: Job Card & Details */}
+          <div className="flex-1 flex items-center justify-center relative">
+            {/* The card container */}
             <div
               className={`
-                absolute w-full max-w-[50%] py-8 transition-all duration-500
+                w-[90%] sm:w-[70%] lg:w-[50%]
+                transition-all 
+                duration-500
                 ${
                   showDetails
                     ? "opacity-0 translate-x-16 pointer-events-none"
                     : "opacity-100 translate-x-0"
                 }
               `}
-              style={{ margin: "0 auto" }}
             >
               <JobOfferCard
                 key={currentJob.id}
@@ -124,23 +126,30 @@ export default function Explore() {
                 onInfoClick={() => setShowDetails(true)}
               />
 
-              {/* Use the ScrollButtons component */}
-              <ScrollButtons
-                onBack={() => handleScroll("back")}
-                onForward={() => handleScroll("forward")}
-              />
+              {/* Scroll Buttons */}
+              <div className="flex justify-center items-center mt-6">
+                <ScrollButtons
+                  onBack={() => handleScroll("back")}
+                  onForward={() => handleScroll("forward")}
+                  backIconSize={24}
+                  forwardIconSize={24}
+                />
+              </div>
             </div>
 
+            {/* The details container */}
             <div
               className={`
-                absolute w-full max-w-[80%] transition-all duration-500
+                w-[90%] sm:w-[70%] lg:w-[50%]
+                transition-all 
+                duration-500
+                absolute
                 ${
                   showDetails
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 translate-x-full pointer-events-none"
                 }
               `}
-              style={{ margin: "0 auto" }}
             >
               <DetailedJobDescription
                 job={currentJob}
@@ -149,12 +158,13 @@ export default function Explore() {
             </div>
           </div>
 
+          {/* Right side: Contacts & FriendRequest (only on wide screens) */}
           {isWideScreen && (
             <div className="flex-r">
               <div className="min-w-64 bg-gray-300 dark:bg-inherit">
                 <Contacts />
               </div>
-              <div className="min-w-64 bg-gray-300 dark:inherit">
+              <div className="min-w-64 bg-gray-300 dark:bg-inherit">
                 <FriendRequest />
               </div>
             </div>

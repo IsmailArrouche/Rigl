@@ -16,7 +16,7 @@ const Sidebar = () => {
   const menuItems = [
     {
       id: 1,
-      label: "Explore",
+      label: "Explore jobs",
       icon: <HomeIcon className="w-6 h-6" />,
       color: "bg-[#00A8B5]",
       route: "/explore",
@@ -56,7 +56,7 @@ const Sidebar = () => {
   };
 
   return (
-    <>
+    <div className="w-[17rem] bg-gray-100 dark:bg-[#293145]">
       {/* Sidebar */}
       <div
         className={`fixed ${
@@ -145,7 +145,7 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
