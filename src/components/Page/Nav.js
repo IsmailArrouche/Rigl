@@ -59,46 +59,65 @@ function Navbar({ toggleSidebar, isSidebarOpen }) {
 
         {/* Right Section */}
         <div className="flex items-center space-x-4 text-gray-400 sm:w-auto">
-          {/* Responsive Menu Icon */}
-          <button
-            onClick={toggleSidebar}
-            className="nav-menu me-0 ms-2 flex items-center justify-center text-gray-400 hover:text-[#007F89] md:hidden"
-            style={{ marginTop: "-4px" }}
-          >
-            {isSidebarOpen ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16m-7 6h7"
-                />
-              </svg>
-            )}
-          </button>
+          {/* 
+            MOBILE ONLY: Mode Toggle + Sidebar Toggle 
+            (These will show on small screens; hidden on md and above) 
+          */}
+          <div className="flex md:hidden items-center space-x-2">
+            {/* Mode Toggle (Mobile) */}
+            <button
+              title="Change Mode"
+              onClick={() => dispatch(changeMode())}
+              className="hover:text-[#007F89] transition-colors mb-[7px]"
+            >
+              {mode ? (
+                <SunIcon className="w-6 h-6 text-gray-400" />
+              ) : (
+                <MoonIcon className="w-6 h-6 text-gray-400" />
+              )}
+            </button>
 
-          {/* Desktop Mode: Other Icons */}
+            {/* Responsive Menu Icon */}
+            <button
+              onClick={toggleSidebar}
+              className="nav-menu me-0 ms-2 flex items-center justify-center text-gray-400 hover:text-[#007F89] md:hidden"
+              style={{ marginTop: "-4px" }}
+            >
+              {isSidebarOpen ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16m-7 6h7"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
+
+          {/* DESKTOP ONLY: Other Icons (hidden on smaller screens) */}
           <div className="hidden md:flex items-center space-x-4">
             {/* Messaging Icon */}
             <button
@@ -127,7 +146,7 @@ function Navbar({ toggleSidebar, isSidebarOpen }) {
             {/* Notifications */}
             <NotificationMenu />
 
-            {/* Mode Toggle */}
+            {/* Mode Toggle (Desktop) */}
             <button
               title="Change Mode"
               onClick={() => dispatch(changeMode())}

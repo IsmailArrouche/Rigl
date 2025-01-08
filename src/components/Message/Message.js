@@ -37,7 +37,7 @@ const Message = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen w-screen bg-gray-200 dark:bg-gray-900">
+      <div className="flex items-center justify-center h-screen w-screen bg-gray-200 dark:bg-[#1E2738]">
         <FancyLoader
           boxColors={["#EF4444", "#F59E0B", "#6366F1", "#10B981", "#3B82F6", "#8B5CF6"]}
           size="3rem"
@@ -48,7 +48,7 @@ const Message = () => {
   }
 
   return (
-    <div className="h-screen w-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 flex flex-col">
+    <div className="h-screen w-screen bg-gray-100 dark:bg-[#1E2738] text-gray-800 dark:text-gray-100 flex flex-col">
       {/* Navigation Bar */}
       <div className="w-full bg-gray-200 dark:bg-gray-800 shadow-md sticky top-0 z-10">
         <Nav toggleSidebar={toggleSidebar} />
