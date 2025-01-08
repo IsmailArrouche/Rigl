@@ -26,29 +26,76 @@ const EventSection = () => {
     ];
 
     return (
-        <div className="bg-white dark:bg-[#1B2136] dark:text-[#FFFFFF] rounded-lg p-5 shadow-md w-auto h-[370px] mb-5">
+        <div className="bg-white dark:bg-[#293145] dark:text-[#FFFFFF] rounded-lg p-5 shadow-md w-[300px] h-[320px] mb-5">
             <div className="flex justify-between items-center mb-1">
                 <h2 className="text-xl font-semibold">Events</h2>
                 <a href="#" className="text-blue-400 text-sm hover:underline">See all</a>
             </div>
             <div className="space-y-4">
-                {events.map((event, index) => (
-                    <div key={index} className="flex items-center p-1 rounded-lg">
-                        {/* Bloc de couleur avec le mois en haut et le jour plus grand au centre */}
-                        <div className={`w-[120px] h-[71px] flex flex-col items-center justify-center rounded-lg text-white font-bold ${event.color}`}>
-                            {/* Mois en haut avec taille de police augmentée */}
-                            <span className="text-lg uppercase">{event.date}</span>
-                            {/* Jour centré et plus grand, sans marge */}
-                            <span className="font-semibold text-3xl ls-3 lh-1 text-white">{event.day}</span>
-                        </div>
+  {events.map((event, index) => (
+    <div
+      key={index}
+      className="flex items-center p-2 rounded-lg "
+      style={{ width: "370px", height: "71px" }}
+    >
+      {/* Bloc de couleur pour la date */}
+      <div
+        className={`w-[64px] h-[71px] flex flex-col items-center justify-center rounded-xl text-white font-bold ${event.color}`}
+        style={{
+          borderRadius: "16px",
+        }}
+      >
+        {/* Mois */}
+        <span
+          className="text-xs uppercase"
+          style={{
+            fontSize: "12px",
+            lineHeight: "14px",
+            letterSpacing: "1px",
+            marginBottom: "2px",
+          }}
+        >
+          {event.date}
+        </span>
+        {/* Jour */}
+        <span
+          className="font-bold text-2xl"
+          style={{
+            fontSize: "24px",
+            lineHeight: "24px",
+          }}
+        >
+          {event.day}
+        </span>
+      </div>
 
-                        <div className="ml-6">
-                            <h3 className="font-semibold text-gray-900 dark:text-white text-base mt-2">{event.title}</h3>
-                            <p className="text-sm text-gray-400">{event.location}</p>
-                        </div>
-                    </div>
-                ))}
-            </div>
+      {/* Texte de l'événement */}
+      <div className="ml-4"style={{ width: "163px"}}>
+        <h3
+          className="font-semibold"
+          style={{
+            fontSize: "14px",
+            lineHeight: "18px",
+            marginBottom: "4px",
+          }}
+        >
+          {event.title}
+        </h3>
+        <p
+          className="text-xs text-gray-400"
+          style={{
+            fontSize: "12px",
+            lineHeight: "16px",
+            color: "#9ca3af",
+          }}
+        >
+          {event.location}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>
+
         </div>
     );
 };

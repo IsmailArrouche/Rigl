@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import avatar from "../../assets/avatar.jpeg";
-import { VideoCameraIcon, PhotographIcon, CameraIcon } from "@heroicons/react/solid";
-import { ThumbUpIcon, ChatIcon, ShareIcon } from "@heroicons/react/outline";
+import { PhotographIcon, CameraIcon } from "@heroicons/react/solid";
 import { FaHeart, FaCommentAlt,FaShare } from 'react-icons/fa';
 
-const CreatePost = (likes) => {
+const CreatePost = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [postText, setPostText] = useState("");
+  const [postText, setPostText] = useState('');
   const [posts, setPosts] = useState([]);
   const [selectedMedia, setSelectedMedia] = useState(null);
   const [mediaType, setMediaType] = useState(null);
@@ -16,16 +15,14 @@ const CreatePost = (likes) => {
   const mediaRecorderRef = useRef(null);
   const canvasRef = useRef(null); // Reference to canvas element
   const [stream, setStream] = useState(null); // To store media stream
-  const [videoURL, setVideoURL] = useState(null);  // Ajouter un état pour stocker l'URL de la vidéo
-  const [postDate, setPostDate] = useState(new Date());
-  const [liked, setLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(likes);
+  const [likes, setLikes] = useState({});
 
-  const handleLike = () => {
-    setLiked(!liked);
-    setLikeCount(likeCount + (liked ? -1 : 1));
-  };
-
+    const handleLike = (postId) => {
+      setLikes((prevLikes) => ({
+        ...prevLikes,
+        [postId]: !prevLikes[postId],
+      }));
+    };
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -55,7 +52,7 @@ const CreatePost = (likes) => {
     // Vérifier si le texte est vide et s'il n'y a pas de média sélectionné
     if (postText.trim() === "" && !selectedMedia) {
       alert("Please write something or upload a file before posting.");
-      return;
+      return; // Si le texte est vide et aucun média n'est sélectionné, arrêter l'exécution
     }
   
     // Ajouter le nouveau post aux posts existants
@@ -63,7 +60,7 @@ const CreatePost = (likes) => {
       {
         text: postText.trim(), // Utilisation du texte nettoyé
         id: Date.now(),
-        media: selectedMedia,
+        media: selectedMedia, // Le média est nul si aucun média n'est sélectionné
         mediaType: mediaType,
       },
       ...posts,
@@ -77,24 +74,6 @@ const CreatePost = (likes) => {
     // Optionnel : Vous pouvez également réinitialiser d'autres états liés à la caméra si nécessaire
     setShowCamera(false); // Fermer la caméra si elle est ouverte
   };
-  
-const startRecording = () => {
-    if (stream) {
-        const recorder = new MediaRecorder(stream);
-        mediaRecorderRef.current = recorder;
-        recorder.start();
-
-        const chunks = [];
-
-        recorder.ondataavailable = (e) => {
-        const videoBlob = new Blob(chunks, { type: "video/webm" });
-        const videoURL = URL.createObjectURL(videoBlob);
-        setVideoURL(videoURL);  // Stocker l'URL de la vidéo dans l'état
-    };
-    
-      
-    }
-};
 
 const startCamera = (mode) => {
   setCameraMode(mode);
@@ -104,7 +83,6 @@ const startCamera = (mode) => {
           setStream(stream);
           if (videoRef.current) {
               videoRef.current.srcObject = stream;
-              startRecording();  // Démarre l'enregistrement dès que la caméra est active
           }
       })
       .catch((error) => {
@@ -181,8 +159,8 @@ const startCamera = (mode) => {
   };
 
   return (
-<div className="max-w-full ml-3 px-2">
-  <div   className="card sm:w-1/2 lg:w-[630px] shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 mx-auto bg-white dark:bg-[#1B2136] dark:text-[#FFFFFF]">
+<div className="max-w-full ml-2 px-2">
+  <div   className="card sm:w-1/2 lg:w-[630px] shadow-sm rounded-xl border-0 p-3 sm:p-4 mx-auto bg-white dark:bg-[#293145] dark:text-[#FFFFFF]">
     {/* Card Header */}
     <div className="card-body p-0 relative">
       <div className="flex items-center justify-between">
@@ -193,7 +171,8 @@ const startCamera = (mode) => {
         </div>
         {/* Bouton menu déroulant */}
         <button
-          className="dots-button text-gray-500 p-2 sm:p-3 rounded-full bg-gray-100 dark:bg-[#1B2136] dark:text-[#FFFFFF]"
+          className=" dots-button w-9 h-9 text-gray-900 p-2 sm:p-3 rounded-full  bg-gray-300 dark:bg-[#ffffff] dark:text-[#363232]"
+          style={{ paddingTop: "6px"}}
           onClick={toggleMenu}
           aria-expanded={menuOpen}
         >
@@ -249,13 +228,7 @@ const startCamera = (mode) => {
     <div className="justify-between flex flex-wrap">
       {/* Buttons */}
       <div className="card-body flex flex-wrap p-0 mt-3 gap-2 sm:gap-4">
-        <button
-          className="flex items-center text-red-500 space-x-2 p-2 sm:p-3 rounded-md hover:bg-gray-200 transition w-full sm:w-auto"
-          onClick={() => startCamera("video")}
-        >
-          <VideoCameraIcon className="h-5 sm:h-6 w-5 sm:w-6" />
-          <span className="text-xs sm:text-sm">Live Video</span>
-        </button>
+        
         <label className="flex items-center text-green-500 space-x-2 p-2 sm:p-3 rounded-md hover:bg-gray-200 cursor-pointer transition w-full sm:w-auto">
           <PhotographIcon className="h-5 sm:h-6 w-5 sm:w-6" />
           <span className="text-xs sm:text-sm">Photo/Video</span>
@@ -315,29 +288,38 @@ const startCamera = (mode) => {
   {posts.map((post) => (
     <div
       key={post.id}
-      className="card w-full sm:w-full lg:w-full shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 mx-auto bg-white dark:bg-[#1B2136] dark:text-[#FFFFFF]"
+      className="card w-full sm:w-full lg:w-full shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 mx-auto bg-white dark:bg-[#293145] dark:text-[#FFFFFF]"
     >
       {/* En-tête */}
-      <div className="card-body p-0 relative">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center text-primary bg-light">
-            <i className="feather-edit-3 text-sm sm:text-base mr-2" />
-            <img
-          src={avatar}
-          alt="icon"
-          className="shadow-sm rounded-full w-8 h-8 sm:w-10 sm:h-10"
-        />
-            <span className="pl-2 text-sm sm:text-base">Mohannad Zitoun</span>
-            <div className="mt-1">
-              <span className="px-2 flex-col text-xs text-gray-400">
-                {formatDate(postDate)}
-              </span>
+      <div className="flex flex-wrap justify-between">
+        <div className="card-body p-0 relative">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center text-primary bg-light">
+              <i className="feather-edit-3 text-sm sm:text-base mr-2" />
+              <img
+                src="https://randomuser.me/api/portraits/men/1.jpg"
+                alt="icon"
+                className="shadow-sm rounded-full w-8 h-8 sm:w-10 sm:h-10"
+              />
+              <div className="flex flex-col">
+                <span className="pl-2 text-sm sm:text-base">Mohannad Zitoun</span>
+                <span className="px-2 flex-col text-xs text-gray-400">
+                  {formatDate(post.id)} {/* Utilisez le timestamp du post pour afficher la date */}
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        <button
+          className="items-center dots-button w-9 h-9 text-gray-900 p-2 sm:p-3 rounded-full bg-gray-300 dark:bg-[#ffffff] dark:text-[#363232]"
+          style={{ paddingTop: "6px" }}
+        >
+          ···
+        </button>
+</div>
 
       {/* Contenu média */}
+      {post.text && <p className="text-xs sm:text-sm">{post.text}</p>}
       {post.media && (
         <div className="card-body p-4">
           {post.mediaType === "image" ? (
@@ -361,35 +343,38 @@ const startCamera = (mode) => {
         </div>
       )}
 
-      {/* Boutons */}
-      <div className="card-body flex flex-wrap p-0 mt-3 gap-2 sm:gap-4">
-      {/* Bouton "Like" */}
-      <button
-        className={`flex items-center ${
-          liked ? 'text-[#E53E3E]' : 'text-[#6B7280] dark:text-[#A0AEC0]'
-        } hover:text-[#C53030] dark:hover:text-[#E53E3E] transition-colors duration-300`}
-        onClick={handleLike}
-      >
-        <FaHeart className="h-5 w-5" />
-        <span className={`mr-1 transition-transform duration-300 ${
-                    liked ? 'scale-125' : 'scale-100'
-                  }`}
-                >{' '}
-        </span>
-      </button>
+      {/* Actions */}
+                <div className="card-body flex flex-wrap p-0 mt-2 gap-2 sm:gap-4">
+                  {/* Bouton "Like" */}
+                  <button
+                    className={`flex items-center ${
+                      likes[post.id] ? 'text-[#E53E3E]' : 'text-[#6B7280] dark:text-[#A0AEC0]'
+                    } hover:text-[#C53030] dark:hover:text-[#E53E3E] transition-colors duration-300`}
+                    onClick={() => handleLike(post.id)}
+                    aria-label="Like"
+                  >
+                    <FaHeart
+                      className={`mr-1 h-5 w-5 transition-transform duration-300 ${
+                        likes[post.id] ? 'scale-125' : 'scale-100'
+                      }`}
+                    />
+                    <span>{likes[post.id] ? 1 : 0}</span>
+                  </button>
       
-      {/* Bouton "Commenter" */}
-      <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] space-x-2 p-2 sm:p-3 rounded-md  w-full sm:w-auto">
-        <FaCommentAlt className="h-5 w-5" />
-        <span className="text-xs sm:text-sm">Comment</span>
-      </button>
-      
-      {/* Bouton "Partager" */}
-      <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] space-x-2 p-2 sm:p-2 rounded-md w-full sm:w-auto">
-        <FaShare className="h-5 w-5" />
-        <span className="text-xs sm:text-sm">Share</span>
-      </button>
-    </div>
+                      <div className="flex flex-wrap justify-between w-[530px]">
+                      {/* Bouton "Commenter" */}
+                      <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] space-x-2 p-2 sm:p-3 rounded-md  w-full sm:w-auto">
+                          <FaCommentAlt className="h-5 w-5" />
+                          <span className="text-xs sm:text-sm">Comment</span>
+                      </button>
+                      
+                      {/* Bouton "Partager" */}
+                      <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] space-x-2 p-2 sm:p-2 rounded-md w-full sm:w-auto">
+                          <FaShare className="h-5 w-5" />
+                          <span className="text-xs sm:text-sm">Share</span>
+                      </button>
+                      </div>
+                </div>
     </div>
   ))}
   </div>

@@ -4,7 +4,7 @@ import coverImage from "../../../src/assets/mountain.jpg";
 
 const UserProfile = () => {
   return (
-    <div className="relative bg-white dark:bg-[#1B2136] dark:text-[#FFFFFF] w-full max-w-screen-xl mx-auto rounded-lg shadow-md overflow-hidden sm:w-full lg:w-[60rem]">
+    <div className="relative bg-white dark:bg-[#293145] dark:text-[#FFFFFF] w-full max-w-screen-xl rounded-lg shadow-md overflow-hidden sm:w-full lg:w-[60rem]">
      {/* Cover Photo */}
     <div className="h-48 lg:w-[100%] overflow-hidden mt-4 mx-4">
       <img
@@ -14,7 +14,7 @@ const UserProfile = () => {
       />
     </div>
       {/* Profile Info et Action Buttons */}
-<div className="flex items-center justify-between bg-white dark:bg-[#1B2136] dark:text-[#FFFFFF] px-6 py-4 relative">
+<div className="flex items-center justify-between bg-white dark:bg-[#293145] dark:text-[#FFFFFF] px-6 py-4 relative">
   {/* Photo de Profil (Position Absolue) */}
   <div className="absolute top-[-1.5rem] left-6 w-20 h-20 rounded-full overflow-hidden border-4 border-[#e4e6ec]">
     <img
@@ -48,7 +48,7 @@ const UserProfile = () => {
 
 
           {/* Navigation */}
-    <div className="border-t border-gray-300 dark:border-[#555] bg-white dark:bg-[#1B2136] dark:text-[#FFFFFF]">
+    <div className="border-t border-gray-300 dark:border-[#555] bg-white dark:bg-[#293145] dark:text-[#FFFFFF]">
       <div className="flex flex-wrap space-x-4 px-5 py-3 text-gray-400">
         {["About", "Discussion", "Group", "Events", "Media"].map((item) => (
           <a
