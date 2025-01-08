@@ -6,7 +6,7 @@ const notifications = [
     name: "Hendrix Stamp",
     message: "There are many variations of pass..",
     time: "3 min",
-    avatar: "https://i.pravatar.cc/40?img=11", // Exemple d'image
+    avatar: "https://i.pravatar.cc/40?img=11",
   },
   {
     id: 2,
@@ -40,12 +40,12 @@ const NotificationMenu = () => {
 
   return (
     <div className="relative">
-      {/* Icône de notification */}
+      {/* Notification Icon */}
       <button
         onClick={toggleMenu}
-        className="hover:text-blue-500 transition-colors"
+        className="hover:text-[#007F89] transition-colors"
       >
-        <span className="absolute top-0 right-0 h-2.5 w-2.5 bg-orange-500 rounded-full"></span>
+        <span className="absolute top-0 right-0 h-2.5 w-2.5 bg-[#007F89] rounded-full"></span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -62,17 +62,17 @@ const NotificationMenu = () => {
         </svg>
       </button>
 
-      {/* Menu des notifications */}
+      {/* Notification Menu */}
       {isOpen && (
         <div className="absolute -right-8 mt-3 w-80 bg-white dark:bg-gray-900 shadow-lg rounded-3xl overflow-hidden z-10">
-          {/* Titre */}
+          {/* Header */}
           <div className="p-4 border-b dark:border-gray-700">
             <h4 className="font-bold text-lg text-gray-800 dark:text-white">
               Notification
             </h4>
           </div>
 
-          {/* Liste des notifications */}
+          {/* Notification List */}
           <ul className="divide-y divide-gray-200 dark:divide-gray-700">
             {notifications.map((notification) => (
               <li
@@ -97,9 +97,9 @@ const NotificationMenu = () => {
             ))}
           </ul>
 
-          {/* Bouton "Voir tout" */}
+          {/* View All Button */}
           <div className="p-4 text-center border-t dark:border-gray-700">
-            <button className="text-blue-500 font-semibold text-sm hover:underline">
+            <button className="text-[#007F89] font-semibold text-sm hover:underline">
               View All
             </button>
           </div>

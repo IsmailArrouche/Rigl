@@ -61,7 +61,7 @@ const Sidebar = () => {
       <div
         className={`fixed ${
           isSidebarOpen ? "left-0" : "-left-full"
-        } top-24 md:top-24 h-[calc(100vh-4rem)] md:h-[calc(100vh-4rem)] w-full sm:w-64 md:w-64 p-4 bg-white dark:bg-[#293145] overflow-y-auto scrollbar-t scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 z-40 transition-all duration-300 md:left-4 md:rounded-lg`}
+        } top-16 md:top-24 h-[calc(100vh-4rem)] md:h-[calc(100vh-4rem)] w-full sm:w-64 md:w-64 p-4 bg-white dark:bg-[#293145] overflow-y-auto scrollbar-t scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 z-40 transition-all duration-300 md:left-4 md:rounded-lg`}
         style={{ zIndex: 1000 }}
       >
         {/* New Feeds Section */}
