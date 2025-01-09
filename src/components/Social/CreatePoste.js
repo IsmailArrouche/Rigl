@@ -160,7 +160,7 @@ const startCamera = (mode) => {
 
   return (
 <div className="max-w-full px-2">
-  <div   className="card sm:w-1/2 lg:w-[630px] lg:ml-[2rem] shadow-sm rounded-xl border-0 p-3 sm:p-4 mx-auto bg-white dark:bg-[#293145] dark:text-[#FFFFFF]">
+  <div   className="card sm:w-1/2 lg:w-[40rem] lg:ml-[2rem] shadow-sm rounded-xl border-0 p-3 sm:p-4 mx-auto bg-white dark:bg-[#293145] dark:text-[#FFFFFF]">
     {/* Card Header */}
     <div className="card-body p-0 relative">
       <div className="flex items-center justify-between">
@@ -208,7 +208,7 @@ const startCamera = (mode) => {
 
     {/* Post Input */}
     <div className="card-body p-0 mt-3 relative">
-      <div className="avatar absolute left-10 top-1 ">
+      <div className="avatar absolute left-2 top-1 ">
         <img
           src={avatar}
           alt="icon"
@@ -284,7 +284,7 @@ const startCamera = (mode) => {
   )}
 
   {/* Posts */}
-  <div className="sm:w-1/2 lg:w-[630px] lg:max-h-[610px] lg:ml-[5.5rem] mt-6 flex flex-wrap gap-4 justify-center ">
+  <div className="sm:w-1/2 lg:w-[640px] lg:max-h-[610px] lg:ml-[2rem] mt-6 flex flex-wrap gap-4 justify-center ">
   {posts.map((post) => (
     <div
       key={post.id}

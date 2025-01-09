@@ -7,7 +7,7 @@ import FriendRequest from "./FriendRequest";
 import SocialPost from "./Poste";
 import StoryList from './Stories';
 import EventSection from './Event';
-import FancyLoader from "../Page/FancyLoader"; // Make sure the path is correct
+import FancyLoader from "../Page/FancyLoader"; 
 
 const Social = () => {
   // State to control sidebar toggle on mobile
@@ -49,7 +49,6 @@ const Social = () => {
     );
   }
 
-  // Otherwise, render the normal layout
   return (
     <div className="min-h-screen w-screen bg-gray-100 text-gray-800 dark:bg-[#1E2738] dark:text-gray-100 flex flex-col">
       {/* Navigation Bar */}
@@ -59,7 +58,7 @@ const Social = () => {
 
       {/* Main Content */}
       <div className="flex flex-1 h-full">
-        {/* Sidebar (hidden in mobile unless toggled; always visible on md+) */}
+        {/* Sidebar */}
         <div
           className={`
             ${isSidebarOpen ? 'block' : 'hidden'}

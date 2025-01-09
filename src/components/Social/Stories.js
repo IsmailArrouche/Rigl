@@ -62,7 +62,7 @@ const StoryList = () => {
   }, []);
 
   return (
-    <div className=" lg:ml-[-9rem] my-4 relative flex justify-center items-center">
+    <div className=" lg:ml-[-15rem] my-4 relative flex justify-center items-center">
       {/* Liste des stories */}
       <div
         ref={containerRef}
