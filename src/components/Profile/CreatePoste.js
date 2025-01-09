@@ -159,8 +159,8 @@ const startCamera = (mode) => {
   };
 
   return (
-<div className="max-w-full ml-2 px-2">
-  <div   className="card sm:w-1/2 lg:w-[630px] shadow-sm rounded-xl border-0 p-3 sm:p-4 mx-auto bg-white dark:bg-[#293145] dark:text-[#FFFFFF]">
+<div className="max-w-full">
+  <div class="card lg:w-[630px] w-fit shadow-sm rounded-xl border-0 p-3 sm:p-4 lg:mx-auto mx-2 bg-white dark:bg-[#293145] dark:text-[#FFFFFF]">
     {/* Card Header */}
     <div className="card-body p-0 relative">
       <div className="flex items-center justify-between">
@@ -288,7 +288,7 @@ const startCamera = (mode) => {
   {posts.map((post) => (
     <div
       key={post.id}
-      className="card w-full sm:w-full lg:w-full shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 mx-auto bg-white dark:bg-[#293145] dark:text-[#FFFFFF]"
+      className="card w-[23rem] lg:w-full shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 mx-auto bg-white dark:bg-[#293145] dark:text-[#FFFFFF]"
     >
       {/* En-tête */}
       <div className="flex flex-wrap justify-between">

@@ -26,7 +26,7 @@ const EventSection = () => {
     ];
 
     return (
-        <div className="bg-white dark:bg-[#293145] dark:text-[#FFFFFF] rounded-lg p-5 shadow-md w-[300px] h-[320px] mb-5">
+        <div className=" ml-2 w-[23rem] bg-white dark:bg-[#293145] dark:text-[#FFFFFF] rounded-lg p-5 shadow-md lg:w-[300px] h-[320px] mb-5">
             <div className="flex justify-between items-center mb-1">
                 <h2 className="text-xl font-semibold">Events</h2>
                 <a href="#" className="text-blue-400 text-sm hover:underline">See all</a>

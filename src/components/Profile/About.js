@@ -2,7 +2,7 @@ import { LockClosedIcon, EyeIcon, LocationMarkerIcon, UserGroupIcon } from "@her
 
 const AboutSection = () => {
   return (
-    <div className="bg-white dark:bg-[#293145] dark:text-[#FFFFFF] rounded-lg p-5 shadow-md w-full max-w-[400px] mx-auto h-[400px] mb-5 ml-2">
+    <div className="w-[23rem] bg-white dark:bg-[#293145] dark:text-[#FFFFFF] rounded-lg p-5 shadow-md lg:max-w-[19rem] mx-auto h-[400px] mb-5 ml-2">
       {/* About Section */}
       <div className="mb-5">
         <h2 className="text-lg font-semibold">About</h2>
