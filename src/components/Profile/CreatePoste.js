@@ -181,7 +181,7 @@ const startCamera = (mode) => {
 
     {/* Menu déroulant */}
     {menuOpen && (
-      <ul className="dropdown-menu absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg w-40 sm:w-56 z-50">
+      <ul className="dropdown-menu absolute right-0 top-full mt-1 text-black bg-white border border-gray-200 rounded-md shadow-lg w-40 sm:w-56 z-50">
         <li className="dropdown-item p-2 sm:p-3 flex items-start hover:bg-gray-100 cursor-pointer">
           <i className="feather-bookmark mr-2 text-gray-500" />
           <div>
@@ -284,11 +284,11 @@ const startCamera = (mode) => {
   )}
 
   {/* Posts */}
-  <div className="sm:w-1/2 lg:w-[630px] lg:max-h-[610px] mt-6 flex flex-wrap gap-4 justify-center ">
+  <div className="sm:w-1/2 lg:w-[41rem] lg:max-h-[610px] mt-6 flex flex-wrap gap-4 justify-center ">
   {posts.map((post) => (
     <div
       key={post.id}
-      className="card w-[23rem] lg:w-full shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 mx-auto bg-white dark:bg-[#293145] dark:text-[#FFFFFF]"
+      className="card lg:ml-8 w-[23rem] lg:w-full shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 mx-auto bg-white dark:bg-[#293145] dark:text-[#FFFFFF]"
     >
       {/* En-tête */}
       <div className="flex flex-wrap justify-between">
@@ -319,12 +319,11 @@ const startCamera = (mode) => {
 </div>
 
       {/* Contenu média */}
-      {post.text && <p className="text-xs sm:text-sm">{post.text}</p>}
+      {post.text && <p className="mt-2 text-xs sm:text-sm">{post.text}</p>}
       {post.media && (
         <div className="card-body p-4">
           {post.mediaType === "image" ? (
             <div>
-              <p className="text-xs sm:text-sm">{post.text}</p>
               <img
                 src={URL.createObjectURL(post.media)}
                 alt="Post media"
@@ -344,37 +343,29 @@ const startCamera = (mode) => {
       )}
 
       {/* Actions */}
-                <div className="card-body flex flex-wrap p-0 mt-2 gap-2 sm:gap-4">
-                  {/* Bouton "Like" */}
-                  <button
-                    className={`flex items-center ${
-                      likes[post.id] ? 'text-[#E53E3E]' : 'text-[#6B7280] dark:text-[#A0AEC0]'
-                    } hover:text-[#C53030] dark:hover:text-[#E53E3E] transition-colors duration-300`}
-                    onClick={() => handleLike(post.id)}
-                    aria-label="Like"
-                  >
-                    <FaHeart
-                      className={`mr-1 h-5 w-5 transition-transform duration-300 ${
-                        likes[post.id] ? 'scale-125' : 'scale-100'
-                      }`}
-                    />
-                    <span>{likes[post.id] ? 1 : 0}</span>
-                  </button>
-      
-                      <div className="flex flex-wrap justify-between w-[530px]">
-                      {/* Bouton "Commenter" */}
-                      <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] space-x-2 p-2 sm:p-3 rounded-md  w-full sm:w-auto">
-                          <FaCommentAlt className="h-5 w-5" />
-                          <span className="text-xs sm:text-sm">Comment</span>
-                      </button>
-                      
-                      {/* Bouton "Partager" */}
-                      <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] space-x-2 p-2 sm:p-2 rounded-md w-full sm:w-auto">
-                          <FaShare className="h-5 w-5" />
-                          <span className="text-xs sm:text-sm">Share</span>
-                      </button>
-                      </div>
-                </div>
+      <div className="mt-3 flex flex-wrap justify-between gap-4">
+        <button
+          className={`flex items-center ${
+            likes[post.id] ? 'text-[#E53E3E]' : 'text-[#6B7280] dark:text-[#A0AEC0]'
+          } hover:text-[#C53030] dark:hover:text-[#E53E3E] transition-colors duration-300`}
+          onClick={() => handleLike(post.id)}
+        >
+          <FaHeart
+            className={`mr-2 h-5 w-5 transition-transform duration-300 ${
+              likes[post.id] ? 'scale-125' : 'scale-100'
+            }`}
+          />
+          <span>{likes[post.id] ? 1 : 0}</span>
+        </button>
+        <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] hover:text-[#4A5568] dark:hover:text-[#CBD5E0] transition-colors duration-300">
+          <FaCommentAlt className="mr-2 h-5 w-5" />
+          Comment
+        </button>
+        <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] hover:text-[#4A5568] dark:hover:text-[#CBD5E0] transition-colors duration-300">
+          <FaShare className="mr-2 h-5 w-5" />
+          Share
+        </button>
+      </div>
     </div>
   ))}
   </div>
