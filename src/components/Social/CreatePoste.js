@@ -208,7 +208,7 @@ const startCamera = (mode) => {
 
     {/* Post Input */}
     <div className="card-body p-0 mt-3 relative">
-      <div className="avatar absolute left-10 top-1 ">
+      <div className="avatar absolute left-3 top-2 ">
         <img
           src={avatar}
           alt="icon"
@@ -284,11 +284,11 @@ const startCamera = (mode) => {
   )}
 
   {/* Posts */}
-  <div className="sm:w-1/2 lg:w-[630px] lg:max-h-[610px] lg:ml-[5.5rem] mt-6 flex flex-wrap gap-4 justify-center ">
+  <div className="sm:w-1/2 lg:w-[630px] lg:max-h-[610px] lg:ml-[2.2rem] mt-6 flex flex-wrap gap-4 justify-center ">
   {posts.map((post) => (
     <div
       key={post.id}
-      className="card w-full sm:w-full lg:w-full shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 mx-auto bg-white dark:bg-[#293145] dark:text-[#FFFFFF]"
+      className="card w-[23rem] lg:w-full shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 mx-auto bg-white dark:bg-[#293145] dark:text-[#FFFFFF]"
     >
       {/* En-tête */}
       <div className="flex flex-wrap justify-between">
@@ -344,36 +344,28 @@ const startCamera = (mode) => {
       )}
 
       {/* Actions */}
-                <div className="card-body flex flex-wrap p-0 mt-2 gap-2 sm:gap-4">
-                  {/* Bouton "Like" */}
+                <div className="mt-3 flex flex-wrap justify-between gap-4">
                   <button
                     className={`flex items-center ${
                       likes[post.id] ? 'text-[#E53E3E]' : 'text-[#6B7280] dark:text-[#A0AEC0]'
                     } hover:text-[#C53030] dark:hover:text-[#E53E3E] transition-colors duration-300`}
                     onClick={() => handleLike(post.id)}
-                    aria-label="Like"
                   >
                     <FaHeart
-                      className={`mr-1 h-5 w-5 transition-transform duration-300 ${
+                      className={`mr-2 h-5 w-5 transition-transform duration-300 ${
                         likes[post.id] ? 'scale-125' : 'scale-100'
                       }`}
                     />
                     <span>{likes[post.id] ? 1 : 0}</span>
                   </button>
-      
-                      <div className="flex flex-wrap justify-between w-[530px]">
-                      {/* Bouton "Commenter" */}
-                      <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] space-x-2 p-2 sm:p-3 rounded-md  w-full sm:w-auto">
-                          <FaCommentAlt className="h-5 w-5" />
-                          <span className="text-xs sm:text-sm">Comment</span>
-                      </button>
-                      
-                      {/* Bouton "Partager" */}
-                      <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] space-x-2 p-2 sm:p-2 rounded-md w-full sm:w-auto">
-                          <FaShare className="h-5 w-5" />
-                          <span className="text-xs sm:text-sm">Share</span>
-                      </button>
-                      </div>
+                  <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] hover:text-[#4A5568] dark:hover:text-[#CBD5E0] transition-colors duration-300">
+                    <FaCommentAlt className="mr-2 h-5 w-5" />
+                    Comment
+                  </button>
+                  <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] hover:text-[#4A5568] dark:hover:text-[#CBD5E0] transition-colors duration-300">
+                    <FaShare className="mr-2 h-5 w-5" />
+                    Share
+                  </button>
                 </div>
     </div>
   ))}

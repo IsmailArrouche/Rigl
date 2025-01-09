@@ -48,11 +48,11 @@ const SocialPost = () => {
   };
 
   return (
-    <div className="mx-auto w-full max-w-screen-lg px-4 sm:px-6 lg:px-8 flex flex-col gap-4 justify-center">
+    <div className="mx-2 lg:mx-auto max-w-full-lg sm:px-6 lg:px-8 flex flex-col gap-4 justify-center">
       {posts.map((post) => (
         <div
           key={post.id}
-          className="card w-full shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 bg-white dark:bg-[#293145] dark:text-[#FFFFFF]"
+          className="card lg:w-[39rem] w-[23rem] shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 bg-white dark:bg-[#293145] dark:text-[#FFFFFF]"
         >
           {/* En-tête */}
           <div className="flex items-center justify-between">
