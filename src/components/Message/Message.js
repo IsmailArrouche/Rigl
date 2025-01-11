@@ -15,14 +15,10 @@ const Message = () => {
   );
   const [isLoading, setIsLoading] = useState(true);
 
-  const toggleSidebar = () => {
-    setSidebarVisible(!isSidebarVisible);
-  };
-
   useEffect(() => {
     const handleResize = () => {
-      setSidebarVisible(window.innerWidth >= 768);
       setIsWideScreen(window.innerWidth >= 1024);
+      setSidebarVisible(window.innerWidth >= 768); // Automatically show sidebar on larger screens
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -38,44 +34,48 @@ const Message = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen w-screen bg-gray-200 dark:bg-[#1E2738]">
-        <FancyLoader
-          boxColors={["#EF4444", "#F59E0B", "#6366F1", "#10B981", "#3B82F6", "#8B5CF6"]}
-          size="3rem"
-          animationSpeed={1.5}
+        <FancyLoader 
+          barHeight="10px"
+          animationSpeed={8}
         />
       </div>
     );
   }
 
   return (
-    <div className="h-screen w-screen bg-gray-100 dark:bg-[#1E2738] text-gray-800 dark:text-gray-100 flex flex-col">
-      {/* Navigation Bar */}
+    <div className="h-screen w-screen bg-gray-200 dark:bg-[#1E2738] text-gray-800 dark:text-gray-100 transition-colors duration-300 overflow-hidden">
+      {/* Nav Bar */}
       <div className="w-full bg-gray-200 dark:bg-gray-800 shadow-md sticky top-0 z-10">
-        <Nav toggleSidebar={toggleSidebar} />
+        <Nav 
+          toggleSidebar={() => setSidebarVisible(!isSidebarVisible)} 
+          isSidebarOpen={isSidebarVisible}
+        />
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-1">
+      <div className="flex h-full">
         {/* Sidebar */}
         {isSidebarVisible && (
-          <div className="w-2/12 bg-gray-100 dark:bg-[rgb(41,49,69)]">
-            <Sidebar />
+          <div className="md:block w-[100] bg-gray-100 dark:bg-gray-800 transition-transform duration-300 transform">
+            <Sidebar closeSidebar={() => setSidebarVisible(false)} />
           </div>
         )}
 
-        {/* Center Content */}
-        <div className="flex-1 flex flex-col justify-center items-center relative">
+        {/* ChatBox */}
+        <div 
+          className={`flex-1 w-full mt-[5.5rem] transition-all duration-300`}
+        >
           <ChatBox />
         </div>
 
-        {/* Contact Section */}
+        {/* Right-side: Contacts and FriendRequest */}
         {isWideScreen && (
-          <div className="flex-r">
-            <div className="min-w-64 lg:block">
-              <Contacts />
-            </div>
-            <div className="min-w-64 lg:block">
+          <div className="hidden lg:flex mt-[5.5rem] mb-8 w-[20%] xl:w-[15%] flex-col space-y-2">
+            <div className="flex-1 bg-gray-300 dark:bg-inherit">
               <FriendRequest />
+            </div>
+            <div className="flex-1 bg-gray-300 dark:bg-inherit">
+              <Contacts />
             </div>
           </div>
         )}
