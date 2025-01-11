@@ -48,7 +48,7 @@ function AppContent() {
                 user.length === 0 ? (
                   <Form onNavigate={setCurrentPage} />
                 ) : (
-                  <Welcome />
+                  <Conex onNavigate={setCurrentPage} />
                 )
               ) : (
                 <Conex onNavigate={setCurrentPage} />
