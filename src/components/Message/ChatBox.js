@@ -107,7 +107,7 @@ const ChatBox = () => {
   }, [messages, isTyping]);
 
   return (
-    <div className="flex flex-col h-[91vh] w-[100%] bg-gray-50 dark:bg-[#1E2738] p-6 max-w-6xl mx-auto">
+    <div className="flex flex-col h-full w-full bg-gray-50 dark:bg-[#1E2738] px-4 py-2">
       {/* Chat Messages */}
       <div className="flex-1 overflow-y-auto space-y-6 pr-4 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700">
         {messages.map((message, index) => (

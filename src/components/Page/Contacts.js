@@ -72,9 +72,9 @@ const Contacts = () => {
   };
 
   return (
-    <div className="w-full mt-[24.5rem] lg:w-64 bg-white dark:bg-[rgb(41,49,69)] shadow-md rounded-lg p-4">
+    <div className="w-full lg:w-64 bg-white dark:bg-[rgb(41,49,69)] shadow-md rounded-lg p-4">
       {/* Wrapper for scrollable content */}
-      <div className="h-96 overflow-y-scroll">
+      <div className="h-[49vh] overflow-y-auto">
         {/* Contacts Section */}
         <div>
           <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
