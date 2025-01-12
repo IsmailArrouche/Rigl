@@ -62,11 +62,11 @@ const StoryList = () => {
   }, []);
 
   return (
-    <div className=" lg:ml-[-9rem] my-4 relative flex justify-center items-center">
+    <div className="w-full flex justify-center my-4">
       {/* Liste des stories */}
       <div
         ref={containerRef}
-        className="flex items-center space-x-3.5 overflow-x-auto scrollbar-hide w-[41.5rem]"
+        className="flex items-center space-x-3.5 overflow-x-auto scrollbar-hide max-w-[41.5rem] px-4"
       >
         <AddStory />
         {stories.map((story) => (

@@ -73,21 +73,21 @@ const Social = () => {
         </div>
 
         {/* Center Content */}
-        <div className="mb-1 flex flex-col relative mx-auto w-full sm:w-auto md:w-3/4 lg:w-1/2">
+        <div className="mb-1 flex flex-col relative lg:ml-8 mr-auto w-full sm:w-auto md:w-3/4 lg:w-[44rem] xl:w-[44rem]">
           <StoryList />
           <CreatePost />
           <SocialPost />
         </div>
 
-        {/* Right Section (only on lg+) */}
-        <div className="hidden lg:flex flex-r">
+        {/* Right Section */}
+        <div className="hidden lg:flex flex-col h-full space-y-4">
           {/* Contacts */}
           <div className="min-w-64 h-auto bg-gray-300 dark:bg-[#1E2738]">
             <Contacts />
           </div>
 
           {/* Friend Requests + Events */}
-          <div className="mb-1 flex flex-col w-1/4 bg-gray-300 dark:bg-[#2B3545]">
+          <div className="mb-1 hidden 2xl:block min-w-64 h-auto bg-gray-300 dark:bg-[#2B3545]">
             <FriendRequest />
             <EventSection />
           </div>
