@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../components/Nav/Nav";
 import Form from "../components/Form/Form";
-import Welcome from "../components/Welcome/Welcome";
 import Conex from "../components/Conex/Conex";
 import { useSelector } from "react-redux";
 import ForgetPassword from "../components/ForgetPassword/ForgetPassword";

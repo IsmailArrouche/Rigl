@@ -25,8 +25,8 @@ export default function JobOfferCard({
         relative 
         rounded-lg 
         w-full 
-        h-[73vh]
-        md:h-[27rem]
+        min-h-[27rem]
+        max-h-[73vh]
         flex 
         flex-col 
         p-6
@@ -37,6 +37,7 @@ export default function JobOfferCard({
         text-gray-800
         dark:bg-[#293145] 
         dark:text-white
+        overflow-hidden
         ${className}
       `}
       style={{ fontSize: "1rem" }}
@@ -82,12 +83,12 @@ export default function JobOfferCard({
       </div>
 
       {/* Description */}
-      <p className="text-sm text-gray-700 dark:text-gray-100 flex-grow leading-relaxed mb-5">
+      <p className="text-sm text-gray-700 dark:text-gray-100 flex-grow leading-relaxed mb-5 overflow-y-auto">
         {shortDesc}
       </p>
 
       {/* Bottom Row */}
-      <div className="mt-auto">
+      <div className="sticky bottom-0 bg-white dark:bg-[#293145] pt-4">
         <button className="btn-primary w-full" title="Rigl">
           <FaBriefcase className="w-5 h-5 mr-2 inline-block" />
           Rigl

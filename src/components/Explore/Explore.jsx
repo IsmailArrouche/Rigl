@@ -160,12 +160,12 @@ export default function Explore() {
 
           {/* Right side: Contacts & FriendRequest (only on wide screens) */}
           {isWideScreen && (
-            <div className="flex-r">
-              <div className="min-w-64 bg-gray-300 dark:bg-inherit">
-                <Contacts />
-              </div>
-              <div className="min-w-64 bg-gray-300 dark:bg-inherit">
+            <div className="flex-r space-y-3">
+              <div className="mt-2 min-w-64 bg-gray-300 dark:bg-inherit">
                 <FriendRequest />
+              </div>
+              <div className=" min-w-64 bg-gray-300 dark:bg-inherit">
+                <Contacts />
               </div>
             </div>
           )}
