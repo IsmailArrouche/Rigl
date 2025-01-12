@@ -315,11 +315,11 @@ const Event = () => {
           {/* Right Section: only shows if isWideScreen */}
           {isWideScreen && (
             <div className="flex-r">
-              <div className="min-w-64 bg-gray-200 dark:bg-[#1E2738]">
-                <Contacts />
-              </div>
-              <div className="min-w-64 bg-gray-200 dark:bg-[#1E2738]">
+              <div className="min-w-64 mt-2 bg-gray-200 dark:bg-[#1E2738]">
                 <FriendRequest />
+              </div>
+              <div className="min-w-64 mt-2 bg-gray-200 dark:bg-[#1E2738]">
+                <Contacts />
               </div>
             </div>
           )}
