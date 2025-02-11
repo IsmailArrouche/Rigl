@@ -48,13 +48,13 @@ const SocialPost = () => {
   };
 
   return (
-    <div className="lg:ml-2 lg:w-[44rem] max-w-screen-lg px-4 sm:px-6 lg:px-8 flex flex-col gap-4 justify-center">
+    <div className="w-full flex flex-col gap-4 justify-center">
       {posts.map((post) => (
         <div
           key={post.id}
           className="card w-full shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 bg-white dark:bg-[#293145] dark:text-[#FFFFFF]"
         >
-          {/* En-tête */}
+          {/* Header */}
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <img
@@ -74,7 +74,7 @@ const SocialPost = () => {
             </button>
           </div>
 
-          {/* Contenu */}
+          {/* Content */}
           <div className="mt-3">
             <p className="text-sm sm:text-base">{post.content}</p>
             {post.media.type === 'image' && (
@@ -87,7 +87,7 @@ const SocialPost = () => {
             {post.media.type === 'video' && (
               <video controls className="mt-2 rounded-md w-full h-auto">
                 <source src={post.media.src} type="video/mp4" />
-                Votre navigateur ne supporte pas la lecture des vidéos.
+                Your browser does not support the video tag.
               </video>
             )}
           </div>

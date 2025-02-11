@@ -2,7 +2,7 @@ import { LockClosedIcon, EyeIcon, LocationMarkerIcon, UserGroupIcon } from "@her
 
 const AboutSection = () => {
   return (
-    <div className="w-[23rem] bg-white dark:bg-[#293145] dark:text-[#FFFFFF] rounded-lg p-5 shadow-md lg:max-w-[19rem] mx-auto h-[400px] mb-5 ml-2">
+    <div className="w-full bg-white dark:bg-[#293145] dark:text-[#FFFFFF] rounded-lg p-4 sm:p-5 shadow-md">
       {/* About Section */}
       <div className="mb-5">
         <h2 className="text-lg font-semibold">About</h2>
@@ -14,33 +14,37 @@ const AboutSection = () => {
       </div>
 
       {/* Details Section */}
-      <div className="divide-y divide-gray-300 dark:divide-[#555]">
-        <div className="flex items-center py-3">
-          <LockClosedIcon className="h-5 w-5 text-gray-400 mr-3" />
-          <div>
-            <p className="text-sm font-medium">Private</p>
-            <p className="text-xs text-gray-400">What's up, how are you?</p>
+      <div className="divide-y divide-gray-200 dark:divide-gray-700">
+        {[
+          {
+            Icon: LockClosedIcon,
+            title: "Private",
+            subtitle: "What's up, how are you?",
+          },
+          {
+            Icon: EyeIcon,
+            title: "Visible",
+            subtitle: "Anyone can find you",
+          },
+          {
+            Icon: LocationMarkerIcon,
+            title: "Flodia, Austria",
+          },
+          {
+            Icon: UserGroupIcon,
+            title: "General Group",
+          },
+        ].map(({ Icon, title, subtitle }, index) => (
+          <div key={index} className="flex items-center py-3">
+            <Icon className="h-5 w-5 text-gray-400 mr-3 flex-shrink-0" />
+            <div>
+              <p className="text-sm font-medium">{title}</p>
+              {subtitle && (
+                <p className="text-xs text-gray-400">{subtitle}</p>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="flex items-center py-3">
-          <EyeIcon className="h-5 w-5 text-gray-400 mr-3" />
-          <div>
-            <p className="text-sm font-medium">Visible</p>
-            <p className="text-xs text-gray-400">Anyone can find you</p>
-          </div>
-        </div>
-        <div className="flex items-center py-3">
-          <LocationMarkerIcon className="h-5 w-5 text-gray-400 mr-3" />
-          <div>
-            <p className="text-sm font-medium">Flodia, Austria</p>
-          </div>
-        </div>
-        <div className="flex items-center py-3">
-          <UserGroupIcon className="h-5 w-5 text-gray-400 mr-3" />
-          <div>
-            <p className="text-sm font-medium">General Group</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

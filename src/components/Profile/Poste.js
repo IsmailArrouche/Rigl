@@ -48,72 +48,68 @@ const SocialPost = () => {
   };
 
   return (
-    <div className="mx-2 lg:mx-auto max-w-full-lg sm:px-6 lg:px-8 flex flex-col gap-4 justify-center">
+    <div className="w-full space-y-4">
       {posts.map((post) => (
         <div
           key={post.id}
-          className="card lg:w-[39rem] w-[23rem] shadow-sm rounded-xl border-0 p-3 sm:p-4 mb-3 bg-white dark:bg-[#293145] dark:text-[#FFFFFF]"
+          className="bg-white dark:bg-[#293145] dark:text-[#FFFFFF] rounded-lg shadow-sm p-4"
         >
-          {/* En-tête */}
+          {/* Header */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center">
+            <div className="flex items-center space-x-3">
               <img
                 src="https://randomuser.me/api/portraits/men/1.jpg"
                 alt="avatar"
-                className="shadow-sm rounded-full w-10 h-10"
+                className="w-10 h-10 rounded-full"
               />
-              <div className="flex flex-col pl-2">
-                <span className="text-sm sm:text-base">Mohannad Zitoun</span>
-                <span className="text-xs text-gray-400">{formatDate(post.date)}</span>
+              <div>
+                <span className="font-medium">Mohannad Zitoun</span>
+                <p className="text-xs text-gray-400">
+                  {formatDate(post.date)}
+                </p>
               </div>
             </div>
-            <button
-              className="dots-button w-9 h-9 text-gray-900 p-2 rounded-full bg-gray-300 dark:bg-[#ffffff] dark:text-[#363232]"
-            >
+            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700">
               ···
             </button>
           </div>
 
-          {/* Contenu */}
-          <div className="mt-3">
-            <p className="text-sm sm:text-base">{post.content}</p>
-            {post.media.type === 'image' && (
-              <img
-                src={post.media.src}
-                alt="Post"
-                className="mt-2 rounded-md w-full h-auto"
-              />
-            )}
-            {post.media.type === 'video' && (
-              <video controls className="mt-2 rounded-md w-full h-auto">
-                <source src={post.media.src} type="video/mp4" />
-                Votre navigateur ne supporte pas la lecture des vidéos.
-              </video>
-            )}
+          {/* Content */}
+          <div className="mt-4">
+            <p className="text-sm">{post.content}</p>
+            <div className="mt-4 rounded-lg overflow-hidden">
+              {post.media.type === 'image' ? (
+                <img
+                  src={post.media.src}
+                  alt="Post content"
+                  className="w-full h-auto"
+                />
+              ) : (
+                <video controls className="w-full">
+                  <source src={post.media.src} type="video/mp4" />
+                </video>
+              )}
+            </div>
           </div>
 
           {/* Actions */}
-          <div className="mt-3 flex flex-wrap justify-between gap-4">
+          <div className="mt-4 flex items-center justify-between">
             <button
-              className={`flex items-center ${
-                likes[post.id] ? 'text-[#E53E3E]' : 'text-[#6B7280] dark:text-[#A0AEC0]'
-              } hover:text-[#C53030] dark:hover:text-[#E53E3E] transition-colors duration-300`}
               onClick={() => handleLike(post.id)}
+              className={`flex items-center space-x-2 ${
+                likes[post.id] ? 'text-red-500' : 'text-gray-500'
+              }`}
             >
-              <FaHeart
-                className={`mr-2 h-5 w-5 transition-transform duration-300 ${
-                  likes[post.id] ? 'scale-125' : 'scale-100'
-                }`}
-              />
+              <FaHeart className={`transition-transform ${likes[post.id] ? 'scale-110' : ''}`} />
               <span>{likes[post.id] ? 1 : 0}</span>
             </button>
-            <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] hover:text-[#4A5568] dark:hover:text-[#CBD5E0] transition-colors duration-300">
-              <FaCommentAlt className="mr-2 h-5 w-5" />
-              Comment
+            <button className="flex items-center space-x-2 text-gray-500">
+              <FaCommentAlt />
+              <span>Comment</span>
             </button>
-            <button className="flex items-center text-[#6B7280] dark:text-[#A0AEC0] hover:text-[#4A5568] dark:hover:text-[#CBD5E0] transition-colors duration-300">
-              <FaShare className="mr-2 h-5 w-5" />
-              Share
+            <button className="flex items-center space-x-2 text-gray-500">
+              <FaShare />
+              <span>Share</span>
             </button>
           </div>
         </div>

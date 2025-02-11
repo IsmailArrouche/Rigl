@@ -13,8 +13,9 @@ import FancyLoader from "../Page/FancyLoader"; // Ensure the path is correct
 const Profile = () => {
   // State to control sidebar toggle on mobile
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  // New: isLoading state to show FancyLoader
+  const [isWideScreen, setIsWideScreen] = useState(
+    typeof window !== "undefined" ? window.innerWidth >= 1024 : false
+  );
   const [isLoading, setIsLoading] = useState(true);
 
   // Toggles sidebar open/close in mobile view
@@ -22,7 +23,14 @@ const Profile = () => {
     setIsSidebarOpen((prev) => !prev);
   };
 
-  // Use effect for 3-second loading
+  useEffect(() => {
+    const handleResize = () => {
+      setIsWideScreen(window.innerWidth >= 1024);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -50,60 +58,87 @@ const Profile = () => {
     );
   }
 
-  // Otherwise, render the normal layout
   return (
-    <div className="min-h-screen w-screen bg-gray-100 text-gray-800 dark:bg-[#1E2738] dark:text-gray-100 flex flex-col">
-      {/* Navigation Bar */}
-      <div className="w-full bg-gray-200 dark:bg-gray-800 shadow-md sticky top-0 z-10">
-        <Nav toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
-      </div>
+    <>
+      {/* Add fade-in animation style */}
+      <style>
+        {`
+          @keyframes fadeInUp {
+            0% {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            100% {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+          }
+        `}
+      </style>
 
-      {/* Main Content */}
-      <div className="flex flex-1 h-full">
-        {/* Sidebar (hidden in mobile unless toggled; always visible on md+) */}
-        <div
-          className={`
-            ${isSidebarOpen ? 'block' : 'hidden'} 
-            md:block
-            w-2/12
-            bg-gray-100
-            dark:bg-[#293145]
-          `}
-        >
-          <Sidebar />
+      <div className="fade-in-up min-h-screen w-screen bg-gray-200 dark:bg-[#1E2738] text-gray-800 dark:text-gray-100 flex flex-col transition-colors duration-300">
+        {/* Navigation Bar */}
+        <div className="w-full bg-gray-200 dark:bg-gray-800 shadow-md sticky top-0 z-10">
+          <Nav toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
         </div>
 
-        {/* Center Content */}
-        <div className="ml-0 md:ml-40 mb-1 flex-1 flex flex-col relative">
-          <div className="relative lg:w-full w-fit max-w-full md:max-w-md space-y-6 py-8">
-            <UserProfile />
-            <div className="flex-1 flex flex-col md:flex-row w-full md:w-[960px] pb-4 ml-1">
-              {/* About + Events (Events hidden on smaller screens) */}
-              <div className="w-full md:w-1/2 mb-4 md:mb-0 lg:block">
-                <AboutSection />
-                <EventSection />
+        {/* Main Content */}
+        <div className="flex flex-1 h-full">
+          {/* Sidebar (hidden in mobile unless toggled; always visible on md+) */}
+          <div
+            className={`
+              ${isSidebarOpen ? 'block' : 'hidden'}
+              md:block
+              w-2/12
+              bg-gray-100
+              dark:bg-[#293145]
+            `}
+          >
+            <Sidebar />
+          </div>
+
+          {/* Center Content */}
+          <div className="flex-1 flex flex-col items-center px-4 md:px-6 lg:px-8">
+            <div className="w-full max-w-5xl space-y-6 py-8">
+              {/* User Profile Section */}
+              <div className="w-full">
+                <UserProfile />
               </div>
 
-              {/* Posts on the right side */}
-              <div className="flex-1 flex flex-col w-fit">
-                <CreatePost />
-                <SocialPost />
+              {/* Main Content Grid */}
+              <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {/* Left Column: About + Events */}
+                <div className="space-y-6 lg:col-span-1">
+                  <AboutSection />
+                  <EventSection />
+                </div>
+
+                {/* Right Column: Posts */}
+                <div className="space-y-6 lg:col-span-2">
+                  <CreatePost />
+                  <SocialPost />
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Right Section (only on lg) */}
-        <div className="hidden lg:flex flex-r">
-          <div className="min-w-64 dark:bg-[#2B3545]">
-            <Contacts />
-          </div>
-          <div className="w-1/4 dark:bg-[#2B3545]">
-            <FriendRequest />
-          </div>
+          {/* Right Section - only show on wide screens */}
+          {isWideScreen && (
+            <div className="hidden lg:block w-[320px] space-y-4 p-4">
+              <div className="bg-white dark:bg-[#293145] rounded-lg shadow-lg">
+                <FriendRequest />
+              </div>
+              <div className="bg-white dark:bg-[#293145] rounded-lg shadow-lg">
+                <Contacts />
+              </div>
+            </div>
+          )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

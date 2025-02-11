@@ -169,30 +169,30 @@ const ChatBox = () => {
           </div>
         ))}
 
-        {/* "Is Typing" indicator */}
-        {isTyping && (
-          <div className="flex items-start">
-            <img
-              src="https://randomuser.me/api/portraits/men/45.jpg"
-              alt="Byrom Guittet"
-              className="w-10 h-10 rounded-full mr-4"
-            />
-            <div className="flex flex-col">
-              <div className="text-black dark:text-white font-bold">Byrom Guittet</div>
-              <div className="bg-[#62b6cb] text-black dark:bg-[#62b6cb] dark:text-white p-2 rounded-lg max-w-3xl mt-2 animate-pulse">
-                <span className="flex space-x-1">
-                  <span className="h-2 w-2 bg-gray-500 rounded-full"></span>
-                  <span className="h-2 w-2 bg-gray-500 rounded-full"></span>
-                  <span className="h-2 w-2 bg-gray-500 rounded-full"></span>
-                </span>
+          {/* "Is Typing" indicator */}
+          {isTyping && (
+            <div className="flex items-start">
+              <img
+                src="https://randomuser.me/api/portraits/men/45.jpg"
+                alt="Byrom Guittet"
+                className="w-10 h-10 rounded-full mr-4"
+              />
+              <div className="flex flex-col">
+                <div className="text-black dark:text-white font-bold">Byrom Guittet</div>
+                <div className="bg-[#62b6cb] text-black dark:bg-[#62b6cb] dark:text-white p-2 rounded-lg max-w-3xl mt-2 animate-pulse">
+                  <span className="flex space-x-1">
+                    <span className="h-2 w-2 bg-gray-500 rounded-full"></span>
+                    <span className="h-2 w-2 bg-gray-500 rounded-full"></span>
+                    <span className="h-2 w-2 bg-gray-500 rounded-full"></span>
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Dummy element to always scroll into view */}
-        <div ref={chatEndRef} />
-      </div>
+          {/* Dummy element to always scroll into view */}
+          <div ref={chatEndRef} />
+        </div>
 
       {/* Input Box */}
       <div className="flex items-center bg-gray-200 dark:bg-[#18293c] p-4 rounded-full mt-4">

@@ -10,7 +10,7 @@ import {
   InboxIcon, // New Icon for Chat
 } from "@heroicons/react/solid"; // Import Heroicons
 
-const Sidebar = () => {
+const Sidebar = ({ isVisible, onClose }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const menuItems = [
@@ -112,18 +112,18 @@ const Sidebar = () => {
               </span>
             </div>
 
-            {/* Analytics */}
-            <div
-              className="flex items-center gap-4 p-3 rounded-md cursor-pointer hover:shadow-lg transition-all duration-300 bg-gray-50 dark:bg-[#293145] hover:bg-gray-100 dark:hover:bg-[#3C485C]"
-              onClick={() => handleRedirect("/analytics")}
-            >
-              <div className="w-10 h-10 flex items-center justify-center rounded-full bg-[#007F89] text-white shadow-md">
-                <ChartBarIcon className="w-6 h-6" />
-              </div>
-              <span className="text-gray-700 dark:text-gray-300 text-base font-medium">
-                Analytics
-              </span>
+          {/* Analytics */}
+          <div
+            className="flex items-center gap-4 p-3 rounded-md cursor-pointer hover:shadow-lg transition-all duration-300 bg-gray-50 dark:bg-[#293145] hover:bg-gray-100 dark:hover:bg-[#3C485C]"
+            onClick={() => handleRedirect("/analytics")}
+          >
+            <div className="w-10 h-10 flex items-center justify-center rounded-full bg-[#007F89] text-white shadow-md">
+              <ChartBarIcon className="w-6 h-6" />
             </div>
+            <span className="text-gray-700 dark:text-gray-300 text-base font-medium">
+              Analytics
+            </span>
+          </div>
 
             {/* Chat */}
             <div

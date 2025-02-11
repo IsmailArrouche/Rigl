@@ -26,76 +26,39 @@ const EventSection = () => {
     ];
 
     return (
-        <div className=" ml-2 w-[23rem] bg-white dark:bg-[#293145] dark:text-[#FFFFFF] rounded-lg p-5 shadow-md lg:w-[300px] h-[320px] mb-5">
-            <div className="flex justify-between items-center mb-1">
-                <h2 className="text-xl font-semibold">Events</h2>
+        <div className="w-full bg-white dark:bg-[#293145] dark:text-[#FFFFFF] rounded-lg p-4 sm:p-5 shadow-md">
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="text-lg font-semibold">Events</h2>
                 <a href="#" className="text-blue-400 text-sm hover:underline">See all</a>
             </div>
             <div className="space-y-4">
-  {events.map((event, index) => (
-    <div
-      key={index}
-      className="flex items-center p-2 rounded-lg "
-      style={{ width: "370px", height: "71px" }}
-    >
-      {/* Bloc de couleur pour la date */}
-      <div
-        className={`w-[64px] h-[71px] flex flex-col items-center justify-center rounded-xl text-white font-bold ${event.color}`}
-        style={{
-          borderRadius: "16px",
-        }}
-      >
-        {/* Mois */}
-        <span
-          className="text-xs uppercase"
-          style={{
-            fontSize: "12px",
-            lineHeight: "14px",
-            letterSpacing: "1px",
-            marginBottom: "2px",
-          }}
-        >
-          {event.date}
-        </span>
-        {/* Jour */}
-        <span
-          className="font-bold text-2xl"
-          style={{
-            fontSize: "24px",
-            lineHeight: "24px",
-          }}
-        >
-          {event.day}
-        </span>
-      </div>
+                {events.map((event, index) => (
+                    <div
+                        key={index}
+                        className="flex items-start space-x-4 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition"
+                    >
+                        {/* Date Block */}
+                        <div
+                            className={`flex-shrink-0 w-16 h-16 ${event.color} rounded-xl flex flex-col items-center justify-center text-white`}
+                        >
+                            <span className="text-xs uppercase tracking-wider">
+                                {event.date}
+                            </span>
+                            <span className="text-xl font-bold">{event.day}</span>
+                        </div>
 
-      {/* Texte de l'événement */}
-      <div className="ml-4"style={{ width: "163px"}}>
-        <h3
-          className="font-semibold"
-          style={{
-            fontSize: "14px",
-            lineHeight: "18px",
-            marginBottom: "4px",
-          }}
-        >
-          {event.title}
-        </h3>
-        <p
-          className="text-xs text-gray-400"
-          style={{
-            fontSize: "12px",
-            lineHeight: "16px",
-            color: "#9ca3af",
-          }}
-        >
-          {event.location}
-        </p>
-      </div>
-    </div>
-  ))}
-</div>
-
+                        {/* Event Details */}
+                        <div className="flex-1 min-w-0">
+                            <h3 className="text-sm font-semibold truncate">
+                                {event.title}
+                            </h3>
+                            <p className="text-xs text-gray-400 mt-1 line-clamp-2">
+                                {event.location}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
